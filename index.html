@@ -14,47 +14,8 @@
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <!-- Link to CSS -->
   <link rel="stylesheet" href="style.css">
-  <!-- Loading Animation -->
-  <style>
-    /* Preloader Animation */
-    .preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, #121212, #2d2dff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-    }
-
-    .preloader h1 {
-      font-size: 3rem;
-      font-family: 'Orbitron', sans-serif;
-      color: white;
-      text-shadow: 0 0 20px #ff007c, 0 0 40px #2d2dff;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    /* Hide preloader after loading */
-    .loaded .preloader {
-      display: none;
-    }
-  </style>
+  <!-- Link to JS -->
+  <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -69,17 +30,17 @@
       <img src="Umbrixia_Logo.png" alt="Umbrixia Logo">
     </div>
     <nav class="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="features.html">Features</a>
-      <a href="games.html">Games</a>
-      <a href="community.html">Community</a>
-      <a href="contact.html">Contact</a>
+      <a href="#hero">Home</a>
+      <a href="#features">Features</a>
+      <a href="#games">Games</a>
+      <a href="#community">Community</a>
+      <a href="#contact">Contact</a>
       <button class="cta-btn">Join Now</button>
     </nav>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section id="hero" class="hero">
     <h1>Welcome to Umbrixia</h1>
     <p>Redefining the world of gaming with cutting-edge technology.</p>
     <div class="hero-buttons">
@@ -90,7 +51,7 @@
   </section>
 
   <!-- Features Section -->
-  <section class="features">
+  <section id="features" class="features">
     <h2>Our Features</h2>
     <div class="features-grid">
       <div class="feature-card">
@@ -117,7 +78,7 @@
   </section>
 
   <!-- Games Section -->
-  <section class="games">
+  <section id="games" class="games">
     <h2>Our Games</h2>
     <div class="games-grid">
       <div class="game-card">
@@ -143,8 +104,30 @@
     </div>
   </section>
 
+  <!-- Community Section -->
+  <section id="community" class="community">
+    <h2>Join Our Community</h2>
+    <div class="community-grid">
+      <div class="community-card">
+        <i class="fas fa-comments community-icon"></i>
+        <h3>Forums</h3>
+        <p>Engage in discussions, share strategies, and make new friends.</p>
+      </div>
+      <div class="community-card">
+        <i class="fas fa-users community-icon"></i>
+        <h3>Clubs</h3>
+        <p>Form or join clubs to collaborate with like-minded gamers.</p>
+      </div>
+      <div class="community-card">
+        <i class="fas fa-calendar community-icon"></i>
+        <h3>Events</h3>
+        <p>Join gaming events and meetups hosted worldwide.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
-  <footer class="footer">
+  <footer id="contact" class="footer">
     <div class="social-icons">
       <a href="#"><i class="fab fa-facebook-f"></i></a>
       <a href="#"><i class="fab fa-twitter"></i></a>
@@ -152,13 +135,6 @@
     </div>
     <p>&copy; 2024 Umbrixia. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
   </footer>
-
-  <!-- Script for Preloader -->
-  <script>
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
-    });
-  </script>
 </body>
 
 </html>
