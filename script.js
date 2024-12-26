@@ -1,53 +1,20 @@
-// Preloader Animation
+// Preloader
 window.addEventListener('load', () => {
-  const preloader = document.querySelector('.preloader');
-  preloader.classList.add('loaded');
-  setTimeout(() => {
-    preloader.style.display = 'none';
-  }, 1000);
+  document.querySelector('.preloader').style.display = 'none';
 });
 
-// Smooth Scroll for Navigation Links
+// Smooth Scroll
 document.querySelectorAll('.nav-menu a').forEach(link => {
   link.addEventListener('click', function (e) {
     e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
+    const target = document.querySelector(this.getAttribute('href'));
+    target.scrollIntoView({ behavior: 'smooth' });
   });
 });
 
-// Dynamic Features Animation
-const featureCards = document.querySelectorAll('.feature-card');
-featureCards.forEach((card, index) => {
-  card.style.animationDelay = `${index * 0.2}s`;
-  card.classList.add('fade-in');
-});
-
-// Hero Button Click Effect
-document.querySelectorAll('.hero-buttons .btn').forEach(button => {
-  button.addEventListener('click', () => {
-    alert('This button is a demo! Customize it with your functionality.');
-  });
-});
-
-// Scroll-to-Top Button
-const scrollToTopBtn = document.createElement('button');
-scrollToTopBtn.className = 'scroll-to-top';
-scrollToTopBtn.textContent = '↑';
-document.body.appendChild(scrollToTopBtn);
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    scrollToTopBtn.classList.add('visible');
-  } else {
-    scrollToTopBtn.classList.remove('visible');
-  }
-});
-
-scrollToTopBtn.addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
+// Contact Form Validation
+document.getElementById('contactForm')?.addEventListener('submit', function (e) {
+  e.preventDefault();
+  alert('Message sent successfully!');
+  this.reset();
 });
