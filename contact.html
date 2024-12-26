@@ -4,41 +4,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GameX - Contact</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap"
-    rel="stylesheet">
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <!-- Link to CSS -->
+  <title>Contact Umbrixia</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
-  <!-- Header -->
   <header class="navbar">
     <div class="logo">
-      <h1>Game<span>X</span></h1>
+      <img src="images/Umbrixia_Logo.png" alt="Umbrixia Logo">
     </div>
     <nav class="nav-menu">
       <a href="index.html">Home</a>
       <a href="features.html">Features</a>
-      <a href="games.html">Games</a>
       <a href="community.html">Community</a>
-      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <!-- Contact Section -->
   <section class="contact">
-    <h1>Contact Us</h1>
-    <p>Get in touch with us at:</p>
-    <p>Email: support@gamex.com</p>
+    <h2>Contact Us</h2>
+    <p>We'd love to hear from you. Reach out to us via the form below:</p>
+    <form id="contactForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2024 GameX. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy; 2024 Umbrixia. All rights reserved.</p>
   </footer>
 </body>
 
