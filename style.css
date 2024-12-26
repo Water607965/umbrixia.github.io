@@ -2,117 +2,139 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: #000;
+  background: linear-gradient(135deg, #121212, #1c1c1c);
   color: white;
+  overflow-x: hidden;
+}
+
+/* Header */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  background: rgba(0, 0, 0, 0.9);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar .logo img {
+  width: 100px;
+  height: auto;
+}
+
+.nav-menu a {
+  margin: 0 15px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.nav-menu a:hover {
+  color: #ff007c;
+  transform: scale(1.2);
+}
+
+.cta-btn {
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #ff007c, #2d2dff);
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cta-btn:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 20px #ff007c, 0 0 25px #2d2dff;
 }
 
 /* Hero Section */
 .hero {
-  position: relative;
   height: 100vh;
+  background: url('hero-image.jpg') no-repeat center center/cover, linear-gradient(135deg, #1c1c1c, #121212);
   text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: white;
+  position: relative;
 }
 
-.hero-video {
+.hero::after {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background: rgba(0, 0, 0, 0.6);
   z-index: -1;
 }
 
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0);
-  /* Start fully transparent */
-  animation: dimIn 1.5s forwards ease-in-out;
-  /* Fade-in effect */
-  z-index: 1;
+.hero h1 {
+  font-size: 4.5rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px #ff007c, 0 0 40px #2d2dff;
+  animation: glow 2s infinite alternate;
 }
 
-@keyframes dimIn {
-  0% {
-    background: rgba(0, 0, 0, 0);
+@keyframes glow {
+  from {
+    text-shadow: 0 0 20px #ff007c, 0 0 40px #2d2dff;
   }
 
-  100% {
-    background: rgba(0, 0, 0, 0.5);
-    /* Final dimming */
+  to {
+    text-shadow: 0 0 30px #ff4d94, 0 0 50px #2d5dff;
   }
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  color: white;
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
 }
 
-.hero-content h1 {
-  font-size: 4rem;
-  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-
-.hero-content p {
-  font-size: 1.2rem;
-  margin-top: 10px;
+.hero-buttons {
+  display: flex;
+  gap: 20px;
 }
 
 .hero-buttons .btn {
-  margin: 10px;
-  padding: 10px 25px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
   border-radius: 30px;
   border: none;
-  background: linear-gradient(45deg, #ff007c, #2d2dff);
+  background: linear-gradient(45deg, #2d2dff, #ff007c);
   color: white;
-  font-size: 1rem;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .hero-buttons .btn:hover {
   transform: scale(1.1);
+  box-shadow: 0 0 20px #ff007c, 0 0 30px #2d2dff;
 }
 
-/* Features Section */
-.features-grid {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  padding: 50px 5%;
-}
-
-.feature-card {
-  width: 250px;
+/* Footer */
+.footer {
+  background: rgba(0, 0, 0, 0.9);
   text-align: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 20px;
-  animation: snapIn 0.8s ease-in-out;
+  padding: 30px 5%;
+  color: white;
+  font-size: 1rem;
 }
 
-@keyframes snapIn {
-  0% {
-    transform: translateY(50px) scale(0.5);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
+.footer a {
+  color: #ff007c;
+  text-decoration: none;
 }
 
-.feature-icon {
-  font-size: 3rem;
-  margin-bottom: 15px;
-  color: #f9c846;
+.footer a:hover {
+  text-decoration: underline;
 }
