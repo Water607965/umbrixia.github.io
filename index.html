@@ -3,69 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A technology enthusiast's hub with a focus on quantum physics. Explore the latest research, insights, and community discussions.">
-    <title>Quantum Tech Hub</title>
+    <meta name="description" content="Explore the mysteries of quantum physics with Umbrixia. Dive into simplified chapters, interactive previews, and cutting-edge quantum research.">
+    <title>Umbrixia – Quantum Elegance</title>
     <!-- Favicon -->
-    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Goldman&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #000000, #1a1a1a);
+            color: #ffd700;
+        }
+        .luxury-header {
+            background: linear-gradient(to right, #ffd700, #ffaa00);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .glow {
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8), 0 0 12px rgba(255, 215, 0, 0.6);
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-black to-purple-900 text-white font-roboto">
+<body class="font-roboto">
     <!-- Navbar -->
-    <nav class="flex justify-between items-center py-4 px-6 border-b border-gray-800">
+    <nav class="flex justify-between items-center py-6 px-8 border-b border-gray-800">
         <div class="flex items-center">
-            <img src="logo.png" alt="Quantum Tech Logo" class="h-10 w-10 mr-3">
-            <h1 class="text-2xl font-orbitron tracking-wide">Quantum Tech Hub</h1>
+            <img src="logo.png" alt="Umbrixia Logo" class="h-12 w-12 mr-4">
+            <h1 class="text-3xl font-goldman luxury-header glow">Umbrixia</h1>
         </div>
-        <ul class="flex space-x-6">
-            <li><a href="#" class="hover:text-purple-400">Home</a></li>
-            <li><a href="#research" class="hover:text-purple-400">Research</a></li>
-            <li><a href="#resources" class="hover:text-purple-400">Resources</a></li>
-            <li><a href="#community" class="hover:text-purple-400">Community</a></li>
+        <ul class="flex space-x-6 text-lg">
+            <li><a href="#" class="hover:text-amber-400">Home</a></li>
+            <li><a href="#chapters" class="hover:text-amber-400">Chapters</a></li>
+            <li><a href="#book-preview" class="hover:text-amber-400">Book Preview</a></li>
+            <li><a href="#community" class="hover:text-amber-400">Community</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
-    <header class="text-center py-16 bg-gradient-to-r from-purple-800 to-gray-900">
-        <h2 class="text-4xl font-orbitron mb-4">Unlocking the Quantum Universe</h2>
-        <p class="text-lg text-gray-400">Dive into the fascinating world of quantum physics with the latest insights and breakthroughs.</p>
+    <header class="text-center py-20 bg-black">
+        <h2 class="text-5xl font-goldman luxury-header glow">Welcome to Umbrixia</h2>
+        <p class="text-xl mt-4 text-gray-400">Simplifying the elegance of quantum physics, one concept at a time.</p>
     </header>
 
     <!-- Main Content -->
-    <main class="px-6 py-10">
-        <section id="research" class="mb-10">
-            <h3 class="text-3xl font-orbitron mb-4 border-b border-gray-800">Latest Research</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Research Article Cards -->
-                <article class="bg-gray-800 rounded-2xl shadow-lg p-6">
-                    <h4 class="text-xl font-semibold mb-2">Quantum Entanglement Advances</h4>
-                    <p class="text-gray-400">Discover the latest findings on quantum entanglement and its implications for future technologies.</p>
-                    <a href="#" class="text-purple-400 hover:underline">Read more</a>
-                </article>
-                <article class="bg-gray-800 rounded-2xl shadow-lg p-6">
-                    <h4 class="text-xl font-semibold mb-2">Quantum Computing Breakthroughs</h4>
-                    <p class="text-gray-400">Learn about recent progress in quantum computing and its potential impact.</p>
-                    <a href="#" class="text-purple-400 hover:underline">Read more</a>
-                </article>
+    <main class="px-8 py-12">
+        <!-- Chapters Section -->
+        <section id="chapters" class="mb-16">
+            <h3 class="text-4xl font-goldman luxury-header glow mb-8">Simplified Quantum Concepts</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h4 class="text-2xl font-semibold mb-4">Chapter 1: Uncertainty</h4>
+                    <p class="text-gray-400">Quantum uncertainty challenges classical determinism with probabilistic outcomes.</p>
+                    <a href="#" class="text-amber-400 hover:underline">Learn More</a>
+                </div>
+                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h4 class="text-2xl font-semibold mb-4">Chapter 2: Superposition</h4>
+                    <p class="text-gray-400">Particles exist in multiple states until measured. Explore this foundational principle.</p>
+                    <a href="#" class="text-amber-400 hover:underline">Learn More</a>
+                </div>
+                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h4 class="text-2xl font-semibold mb-4">Chapter 3: Entanglement</h4>
+                    <p class="text-gray-400">Discover the interconnected nature of particles, defying classical separability.</p>
+                    <a href="#" class="text-amber-400 hover:underline">Learn More</a>
+                </div>
+                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h4 class="text-2xl font-semibold mb-4">Chapter 4: Observation</h4>
+                    <p class="text-gray-400">The act of observation shapes reality. Learn about this profound concept.</p>
+                    <a href="#" class="text-amber-400 hover:underline">Learn More</a>
+                </div>
+                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h4 class="text-2xl font-semibold mb-4">Chapter 5: Tunneling</h4>
+                    <p class="text-gray-400">Particles pass through barriers they shouldn't. Dive into this phenomenon.</p>
+                    <a href="#" class="text-amber-400 hover:underline">Learn More</a>
+                </div>
+                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h4 class="text-2xl font-semibold mb-4">Chapter 6: Decoherence</h4>
+                    <p class="text-gray-400">Learn how quantum systems transition to classical behavior.</p>
+                    <a href="#" class="text-amber-400 hover:underline">Learn More</a>
+                </div>
             </div>
         </section>
 
-        <section id="resources" class="mb-10">
-            <h3 class="text-3xl font-orbitron mb-4 border-b border-gray-800">Quantum Resources</h3>
-            <p class="text-gray-400">Explore curated resources to deepen your understanding of quantum physics.</p>
+        <!-- Book Preview -->
+        <section id="book-preview" class="mb-16">
+            <h3 class="text-4xl font-goldman luxury-header glow mb-8">Preview the Book</h3>
+            <p class="text-gray-400 mb-4">Get a glimpse of the insights from the "Quantum Physics Book."</p>
+            <a href="#" class="text-amber-400 hover:underline text-lg">Download the Full Book</a>
         </section>
 
-        <section id="community" class="mb-10">
-            <h3 class="text-3xl font-orbitron mb-4 border-b border-gray-800">Community Discussions</h3>
-            <p class="text-gray-400">Join like-minded enthusiasts in exploring the wonders of quantum physics.</p>
+        <!-- Community -->
+        <section id="community" class="mb-16">
+            <h3 class="text-4xl font-goldman luxury-header glow mb-8">Join the Umbrixia Community</h3>
+            <p class="text-gray-400">Engage with quantum enthusiasts and stay updated on the latest research.</p>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="py-6 bg-gray-800 text-center text-gray-400">
-        <p>&copy; 2025 Quantum Tech Hub. All rights reserved.</p>
+    <footer class="py-6 bg-gray-900 text-center text-gray-400">
+        <p>&copy; 2025 Umbrixia. All rights reserved.</p>
     </footer>
 </body>
 </html>
