@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Umbrixia: Explore the elegance of quantum physics with simplified chapters and interactive experiences.">
+    <meta name="description" content="Umbrixia: Dive into the elegance of quantum physics. Simplified chapters, interactive experiences, and quantum concepts.">
     <title>Umbrixia – Quantum Elegance</title>
     <!-- Favicon -->
     <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
@@ -11,9 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js for Interactive Graphs -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- CSS Styling -->
     <style>
         body {
             background: linear-gradient(to bottom, #000000, #1a1a1a);
@@ -47,6 +44,10 @@
             text-align: left;
             box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.8);
         }
+        canvas {
+            margin: auto;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -67,7 +68,7 @@
     <!-- Hero Section -->
     <header class="text-center py-28 bg-black">
         <h2 class="text-6xl font-playfair luxury-header">Welcome to Umbrixia</h2>
-        <p class="text-2xl mt-6 text-red-400">Explore quantum physics like never before.</p>
+        <p class="text-2xl mt-6 text-red-400">Experience the elegance of quantum physics.</p>
     </header>
 
     <!-- Chapters Section -->
@@ -75,53 +76,98 @@
         <section id="chapters" class="mb-32">
             <h3 class="text-5xl font-playfair luxury-header mb-16">Simplified Quantum Concepts</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-                <!-- Chapter Cards -->
+                <!-- Chapter 1 -->
                 <div class="section-card">
                     <h4 class="text-3xl font-playfair mb-4">Chapter 1: Uncertainty</h4>
                     <p class="text-lg mb-4">Quantum uncertainty challenges classical determinism with probabilistic outcomes.</p>
                     <button class="gold-button" onclick="toggleContent('chapter1')">Learn More</button>
                     <div id="chapter1" class="hidden mt-4">
                         <p class="text-lg text-red-400">
-                            Quantum uncertainty highlights probabilistic behavior, such as the Heisenberg Uncertainty Principle, which limits knowledge of a particle's position and momentum. 
+                            Quantum uncertainty introduces probabilistic behavior, challenging classical determinism. The Heisenberg Uncertainty Principle states that the position and momentum of particles cannot both be precisely known. This principle defines the inherent indeterminacy of the universe.
                         </p>
                     </div>
                 </div>
+                <!-- Chapter 2 -->
                 <div class="section-card">
                     <h4 class="text-3xl font-playfair mb-4">Chapter 2: Superposition</h4>
-                    <p class="text-lg mb-4">Particles exist in multiple states simultaneously until measured.</p>
+                    <p class="text-lg mb-4">Particles exist in multiple states simultaneously, defying classical expectations.</p>
                     <button class="gold-button" onclick="toggleContent('chapter2')">Learn More</button>
                     <div id="chapter2" class="hidden mt-4">
-                        <p class="text-lg text-red-400">The double-slit experiment showcases how particles like electrons exhibit both wave-like and particle-like behavior.</p>
+                        <p class="text-lg text-red-400">
+                            Superposition allows particles to exist in multiple states simultaneously. Learn about interference patterns and their real-world applications like quantum computing.
+                        </p>
                     </div>
                 </div>
-
-                <!-- Repeat for other chapters -->
-            </div>
-        </section>
-
-        <!-- Interactive Section -->
-        <section id="interactive" class="mb-32">
-            <h3 class="text-5xl font-playfair luxury-header mb-16">Interactive Quantum Physics</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <!-- Chapter 3 -->
                 <div class="section-card">
-                    <h4 class="text-3xl font-playfair mb-4">Wave-Particle Duality</h4>
-                    <canvas id="waveParticleCanvas" class="h-64"></canvas>
+                    <h4 class="text-3xl font-playfair mb-4">Chapter 3: Entanglement</h4>
+                    <p class="text-lg mb-4">Discover the interconnected nature of particles defying separability.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter3')">Learn More</button>
+                    <div id="chapter3" class="hidden mt-4">
+                        <p class="text-lg text-red-400">
+                            Entanglement links particles across vast distances, showing how measurement of one particle instantly influences the other. Dive into the mysteries of quantum communication.
+                        </p>
+                    </div>
                 </div>
+                <!-- Chapter 4 -->
                 <div class="section-card">
-                    <h4 class="text-3xl font-playfair mb-4">Quantum Tunneling</h4>
-                    <div id="quantumTunnelingDemo" class="h-64 bg-gray-700"></div>
+                    <h4 class="text-3xl font-playfair mb-4">Chapter 4: Observation</h4>
+                    <p class="text-lg mb-4">Observation influences quantum systems, shaping reality.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter4')">Learn More</button>
+                    <div id="chapter4" class="hidden mt-4">
+                        <p class="text-lg text-red-400">
+                            Learn how observation impacts quantum states. Schrödinger's Cat and delayed-choice experiments illustrate the influence of measurement.
+                        </p>
+                    </div>
                 </div>
-                <!-- Add 3 more interactive demos -->
+                <!-- Chapter 5 -->
+                <div class="section-card">
+                    <h4 class="text-3xl font-playfair mb-4">Chapter 5: Tunneling</h4>
+                    <p class="text-lg mb-4">Particles can pass through barriers they shouldn't. Explore this quantum marvel.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter5')">Learn More</button>
+                    <div id="chapter5" class="hidden mt-4">
+                        <p class="text-lg text-red-400">
+                            Tunneling allows particles to traverse barriers without enough energy to surmount them, defying classical physics. Learn about its applications in semiconductors and quantum devices.
+                        </p>
+                    </div>
+                </div>
+                <!-- Chapter 6 -->
+                <div class="section-card">
+                    <h4 class="text-3xl font-playfair mb-4">Chapter 6: Decoherence</h4>
+                    <p class="text-lg mb-4">Learn how quantum systems transition to classical behavior over time.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter6')">Learn More</button>
+                    <div id="chapter6" class="hidden mt-4">
+                        <p class="text-lg text-red-400">
+                            Decoherence explains how quantum superpositions collapse into classical outcomes due to environmental interactions. It bridges quantum and classical physics.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
+
+    <!-- Interactive Quantum Visualizations -->
+    <section id="interactives" class="px-12 py-16 bg-black">
+        <h3 class="text-5xl font-playfair luxury-header mb-16">Interactive Quantum Concepts</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+                <h4 class="text-3xl mb-4">Wave-Particle Duality</h4>
+                <canvas id="waveParticleCanvas"></canvas>
+                <p class="text-lg text-red-400 mt-4">Explore how particles exhibit both wave-like and particle-like behaviors.</p>
+            </div>
+            <div>
+                <h4 class="text-3xl mb-4">Quantum Entanglement</h4>
+                <canvas id="entanglementCanvas"></canvas>
+                <p class="text-lg text-red-400 mt-4">Simulate entangled particles and see how measuring one affects the other.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="py-10 bg-black text-center text-red-400">
         <p>&copy; 2025 Umbrixia. All rights reserved.</p>
     </footer>
 
-    <!-- Scripts for Interactivity -->
     <script>
         function toggleContent(chapterId) {
             const content = document.getElementById(chapterId);
@@ -132,19 +178,11 @@
             }
         }
 
-        // Add Wave-Particle Duality Interactive Graph
-        const ctx = document.getElementById('waveParticleCanvas').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Position', 'Wave'],
-                datasets: [{
-                    label: 'Wave Intensity',
-                    data: [0, 2, 4, 8, 16, 32],
-                    backgroundColor: 'rgba(255, 215, 0, 0.5)',
-                }]
-            }
-        });
+        // Example JavaScript for Interactive Visuals
+        const waveParticleCanvas = document.getElementById('waveParticleCanvas').getContext('2d');
+        waveParticleCanvas.fillStyle = 'red';
+        waveParticleCanvas.arc(150, 75, 50, 0, 2 * Math.PI);
+        waveParticleCanvas.fill();
     </script>
 </body>
 </html>
