@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore the elegance of quantum physics with Umbrixia. Simplified chapters, immersive visuals, and a thriving community.">
+    <meta name="description" content="Umbrixia: Discover the elegance of quantum physics. Explore research, resources, and a thriving community.">
     <title>Umbrixia – Quantum Elegance</title>
     <!-- Favicon -->
     <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Goldman&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             background: linear-gradient(to bottom, #000000, #1a1a1a);
+            font-family: 'Lora', serif;
             color: #ff0000;
         }
         .luxury-header {
+            font-family: 'Playfair Display', serif;
             background: linear-gradient(to right, #ffd700, #ff4500);
             -webkit-background-clip: text;
             color: transparent;
@@ -44,12 +46,12 @@
         }
     </style>
 </head>
-<body class="font-roboto">
+<body>
     <!-- Navbar -->
     <nav class="flex justify-between items-center py-6 px-8 border-b border-gray-800">
         <div class="flex items-center">
             <img src="logo.png" alt="Umbrixia Logo" class="h-12 w-12 mr-4">
-            <h1 class="text-4xl font-goldman luxury-header">Umbrixia</h1>
+            <h1 class="text-4xl font-playfair luxury-header">Umbrixia</h1>
         </div>
         <ul class="flex space-x-8 text-lg">
             <li><a href="index.html" class="hover:text-red-400">Home</a></li>
@@ -61,31 +63,35 @@
 
     <!-- Hero Section -->
     <header class="text-center py-28 bg-black">
-        <h2 class="text-6xl font-goldman luxury-header">Welcome to Umbrixia</h2>
-        <p class="text-2xl mt-6 text-red-400">Experience the most immersive journey into quantum physics.</p>
+        <h2 class="text-6xl font-playfair luxury-header">Welcome to Umbrixia</h2>
+        <p class="text-2xl mt-6 text-red-400">Experience the elegance of quantum physics.</p>
     </header>
 
     <!-- Chapters Section -->
     <main class="px-12 py-16">
         <section id="chapters" class="mb-32">
-            <h3 class="text-5xl font-goldman luxury-header mb-16">Simplified Quantum Concepts</h3>
+            <h3 class="text-5xl font-playfair luxury-header mb-16">Simplified Quantum Concepts</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
                 <!-- Chapter 1 -->
                 <div class="section-card">
-                    <h4 class="text-3xl font-semibold mb-4">Chapter 1: Uncertainty</h4>
+                    <h4 class="text-3xl font-playfair mb-4">Chapter 1: Uncertainty</h4>
                     <p class="text-lg mb-4">Quantum uncertainty challenges classical determinism with probabilistic outcomes.</p>
                     <button class="gold-button" onclick="toggleContent('chapter1')">Learn More</button>
                     <div id="chapter1" class="hidden mt-4">
-                        <p class="text-lg text-red-400">Explore the Heisenberg Uncertainty Principle and how quantum mechanics introduces probabilistic behavior...</p>
+                        <p class="text-lg text-red-400">
+                            Quantum uncertainty introduces probabilistic behavior and challenges classical determinism. The Heisenberg Uncertainty Principle states that the position and momentum of particles cannot both be precisely known, forming the foundation of quantum mechanics. This principle defines the limits of human knowledge and illustrates the inherent indeterminacy in the universe.
+                        </p>
                     </div>
                 </div>
                 <!-- Chapter 2 -->
                 <div class="section-card">
-                    <h4 class="text-3xl font-semibold mb-4">Chapter 2: Superposition</h4>
+                    <h4 class="text-3xl font-playfair mb-4">Chapter 2: Superposition</h4>
                     <p class="text-lg mb-4">Particles exist in multiple states simultaneously, defying classical expectations.</p>
                     <button class="gold-button" onclick="toggleContent('chapter2')">Learn More</button>
                     <div id="chapter2" class="hidden mt-4">
-                        <p class="text-lg text-red-400">Understand quantum superposition, interference patterns, and their applications in quantum computing...</p>
+                        <p class="text-lg text-red-400">
+                            Superposition allows particles to exist in multiple states simultaneously until measured. This principle underpins quantum computing, where qubits process vast possibilities simultaneously, enabling unprecedented computational power. Learn about interference patterns and their applications.
+                        </p>
                     </div>
                 </div>
                 <!-- Add remaining chapters -->
