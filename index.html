@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Umbrixia: Discover the elegance of quantum physics. Explore research, resources, and a community dedicated to quantum advancements.">
+    <meta name="description" content="Explore the elegance of quantum physics with Umbrixia. Simplified chapters, immersive visuals, and a thriving community.">
     <title>Umbrixia – Quantum Elegance</title>
     <!-- Favicon -->
     <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
@@ -13,8 +13,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background: linear-gradient(to bottom, #000000, #330000);
-            color: #ffd700;
+            background: linear-gradient(to bottom, #000000, #1a1a1a);
+            color: #ff0000;
         }
         .luxury-header {
             background: linear-gradient(to right, #ffd700, #ff4500);
@@ -22,7 +22,7 @@
             color: transparent;
         }
         .gold-button {
-            background-color: #330000;
+            background-color: transparent;
             border: 2px solid #ffd700;
             border-radius: 16px;
             color: #ffd700;
@@ -30,9 +30,17 @@
             transition: all 0.3s ease-in-out;
         }
         .gold-button:hover {
-            background-color: #ff4500;
-            color: #ffffff;
-            transform: scale(1.05);
+            background-color: #ffd700;
+            color: #000000;
+            transform: scale(1.1);
+        }
+        .section-card {
+            background: linear-gradient(to bottom, #330000, #000000);
+            border: 2px solid #ffd700;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.8);
         }
     </style>
 </head>
@@ -41,9 +49,9 @@
     <nav class="flex justify-between items-center py-6 px-8 border-b border-gray-800">
         <div class="flex items-center">
             <img src="logo.png" alt="Umbrixia Logo" class="h-12 w-12 mr-4">
-            <h1 class="text-3xl font-goldman luxury-header glow">Umbrixia</h1>
+            <h1 class="text-4xl font-goldman luxury-header">Umbrixia</h1>
         </div>
-        <ul class="flex space-x-6 text-lg">
+        <ul class="flex space-x-8 text-lg">
             <li><a href="index.html" class="hover:text-red-400">Home</a></li>
             <li><a href="research.html" class="hover:text-red-400">Research</a></li>
             <li><a href="resources.html" class="hover:text-red-400">Resources</a></li>
@@ -52,32 +60,53 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="text-center py-20 bg-black">
-        <h2 class="text-5xl font-goldman luxury-header glow">Welcome to Umbrixia</h2>
-        <p class="text-xl mt-4 text-gray-400">Simplifying the elegance of quantum physics, one concept at a time.</p>
+    <header class="text-center py-28 bg-black">
+        <h2 class="text-6xl font-goldman luxury-header">Welcome to Umbrixia</h2>
+        <p class="text-2xl mt-6 text-red-400">Experience the most immersive journey into quantum physics.</p>
     </header>
 
     <!-- Chapters Section -->
-    <main class="px-8 py-12">
-        <section id="chapters" class="mb-16">
-            <h3 class="text-4xl font-goldman luxury-header glow mb-8">Simplified Quantum Concepts</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
-                    <h4 class="text-2xl font-semibold mb-4">Chapter 1: Uncertainty</h4>
-                    <p class="text-gray-400">Quantum uncertainty challenges classical determinism with probabilistic outcomes.</p>
-                    <a href="#uncertainty-details" class="gold-button">Learn More</a>
-                    <div id="uncertainty-details" class="hidden">
-                        <p class="text-gray-400 mt-4">Quantum uncertainty highlights probabilistic outcomes, wave-particle duality, and the Heisenberg Uncertainty Principle...</p>
+    <main class="px-12 py-16">
+        <section id="chapters" class="mb-32">
+            <h3 class="text-5xl font-goldman luxury-header mb-16">Simplified Quantum Concepts</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <!-- Chapter 1 -->
+                <div class="section-card">
+                    <h4 class="text-3xl font-semibold mb-4">Chapter 1: Uncertainty</h4>
+                    <p class="text-lg mb-4">Quantum uncertainty challenges classical determinism with probabilistic outcomes.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter1')">Learn More</button>
+                    <div id="chapter1" class="hidden mt-4">
+                        <p class="text-lg text-red-400">Explore the Heisenberg Uncertainty Principle and how quantum mechanics introduces probabilistic behavior...</p>
                     </div>
                 </div>
-                <!-- Repeat for Other Chapters -->
+                <!-- Chapter 2 -->
+                <div class="section-card">
+                    <h4 class="text-3xl font-semibold mb-4">Chapter 2: Superposition</h4>
+                    <p class="text-lg mb-4">Particles exist in multiple states simultaneously, defying classical expectations.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter2')">Learn More</button>
+                    <div id="chapter2" class="hidden mt-4">
+                        <p class="text-lg text-red-400">Understand quantum superposition, interference patterns, and their applications in quantum computing...</p>
+                    </div>
+                </div>
+                <!-- Add remaining chapters -->
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="py-6 bg-gray-900 text-center text-gray-400">
+    <footer class="py-10 bg-black text-center text-red-400">
         <p>&copy; 2025 Umbrixia. All rights reserved.</p>
     </footer>
+
+    <script>
+        function toggleContent(chapterId) {
+            const content = document.getElementById(chapterId);
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+            } else {
+                content.classList.add('hidden');
+            }
+        }
+    </script>
 </body>
 </html>
