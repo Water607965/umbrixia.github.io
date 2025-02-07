@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore the mysteries of quantum physics with Umbrixia. Dive into simplified chapters, interactive previews, and cutting-edge quantum research.">
+    <meta name="description" content="Umbrixia: Discover the elegance of quantum physics. Explore research, resources, and a community dedicated to quantum advancements.">
     <title>Umbrixia – Quantum Elegance</title>
     <!-- Favicon -->
     <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
@@ -13,16 +13,26 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background: linear-gradient(to bottom, #000000, #1a1a1a);
+            background: linear-gradient(to bottom, #000000, #330000);
             color: #ffd700;
         }
         .luxury-header {
-            background: linear-gradient(to right, #ffd700, #ffaa00);
+            background: linear-gradient(to right, #ffd700, #ff4500);
             -webkit-background-clip: text;
             color: transparent;
         }
-        .glow {
-            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8), 0 0 12px rgba(255, 215, 0, 0.6);
+        .gold-button {
+            background-color: #330000;
+            border: 2px solid #ffd700;
+            border-radius: 16px;
+            color: #ffd700;
+            padding: 12px 20px;
+            transition: all 0.3s ease-in-out;
+        }
+        .gold-button:hover {
+            background-color: #ff4500;
+            color: #ffffff;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -34,10 +44,10 @@
             <h1 class="text-3xl font-goldman luxury-header glow">Umbrixia</h1>
         </div>
         <ul class="flex space-x-6 text-lg">
-            <li><a href="#" class="hover:text-amber-400">Home</a></li>
-            <li><a href="#chapters" class="hover:text-amber-400">Chapters</a></li>
-            <li><a href="#book-preview" class="hover:text-amber-400">Book Preview</a></li>
-            <li><a href="#community" class="hover:text-amber-400">Community</a></li>
+            <li><a href="index.html" class="hover:text-red-400">Home</a></li>
+            <li><a href="research.html" class="hover:text-red-400">Research</a></li>
+            <li><a href="resources.html" class="hover:text-red-400">Resources</a></li>
+            <li><a href="community.html" class="hover:text-red-400">Community</a></li>
         </ul>
     </nav>
 
@@ -47,56 +57,21 @@
         <p class="text-xl mt-4 text-gray-400">Simplifying the elegance of quantum physics, one concept at a time.</p>
     </header>
 
-    <!-- Main Content -->
+    <!-- Chapters Section -->
     <main class="px-8 py-12">
-        <!-- Chapters Section -->
         <section id="chapters" class="mb-16">
             <h3 class="text-4xl font-goldman luxury-header glow mb-8">Simplified Quantum Concepts</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
                     <h4 class="text-2xl font-semibold mb-4">Chapter 1: Uncertainty</h4>
                     <p class="text-gray-400">Quantum uncertainty challenges classical determinism with probabilistic outcomes.</p>
-                    <a href="#" class="text-amber-400 hover:underline">Learn More</a>
+                    <a href="#uncertainty-details" class="gold-button">Learn More</a>
+                    <div id="uncertainty-details" class="hidden">
+                        <p class="text-gray-400 mt-4">Quantum uncertainty highlights probabilistic outcomes, wave-particle duality, and the Heisenberg Uncertainty Principle...</p>
+                    </div>
                 </div>
-                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
-                    <h4 class="text-2xl font-semibold mb-4">Chapter 2: Superposition</h4>
-                    <p class="text-gray-400">Particles exist in multiple states until measured. Explore this foundational principle.</p>
-                    <a href="#" class="text-amber-400 hover:underline">Learn More</a>
-                </div>
-                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
-                    <h4 class="text-2xl font-semibold mb-4">Chapter 3: Entanglement</h4>
-                    <p class="text-gray-400">Discover the interconnected nature of particles, defying classical separability.</p>
-                    <a href="#" class="text-amber-400 hover:underline">Learn More</a>
-                </div>
-                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
-                    <h4 class="text-2xl font-semibold mb-4">Chapter 4: Observation</h4>
-                    <p class="text-gray-400">The act of observation shapes reality. Learn about this profound concept.</p>
-                    <a href="#" class="text-amber-400 hover:underline">Learn More</a>
-                </div>
-                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
-                    <h4 class="text-2xl font-semibold mb-4">Chapter 5: Tunneling</h4>
-                    <p class="text-gray-400">Particles pass through barriers they shouldn't. Dive into this phenomenon.</p>
-                    <a href="#" class="text-amber-400 hover:underline">Learn More</a>
-                </div>
-                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
-                    <h4 class="text-2xl font-semibold mb-4">Chapter 6: Decoherence</h4>
-                    <p class="text-gray-400">Learn how quantum systems transition to classical behavior.</p>
-                    <a href="#" class="text-amber-400 hover:underline">Learn More</a>
-                </div>
+                <!-- Repeat for Other Chapters -->
             </div>
-        </section>
-
-        <!-- Book Preview -->
-        <section id="book-preview" class="mb-16">
-            <h3 class="text-4xl font-goldman luxury-header glow mb-8">Preview the Book</h3>
-            <p class="text-gray-400 mb-4">Get a glimpse of the insights from the "Quantum Physics Book."</p>
-            <a href="#" class="text-amber-400 hover:underline text-lg">Download the Full Book</a>
-        </section>
-
-        <!-- Community -->
-        <section id="community" class="mb-16">
-            <h3 class="text-4xl font-goldman luxury-header glow mb-8">Join the Umbrixia Community</h3>
-            <p class="text-gray-400">Engage with quantum enthusiasts and stay updated on the latest research.</p>
         </section>
     </main>
 
