@@ -1,130 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Umbrixia - Home</title>
-  <!-- Favicon -->
-  <link rel="icon" href="images/Umbrixia_Logo.png" type="image/png">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap"
-    rel="stylesheet">
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <!-- Link to CSS -->
-  <link rel="stylesheet" href="style.css">
-  <!-- Link to JS -->
-  <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A technology enthusiast's hub with a focus on quantum physics. Explore the latest research, insights, and community discussions.">
+    <title>Quantum Tech Hub</title>
+    <!-- Favicon -->
+    <link rel="icon" href="logo.png" type="image/png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
-<body>
-  <!-- Preloader -->
-  <div class="preloader">
-    <h1>Loading Umbrixia...</h1>
-  </div>
-
-  <!-- Header -->
-  <header class="navbar">
-    <div class="logo">
-      <!-- Corrected path for Umbrixia Logo -->
-      <img src="images/Umbrixia_Logo.png" alt="Umbrixia Logo">
-    </div>
-    <nav class="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="features.html">Features</a>
-      <a href="community.html">Community</a>
-      <a href="contact.html">Contact</a>
-      <button class="cta-btn">Join Now</button>
+<body class="bg-gradient-to-br from-gray-900 via-black to-purple-900 text-white font-roboto">
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center py-4 px-6 border-b border-gray-800">
+        <div class="flex items-center">
+            <img src="logo.png" alt="Quantum Tech Logo" class="h-10 w-10 mr-3">
+            <h1 class="text-2xl font-orbitron tracking-wide">Quantum Tech Hub</h1>
+        </div>
+        <ul class="flex space-x-6">
+            <li><a href="#" class="hover:text-purple-400">Home</a></li>
+            <li><a href="#research" class="hover:text-purple-400">Research</a></li>
+            <li><a href="#resources" class="hover:text-purple-400">Resources</a></li>
+            <li><a href="#community" class="hover:text-purple-400">Community</a></li>
+        </ul>
     </nav>
-  </header>
 
-  <!-- Hero Section -->
-  <section id="hero" class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">Welcome to Umbrixia</h1>
-      <p class="hero-description">
-        Experience gaming like never before with cutting-edge technology.
-      </p>
-      <div class="hero-buttons">
-        <button class="btn explore-btn">Explore More</button>
-        <button class="btn join-btn">Join Us</button>
-      </div>
-    </div>
-    <div class="hero-overlay"></div>
-  </section>
+    <!-- Hero Section -->
+    <header class="text-center py-16 bg-gradient-to-r from-purple-800 to-gray-900">
+        <h2 class="text-4xl font-orbitron mb-4">Unlocking the Quantum Universe</h2>
+        <p class="text-lg text-gray-400">Dive into the fascinating world of quantum physics with the latest insights and breakthroughs.</p>
+    </header>
 
-  <!-- Features Section -->
-  <section id="features" class="features">
-    <h2 class="section-title">Our Features</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <i class="fas fa-microchip feature-icon"></i>
-        <h3>AI-Powered Worlds</h3>
-        <p>Immerse yourself in adaptive gaming ecosystems.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-users feature-icon"></i>
-        <h3>Community-Driven</h3>
-        <p>Build alliances and explore with like-minded gamers.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-lock feature-icon"></i>
-        <h3>Next-Level Security</h3>
-        <p>Play confidently with enhanced security protocols.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-trophy feature-icon"></i>
-        <h3>Exclusive Tournaments</h3>
-        <p>Compete and win exclusive in-game and real-world rewards.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Main Content -->
+    <main class="px-6 py-10">
+        <section id="research" class="mb-10">
+            <h3 class="text-3xl font-orbitron mb-4 border-b border-gray-800">Latest Research</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Research Article Cards -->
+                <article class="bg-gray-800 rounded-2xl shadow-lg p-6">
+                    <h4 class="text-xl font-semibold mb-2">Quantum Entanglement Advances</h4>
+                    <p class="text-gray-400">Discover the latest findings on quantum entanglement and its implications for future technologies.</p>
+                    <a href="#" class="text-purple-400 hover:underline">Read more</a>
+                </article>
+                <article class="bg-gray-800 rounded-2xl shadow-lg p-6">
+                    <h4 class="text-xl font-semibold mb-2">Quantum Computing Breakthroughs</h4>
+                    <p class="text-gray-400">Learn about recent progress in quantum computing and its potential impact.</p>
+                    <a href="#" class="text-purple-400 hover:underline">Read more</a>
+                </article>
+            </div>
+        </section>
 
-  <!-- Games Section -->
-  <section id="games" class="games">
-    <h2 class="section-title">Our Games</h2>
-    <div class="games-grid">
-      <div class="game-card">
-        <img src="images/game1.jpg" alt="Game 1" class="game-image">
-        <div class="game-info">
-          <h3>Epic Adventure</h3>
-          <p>Embark on a thrilling journey across uncharted lands.</p>
-        </div>
-      </div>
-      <div class="game-card">
-        <img src="images/game2.jpg" alt="Game 2" class="game-image">
-        <div class="game-info">
-          <h3>Battle Royale</h3>
-          <p>Survive and conquer in the ultimate gaming showdown.</p>
-        </div>
-      </div>
-      <div class="game-card">
-        <img src="images/game3.jpg" alt="Game 3" class="game-image">
-        <div class="game-info">
-          <h3>Fantasy Realms</h3>
-          <p>Uncover magical secrets in stunning fantasy worlds.</p>
-        </div>
-      </div>
-      <div class="game-card">
-        <img src="images/game4.jpg" alt="Game 4" class="game-image">
-        <div class="game-info">
-          <h3>Space Odyssey</h3>
-          <p>Discover new galaxies and encounter alien civilizations.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <section id="resources" class="mb-10">
+            <h3 class="text-3xl font-orbitron mb-4 border-b border-gray-800">Quantum Resources</h3>
+            <p class="text-gray-400">Explore curated resources to deepen your understanding of quantum physics.</p>
+        </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-    </div>
-    <p>&copy; 2024 Umbrixia. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
-  </footer>
+        <section id="community" class="mb-10">
+            <h3 class="text-3xl font-orbitron mb-4 border-b border-gray-800">Community Discussions</h3>
+            <p class="text-gray-400">Join like-minded enthusiasts in exploring the wonders of quantum physics.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 bg-gray-800 text-center text-gray-400">
+        <p>&copy; 2025 Quantum Tech Hub. All rights reserved.</p>
+    </footer>
 </body>
-
 </html>
