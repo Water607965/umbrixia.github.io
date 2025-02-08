@@ -19,36 +19,31 @@
             color: #ffd700;
         }
 
-        /* Navbar Styling */
+        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 2rem;
             background-color: #000;
-            border-bottom: 1px solid #555;
+            border-bottom: 1px solid #444;
         }
 
-        .navbar-logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar-logo img {
+        .navbar img {
             height: 50px;
             margin-right: 1rem;
         }
 
-        .navbar-links {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
+        .navbar h1 {
+            font-size: 2rem;
+            color: #ffd700;
         }
 
         .navbar-links a {
             text-decoration: none;
             color: #ffd700;
             font-weight: bold;
+            margin-left: 2rem;
             transition: color 0.3s;
         }
 
@@ -59,13 +54,13 @@
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
             background: linear-gradient(to right, #ffd700, #ff4500);
             color: black;
         }
 
         .hero h2 {
-            font-size: 3rem;
+            font-size: 4rem;
             font-weight: bold;
         }
 
@@ -76,14 +71,15 @@
 
         /* Chapters Section */
         .chapters {
-            padding: 2rem;
+            padding: 4rem 2rem;
             background: #111;
         }
 
         .chapters h3 {
-            text-align: center;
             font-size: 2.5rem;
+            text-align: center;
             margin-bottom: 2rem;
+            color: #ffd700;
         }
 
         .chapters-grid {
@@ -94,8 +90,8 @@
 
         .chapter-card {
             background: #222;
+            border-radius: 10px;
             padding: 1.5rem;
-            border-radius: 8px;
             text-align: center;
             border: 1px solid #555;
             transition: transform 0.3s;
@@ -111,14 +107,15 @@
 
         /* Interactive Section */
         .interactives {
-            padding: 2rem;
+            padding: 4rem 2rem;
             background: #111;
         }
 
         .interactives h3 {
-            text-align: center;
             font-size: 2.5rem;
+            text-align: center;
             margin-bottom: 2rem;
+            color: #ffd700;
         }
 
         .interactives-grid {
@@ -129,8 +126,8 @@
 
         .interactive-card {
             background: #222;
+            border-radius: 10px;
             padding: 1.5rem;
-            border-radius: 8px;
             text-align: center;
             border: 1px solid #555;
             transition: transform 0.3s;
@@ -143,7 +140,7 @@
         /* Footer */
         .footer {
             text-align: center;
-            padding: 1rem 0;
+            padding: 2rem 0;
             background: #000;
             color: #ffd700;
         }
@@ -152,16 +149,16 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="navbar-logo">
+        <div class="flex">
             <img src="logo.png" alt="Umbrixia Logo">
             <h1>Umbrixia</h1>
         </div>
-        <ul class="navbar-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="research.html">Research</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="community.html">Community</a></li>
-        </ul>
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+            <a href="research.html">Research</a>
+            <a href="resources.html">Resources</a>
+            <a href="community.html">Community</a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
@@ -171,11 +168,11 @@
     </header>
 
     <!-- Chapters Section -->
-    <main class="chapters">
-        <section id="chapters" class="mb-32">
+    <main>
+        <section class="chapters">
             <h3>Quantum Concepts Simplified</h3>
             <div class="chapters-grid">
-                <!-- Chapter Cards -->
+                <!-- Chapter 1 -->
                 <div class="chapter-card">
                     <h4>Chapter 1: Uncertainty</h4>
                     <p>Discover the limits of measurement with the Heisenberg Uncertainty Principle.</p>
@@ -184,20 +181,30 @@
                         <p>Explore how the uncertainty principle impacts our ability to measure both position and momentum simultaneously.</p>
                     </div>
                 </div>
+                <!-- Chapter 2 -->
                 <div class="chapter-card">
                     <h4>Chapter 2: Superposition</h4>
-                    <p>Understand particles' ability to exist in multiple states simultaneously.</p>
+                    <p>Learn how particles exist in multiple states simultaneously until observed.</p>
                     <button onclick="toggleContent('chapter2')">Learn More</button>
                     <div id="chapter2" class="hidden">
-                        <p>Quantum superposition and its foundational role in quantum computing.</p>
+                        <p>Quantum superposition is foundational to quantum computing and our understanding of quantum mechanics.</p>
                     </div>
                 </div>
-                <!-- Add chapters 3 through 6 similarly -->
+                <!-- Chapter 3 -->
+                <div class="chapter-card">
+                    <h4>Chapter 3: Entanglement</h4>
+                    <p>Understand the strange connection between particles across vast distances.</p>
+                    <button onclick="toggleContent('chapter3')">Learn More</button>
+                    <div id="chapter3" class="hidden">
+                        <p>Entangled particles remain interconnected no matter how far apart they are.</p>
+                    </div>
+                </div>
+                <!-- Add more chapters similarly -->
             </div>
         </section>
 
-        <!-- Interactive Section -->
-        <section id="interactives" class="interactives">
+        <!-- Interactives Section -->
+        <section class="interactives">
             <h3>Interactive Quantum Concepts</h3>
             <div class="interactives-grid">
                 <!-- Wave-Particle Duality -->
@@ -206,7 +213,7 @@
                     <canvas id="waveParticleCanvas" width="400" height="200"></canvas>
                     <button onclick="toggleWaveParticleMode()">Toggle Mode</button>
                 </div>
-                <!-- Add interactives 2 through 7 similarly -->
+                <!-- Add more interactives similarly -->
             </div>
         </section>
     </main>
@@ -218,7 +225,12 @@
 
     <!-- Scripts -->
     <script>
-        // JavaScript for Interactives (Example: Wave-Particle Duality)
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle("hidden");
+        }
+
+        // Wave-Particle Duality Interactive Example
         const waveParticleCanvas = document.getElementById("waveParticleCanvas");
         const waveParticleCtx = waveParticleCanvas.getContext("2d");
         let waveMode = true;
@@ -236,33 +248,16 @@
             }
         }
 
-        function drawParticle() {
-            waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
-            waveParticleCtx.fillStyle = "red";
-            waveParticleCtx.beginPath();
-            waveParticleCtx.arc(200, 100, 20, 0, Math.PI * 2);
-            waveParticleCtx.fill();
-        }
-
         function toggleWaveParticleMode() {
             waveMode = !waveMode;
         }
 
         function animateWaveParticle() {
-            if (waveMode) {
-                drawWave();
-            } else {
-                drawParticle();
-            }
+            if (waveMode) drawWave();
             requestAnimationFrame(animateWaveParticle);
         }
 
         animateWaveParticle();
-
-        function toggleContent(id) {
-            const content = document.getElementById(id);
-            content.classList.toggle("hidden");
-        }
     </script>
 </body>
 </html>
