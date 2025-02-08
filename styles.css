@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore quantum physics with advanced interactivity and detailed chapters.">
+    <title>Umbrixia – Quantum Elegance</title>
+    <!-- Favicon -->
+    <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-b from-black to-gray-900 text-red-400">
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center py-6 px-8 border-b border-gray-800">
+        <div class="flex items-center">
+            <img src="logo.png" alt="Umbrixia Logo" class="h-12 w-12 mr-4">
+            <h1 class="text-4xl font-playfair luxury-header">Umbrixia</h1>
+        </div>
+        <ul class="flex space-x-8 text-lg">
+            <li><a href="index.html" class="hover:text-red-500">Home</a></li>
+            <li><a href="research.html" class="hover:text-red-500">Research</a></li>
+            <li><a href="resources.html" class="hover:text-red-500">Resources</a></li>
+            <li><a href="community.html" class="hover:text-red-500">Community</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="text-center py-28 bg-black">
+        <h2 class="text-6xl font-playfair luxury-header">Welcome to Umbrixia</h2>
+        <p class="text-2xl mt-6">Explore the mysteries of quantum physics with interactivity and depth.</p>
+    </header>
+
+    <!-- Chapters Section -->
+    <main class="px-12 py-16">
+        <section id="chapters" class="mb-32">
+            <h3 class="text-5xl font-playfair luxury-header mb-16">Quantum Concepts Simplified</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <!-- Chapter 1 -->
+                <div class="interactive-section transition-transform hover:scale-105">
+                    <h4 class="text-3xl mb-4">Chapter 1: Uncertainty</h4>
+                    <p>Discover the limits of measurement with the Heisenberg Uncertainty Principle.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter1')">Learn More</button>
+                    <div id="chapter1" class="hidden mt-4">
+                        <p>Explore how the uncertainty principle impacts our ability to measure both position and momentum simultaneously.</p>
+                    </div>
+                </div>
+                <!-- Chapter 2 -->
+                <div class="interactive-section transition-transform hover:scale-105">
+                    <h4 class="text-3xl mb-4">Chapter 2: Superposition</h4>
+                    <p>Learn how particles exist in multiple states until observed.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter2')">Learn More</button>
+                    <div id="chapter2" class="hidden mt-4">
+                        <p>Superposition forms the basis of quantum computing and interference phenomena.</p>
+                    </div>
+                </div>
+                <!-- Chapter 3 -->
+                <div class="interactive-section transition-transform hover:scale-105">
+                    <h4 class="text-3xl mb-4">Chapter 3: Entanglement</h4>
+                    <p>Explore how entangled particles remain connected over vast distances.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter3')">Learn More</button>
+                    <div id="chapter3" class="hidden mt-4">
+                        <p>Quantum entanglement defies classical physics and underpins quantum communication.</p>
+                    </div>
+                </div>
+                <!-- Chapter 4 -->
+                <div class="interactive-section transition-transform hover:scale-105">
+                    <h4 class="text-3xl mb-4">Chapter 4: Observation</h4>
+                    <p>Learn how observation affects quantum systems.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter4')">Learn More</button>
+                    <div id="chapter4" class="hidden mt-4">
+                        <p>Observation collapses quantum states into definite outcomes, as seen in the Double-Slit Experiment.</p>
+                    </div>
+                </div>
+                <!-- Chapter 5 -->
+                <div class="interactive-section transition-transform hover:scale-105">
+                    <h4 class="text-3xl mb-4">Chapter 5: Tunneling</h4>
+                    <p>Discover how particles pass through barriers in quantum tunneling.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter5')">Learn More</button>
+                    <div id="chapter5" class="hidden mt-4">
+                        <p>Quantum tunneling allows particles to cross energy barriers, enabling technologies like semiconductors.</p>
+                    </div>
+                </div>
+                <!-- Chapter 6 -->
+                <div class="interactive-section transition-transform hover:scale-105">
+                    <h4 class="text-3xl mb-4">Chapter 6: Decoherence</h4>
+                    <p>Learn how quantum systems collapse into classical behavior through decoherence.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter6')">Learn More</button>
+                    <div id="chapter6" class="hidden mt-4">
+                        <p>Decoherence explains how quantum superpositions break down and why classical physics emerges from quantum systems.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Quantum Concepts -->
+        <section id="interactives" class="mb-32">
+            <h3 class="text-5xl font-playfair luxury-header mb-16">Interactive Quantum Concepts</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Wave-Particle Duality -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">Wave-Particle Duality</h4>
+                    <p>Toggle to observe wave or particle behavior.</p>
+                    <canvas id="waveParticleCanvas" width="400" height="200"></canvas>
+                    <button onclick="toggleWaveParticleMode()" class="gold-button mt-4">Toggle Mode</button>
+                </div>
+
+                <!-- Double-Slit Experiment -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">Double-Slit Experiment</h4>
+                    <p>Toggle observation and change slit width to observe interference patterns.</p>
+                    <canvas id="doubleSlitCanvas" width="400" height="200"></canvas>
+                    <button onclick="toggleObserverMode()" class="gold-button mt-4">Toggle Observer</button>
+                </div>
+
+                <!-- Schrödinger's Cat -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">Schrödinger's Cat</h4>
+                    <p>Observe the quantum state of the cat as alive or dead in real time.</p>
+                    <canvas id="catCanvas" width="400" height="200"></canvas>
+                    <button onclick="toggleObservation()" class="gold-button mt-4">Toggle Observation</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Custom JavaScript -->
+    <script src="interactives.js" defer></script>
+    <script>
+        function toggleContent(chapterId) {
+            const chapter = document.getElementById(chapterId);
+            chapter.classList.toggle('hidden');
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-black text-center">
+        <p>&copy; 2025 Umbrixia. All rights reserved.</p>
+    </footer>
+</body>
+</html>
