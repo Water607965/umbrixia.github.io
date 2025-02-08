@@ -1,11 +1,15 @@
-/* Umbrixia Stylesheet */
+/* Umbrixia Custom Stylesheet */
+
+/* General Body Styles */
 body {
     background: linear-gradient(to bottom, #000000, #1a1a1a);
     font-family: 'Lora', serif;
+    color: #ffd700;
     margin: 0;
     padding: 0;
 }
 
+/* Luxury Header */
 .luxury-header {
     font-family: 'Playfair Display', serif;
     background: linear-gradient(to right, #ffd700, #ff4500);
@@ -13,10 +17,11 @@ body {
     color: transparent;
 }
 
+/* Buttons */
 .gold-button {
     background-color: transparent;
     border: 2px solid #ffd700;
-    border-radius: 12px;
+    border-radius: 8px;
     color: #ffd700;
     padding: 10px 15px;
     font-size: 16px;
@@ -30,6 +35,7 @@ body {
     transform: scale(1.1);
 }
 
+/* Interactive Section */
 .interactive-section {
     background: linear-gradient(to bottom, #330000, #000000);
     border: 2px solid #ffd700;
@@ -40,11 +46,40 @@ body {
     margin-bottom: 30px;
 }
 
+/* Canvas Styling */
 canvas {
     display: block;
-    margin: 15px auto;
+    margin: 20px auto;
+    border: 2px solid #ffd700;
+    border-radius: 8px;
+    background-color: #1a1a1a;
 }
 
+/* Chapter Visibility Toggle */
 .hidden {
     display: none;
+}
+
+/* Navbar */
+nav {
+    background-color: #000000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+nav ul li a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ff4500;
+}
+
+/* Footer */
+footer {
+    background-color: #000000;
+    color: #ffd700;
+    padding: 20px;
+    text-align: center;
 }
