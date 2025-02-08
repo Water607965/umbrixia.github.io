@@ -19,7 +19,7 @@
             color: #ffd700;
         }
 
-        /* Navbar */
+        /* Navbar Styling */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -199,11 +199,37 @@
                         <p>Entangled particles remain interconnected no matter how far apart they are.</p>
                     </div>
                 </div>
-                <!-- Add more chapters similarly -->
+                <!-- Chapter 4 -->
+                <div class="chapter-card">
+                    <h4>Chapter 4: Observation</h4>
+                    <p>Understand how observation affects quantum systems and experiments.</p>
+                    <button onclick="toggleContent('chapter4')">Learn More</button>
+                    <div id="chapter4" class="hidden">
+                        <p>Observation collapses quantum states, forcing particles into a defined state.</p>
+                    </div>
+                </div>
+                <!-- Chapter 5 -->
+                <div class="chapter-card">
+                    <h4>Chapter 5: Tunneling</h4>
+                    <p>Explore how particles pass through seemingly impenetrable barriers.</p>
+                    <button onclick="toggleContent('chapter5')">Learn More</button>
+                    <div id="chapter5" class="hidden">
+                        <p>Quantum tunneling defies classical physics, enabling particles to move through barriers.</p>
+                    </div>
+                </div>
+                <!-- Chapter 6 -->
+                <div class="chapter-card">
+                    <h4>Chapter 6: Decoherence</h4>
+                    <p>Understand how quantum systems lose coherence over time.</p>
+                    <button onclick="toggleContent('chapter6')">Learn More</button>
+                    <div id="chapter6" class="hidden">
+                        <p>Decoherence explains the transition from quantum behavior to classical physics.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Interactives Section -->
+        <!-- Interactive Section -->
         <section class="interactives">
             <h3>Interactive Quantum Concepts</h3>
             <div class="interactives-grid">
@@ -213,7 +239,42 @@
                     <canvas id="waveParticleCanvas" width="400" height="200"></canvas>
                     <button onclick="toggleWaveParticleMode()">Toggle Mode</button>
                 </div>
-                <!-- Add more interactives similarly -->
+                <!-- Double-Slit Experiment -->
+                <div class="interactive-card">
+                    <h4>Double-Slit Experiment</h4>
+                    <canvas id="doubleSlitCanvas" width="400" height="200"></canvas>
+                    <button onclick="toggleObserverMode()">Toggle Observer</button>
+                </div>
+                <!-- Schrödinger's Cat -->
+                <div class="interactive-card">
+                    <h4>Schrödinger's Cat</h4>
+                    <canvas id="catCanvas" width="400" height="200"></canvas>
+                    <button onclick="toggleObservation()">Toggle State</button>
+                </div>
+                <!-- Quantum Entanglement -->
+                <div class="interactive-card">
+                    <h4>Quantum Entanglement</h4>
+                    <canvas id="entanglementCanvas" width="400" height="200"></canvas>
+                    <button onclick="toggleEntanglement()">Toggle Entanglement</button>
+                </div>
+                <!-- Quantum Tunneling -->
+                <div class="interactive-card">
+                    <h4>Quantum Tunneling</h4>
+                    <canvas id="tunnelingCanvas" width="400" height="200"></canvas>
+                    <button onclick="toggleTunneling()">Toggle Tunneling</button>
+                </div>
+                <!-- Quantum Superposition -->
+                <div class="interactive-card">
+                    <h4>Quantum Superposition</h4>
+                    <canvas id="superpositionCanvas" width="400" height="200"></canvas>
+                    <button onclick="toggleSuperposition()">Toggle State</button>
+                </div>
+                <!-- Quantum Decoherence -->
+                <div class="interactive-card">
+                    <h4>Quantum Decoherence</h4>
+                    <canvas id="decoherenceCanvas" width="400" height="200"></canvas>
+                    <button onclick="toggleDecoherence()">Start</button>
+                </div>
             </div>
         </section>
     </main>
@@ -225,12 +286,7 @@
 
     <!-- Scripts -->
     <script>
-        function toggleContent(id) {
-            const content = document.getElementById(id);
-            content.classList.toggle("hidden");
-        }
-
-        // Wave-Particle Duality Interactive Example
+        // Logic for Wave-Particle Duality
         const waveParticleCanvas = document.getElementById("waveParticleCanvas");
         const waveParticleCtx = waveParticleCanvas.getContext("2d");
         let waveMode = true;
@@ -238,7 +294,6 @@
         function drawWave() {
             waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
             waveParticleCtx.strokeStyle = "white";
-            waveParticleCtx.lineWidth = 2;
             for (let x = 0; x < waveParticleCanvas.width; x += 5) {
                 const y = 100 + Math.sin((x + Date.now() / 100) * 0.1) * 40;
                 waveParticleCtx.beginPath();
@@ -248,16 +303,200 @@
             }
         }
 
+        function drawParticle() {
+            waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
+            waveParticleCtx.fillStyle = "red";
+            waveParticleCtx.beginPath();
+            waveParticleCtx.arc(200, 100, 20, 0, Math.PI * 2);
+            waveParticleCtx.fill();
+        }
+
         function toggleWaveParticleMode() {
             waveMode = !waveMode;
         }
 
         function animateWaveParticle() {
             if (waveMode) drawWave();
+            else drawParticle();
             requestAnimationFrame(animateWaveParticle);
         }
 
         animateWaveParticle();
+
+        // Logic for Double-Slit Experiment
+        const doubleSlitCanvas = document.getElementById("doubleSlitCanvas");
+        const doubleSlitCtx = doubleSlitCanvas.getContext("2d");
+        let observerEnabled = false;
+
+        function drawInterference() {
+            doubleSlitCtx.clearRect(0, 0, doubleSlitCanvas.width, doubleSlitCanvas.height);
+            for (let i = 0; i < doubleSlitCanvas.width; i += 10) {
+                const intensity = Math.sin(i * 0.1) ** 2 * 255;
+                doubleSlitCtx.fillStyle = `rgb(${intensity}, ${intensity}, ${intensity})`;
+                doubleSlitCtx.fillRect(i, 0, 10, doubleSlitCanvas.height);
+            }
+        }
+
+        function drawParticles() {
+            doubleSlitCtx.clearRect(0, 0, doubleSlitCanvas.width, doubleSlitCanvas.height);
+            doubleSlitCtx.fillStyle = "blue";
+            for (let i = 0; i < 100; i++) {
+                const x = Math.random() * doubleSlitCanvas.width;
+                const y = Math.random() * doubleSlitCanvas.height;
+                doubleSlitCtx.beginPath();
+                doubleSlitCtx.arc(x, y, 2, 0, Math.PI * 2);
+                doubleSlitCtx.fill();
+            }
+        }
+
+        function toggleObserverMode() {
+            observerEnabled = !observerEnabled;
+        }
+
+        function animateDoubleSlit() {
+            if (observerEnabled) drawParticles();
+            else drawInterference();
+            requestAnimationFrame(animateDoubleSlit);
+        }
+
+        animateDoubleSlit();
+
+        // Logic for Schrödinger's Cat
+        const catCanvas = document.getElementById("catCanvas");
+        const catCtx = catCanvas.getContext("2d");
+        let catState = "Superposition";
+
+        function drawCatState() {
+            catCtx.clearRect(0, 0, catCanvas.width, catCanvas.height);
+            catCtx.fillStyle = "black";
+            catCtx.fillRect(0, 0, catCanvas.width, catCanvas.height);
+
+            if (catState === "Alive") catCtx.fillStyle = "green";
+            else if (catState === "Dead") catCtx.fillStyle = "red";
+            else catCtx.fillStyle = "yellow";
+
+            catCtx.beginPath();
+            catCtx.arc(200, 100, 50, 0, Math.PI * 2);
+            catCtx.fill();
+
+            catCtx.fillStyle = "white";
+            catCtx.font = "20px Arial";
+            catCtx.fillText(`State: ${catState}`, 140, 180);
+        }
+
+        function toggleObservation() {
+            if (catState === "Superposition") {
+                catState = Math.random() > 0.5 ? "Alive" : "Dead";
+            } else {
+                catState = "Superposition";
+            }
+            drawCatState();
+        }
+
+        drawCatState();
+
+        // Logic for Quantum Entanglement
+        const entanglementCanvas = document.getElementById("entanglementCanvas");
+        const entanglementCtx = entanglementCanvas.getContext("2d");
+        let entanglementState = true;
+
+        function drawEntanglement() {
+            entanglementCtx.clearRect(0, 0, entanglementCanvas.width, entanglementCanvas.height);
+            entanglementCtx.strokeStyle = entanglementState ? "blue" : "green";
+            entanglementCtx.lineWidth = 2;
+            for (let i = 0; i < 5; i++) {
+                entanglementCtx.beginPath();
+                entanglementCtx.moveTo(50 + i * 60, 50);
+                entanglementCtx.lineTo(100 + i * 60, 150);
+                entanglementCtx.stroke();
+            }
+        }
+
+        function toggleEntanglement() {
+            entanglementState = !entanglementState;
+            drawEntanglement();
+        }
+
+        drawEntanglement();
+
+        // Logic for Quantum Tunneling
+        const tunnelingCanvas = document.getElementById("tunnelingCanvas");
+        const tunnelingCtx = tunnelingCanvas.getContext("2d");
+        let tunnelingActive = false;
+
+        function drawTunneling() {
+            tunnelingCtx.clearRect(0, 0, tunnelingCanvas.width, tunnelingCanvas.height);
+            tunnelingCtx.fillStyle = "gray";
+            tunnelingCtx.fillRect(150, 50, 100, 100);
+            tunnelingCtx.fillStyle = tunnelingActive ? "yellow" : "red";
+            tunnelingCtx.beginPath();
+            tunnelingCtx.arc(100, 100, 20, 0, Math.PI * 2);
+            tunnelingCtx.fill();
+            if (tunnelingActive) {
+                tunnelingCtx.beginPath();
+                tunnelingCtx.arc(300, 100, 20, 0, Math.PI * 2);
+                tunnelingCtx.fill();
+            }
+        }
+
+        function toggleTunneling() {
+            tunnelingActive = !tunnelingActive;
+            drawTunneling();
+        }
+
+        drawTunneling();
+
+        // Logic for Quantum Superposition
+        const superpositionCanvas = document.getElementById("superpositionCanvas");
+        const superpositionCtx = superpositionCanvas.getContext("2d");
+        let superpositionActive = true;
+
+        function drawSuperposition() {
+            superpositionCtx.clearRect(0, 0, superpositionCanvas.width, superpositionCanvas.height);
+            if (superpositionActive) {
+                superpositionCtx.fillStyle = "purple";
+                for (let i = 0; i < 10; i++) {
+                    superpositionCtx.beginPath();
+                    superpositionCtx.arc(Math.random() * superpositionCanvas.width, Math.random() * superpositionCanvas.height, 10, 0, Math.PI * 2);
+                    superpositionCtx.fill();
+                }
+            } else {
+                superpositionCtx.fillStyle = "orange";
+                superpositionCtx.font = "20px Arial";
+                superpositionCtx.fillText("Collapsed State", 150, 100);
+            }
+        }
+
+        function toggleSuperposition() {
+            superpositionActive = !superpositionActive;
+            drawSuperposition();
+        }
+
+        drawSuperposition();
+
+        // Logic for Quantum Decoherence
+        const decoherenceCanvas = document.getElementById("decoherenceCanvas");
+        const decoherenceCtx = decoherenceCanvas.getContext("2d");
+        let decoherencePhase = 0;
+
+        function drawDecoherence() {
+            decoherenceCtx.clearRect(0, 0, decoherenceCanvas.width, decoherenceCanvas.height);
+            for (let x = 0; x < decoherenceCanvas.width; x += 10) {
+                decoherenceCtx.strokeStyle = `rgba(255, 0, 0, ${Math.sin((x + decoherencePhase) * 0.1)})`;
+                decoherenceCtx.beginPath();
+                decoherenceCtx.moveTo(x, 100);
+                decoherenceCtx.lineTo(x, 100 + Math.sin((x + decoherencePhase) * 0.1) * 50);
+                decoherenceCtx.stroke();
+            }
+            decoherencePhase += 1;
+        }
+
+        function animateDecoherence() {
+            drawDecoherence();
+            requestAnimationFrame(animateDecoherence);
+        }
+
+        animateDecoherence();
     </script>
 </body>
 </html>
