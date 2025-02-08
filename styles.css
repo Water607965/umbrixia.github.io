@@ -3,7 +3,7 @@
 /* General Body Styles */
 body {
     background: linear-gradient(to bottom, #000000, #1a1a1a);
-    font-family: 'Lora', serif;
+    font-family: 'Raleway', sans-serif;
     color: #ffd700;
     margin: 0;
     padding: 0;
@@ -11,7 +11,7 @@ body {
 
 /* Luxury Header */
 .luxury-header {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Raleway', sans-serif;
     background: linear-gradient(to right, #ffd700, #ff4500);
     -webkit-background-clip: text;
     color: transparent;
