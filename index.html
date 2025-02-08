@@ -170,63 +170,146 @@
                     <h4 class="text-3xl mb-4">1. Wave-Particle Duality</h4>
                     <p class="text-lg mb-4 text-red-400">Toggle to observe wave or particle behavior.</p>
                     <div id="wave-particle"></div>
+                    <script>
+                        let toggleWaveParticle = false;
+                        function setup() {
+                            let canvas1 = createCanvas(400, 200);
+                            canvas1.parent('wave-particle');
+                            background(30);
+                        }
+                        function draw() {
+                            background(30);
+                            if (toggleWaveParticle) {
+                                for (let i = 0; i < width; i += 20) {
+                                    stroke(255);
+                                    line(i, 100 + 50 * sin(i * 0.1 + frameCount * 0.1), i, 100);
+                                }
+                            } else {
+                                fill(255, 0, 0);
+                                ellipse(200, 100, 50, 50);
+                            }
+                        }
+                        function mousePressed() {
+                            toggleWaveParticle = !toggleWaveParticle;
+                        }
+                    </script>
                 </div>
                 <!-- Double-Slit Experiment -->
                 <div class="interactive-section">
                     <h4 class="text-3xl mb-4">2. Double-Slit Experiment</h4>
                     <p class="text-lg mb-4 text-red-400">Toggle observation and change slit width to observe interference patterns.</p>
                     <div id="double-slit"></div>
-                    <div class="tooltip">Need Help?
-                        <span class="tooltiptext">Adjust the slit width and toggle observer state to see the results.</span>
-                    </div>
+                    <script>
+                        let observerActive = false;
+                        let slitWidth = 30;
+
+                        function setupDoubleSlit() {
+                            let canvas2 = createCanvas(400, 200);
+                            canvas2.parent('double-slit');
+                            noLoop();
+                        }
+
+                        function drawDoubleSlit() {
+                            background(30);
+                            noStroke();
+                            for (let x = 0; x < width; x += 5) {
+                                let intensity = sin((x - width / 2) * 0.05) ** 2;
+                                if (!observerActive) {
+                                    fill(255 * intensity);
+                                    rect(x, height / 2 - 50, 4, 100);
+                                } else {
+                                    fill(255 * (x % slitWidth < slitWidth / 2 ? 1 : 0));
+                                    rect(x, height / 2 - 50, 4, 100);
+                                }
+                            }
+                        }
+
+                        function toggleObserver() {
+                            observerActive = !observerActive;
+                            drawDoubleSlit();
+                        }
+
+                        function adjustSlitWidth(val) {
+                            slitWidth = val;
+                            drawDoubleSlit();
+                        }
+
+                        setupDoubleSlit();
+                        drawDoubleSlit();
+                    </script>
+                    <button onclick="toggleObserver()" class="gold-button mt-4">Toggle Observer</button>
+                    <input type="range" min="10" max="50" value="30" onchange="adjustSlitWidth(this.value)" class="mt-4">
                 </div>
                 <!-- Quantum Entanglement -->
                 <div class="interactive-section">
                     <h4 class="text-3xl mb-4">3. Quantum Entanglement</h4>
                     <p class="text-lg mb-4 text-red-400">Interact with entangled particles to observe real-time effects.</p>
                     <div id="entanglement"></div>
+                    <script>
+                        let spinState = "UP";
+                        function setupEntanglement() {
+                            let canvas3 = createCanvas(400, 200);
+                            canvas3.parent('entanglement');
+                            noLoop();
+                        }
+
+                        function drawEntanglement() {
+                            background(30);
+                            stroke(255);
+                            line(150, 100, 250, 100);
+
+                            fill(spinState === "UP" ? 0 : 255, 0, 0);
+                            ellipse(150, 100, 50);
+                            fill(spinState === "UP" ? 255 : 0, 0, 0);
+                            ellipse(250, 100, 50);
+
+                            textAlign(CENTER);
+                            textSize(16);
+                            fill(255);
+                            text("Particle A", 150, 160);
+                            text("Particle B", 250, 160);
+                        }
+
+                        function toggleSpinState() {
+                            spinState = spinState === "UP" ? "DOWN" : "UP";
+                            drawEntanglement();
+                        }
+
+                        setupEntanglement();
+                        drawEntanglement();
+                    </script>
+                    <button onclick="toggleSpinState()" class="gold-button mt-4">Toggle Spin State</button>
                 </div>
                 <!-- Schrödinger's Cat -->
                 <div class="interactive-section">
                     <h4 class="text-3xl mb-4">4. Schrödinger's Cat</h4>
-                    <p class="text-lg mb-4 text-red-400">Toggle between the "alive" and "dead" states.</p>
+                    <p class="text-lg mb-4 text-red-400">Observe the quantum state of the cat as alive or dead.</p>
                     <div id="schrodinger-cat"></div>
-                </div>
-                <!-- Quantum Superposition -->
-                <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">5. Quantum Superposition</h4>
-                    <p class="text-lg mb-4 text-red-400">Visualize overlapping quantum states with sliders.</p>
-                    <div id="superposition"></div>
-                </div>
-                <!-- Quantum Tunneling -->
-                <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">6. Quantum Tunneling</h4>
-                    <p class="text-lg mb-4 text-red-400">Watch particles pass through energy barriers dynamically.</p>
-                    <div id="tunneling"></div>
-                </div>
-                <!-- Heisenberg Uncertainty -->
-                <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">7. Heisenberg Uncertainty</h4>
-                    <p class="text-lg mb-4 text-red-400">Adjust position and momentum precision using sliders.</p>
-                    <div id="uncertainty"></div>
-                </div>
-                <!-- Quantum Decoherence -->
-                <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">8. Quantum Decoherence</h4>
-                    <p class="text-lg mb-4 text-red-400">Observe the collapse of quantum states into classical outcomes.</p>
-                    <div id="decoherence"></div>
-                </div>
-                <!-- Electron Probability Clouds -->
-                <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">9. Electron Probability Clouds</h4>
-                    <p class="text-lg mb-4 text-red-400">Explore 3D models of electron clouds around nuclei.</p>
-                    <div id="clouds"></div>
-                </div>
-                <!-- Spin State Simulation -->
-                <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">10. Spin State Simulation</h4>
-                    <p class="text-lg mb-4 text-red-400">Manipulate and visualize quantum spin states.</p>
-                    <div id="spin-state"></div>
+                    <script>
+                        let catState = "ALIVE";
+                        function setupCat() {
+                            let canvas4 = createCanvas(400, 200);
+                            canvas4.parent('schrodinger-cat');
+                            noLoop();
+                        }
+
+                        function drawCat() {
+                            background(30);
+                            textSize(20);
+                            textAlign(CENTER);
+                            fill(255);
+                            text("The cat is " + catState, width / 2, height / 2);
+                        }
+
+                        function toggleCatState() {
+                            catState = catState === "ALIVE" ? "DEAD" : "ALIVE";
+                            drawCat();
+                        }
+
+                        setupCat();
+                        drawCat();
+                    </script>
+                    <button onclick="toggleCatState()" class="gold-button mt-4">Toggle Cat State</button>
                 </div>
             </div>
         </section>
@@ -236,21 +319,5 @@
     <footer class="py-10 bg-black text-center text-red-400">
         <p>&copy; 2025 Umbrixia. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Double-Slit Experiment Logic
-        function setup() {
-            let canvas1 = createCanvas(400, 200);
-            canvas1.parent('double-slit');
-            background(30);
-        }
-
-        function draw() {
-            fill(255, 0, 0);
-            ellipse(random(width), random(height), 20, 20);
-        }
-
-        // Add logic for all other interactives similarly
-    </script>
 </body>
 </html>
