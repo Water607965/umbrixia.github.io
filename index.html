@@ -51,6 +51,9 @@
             display: block;
             margin: auto;
         }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -150,7 +153,7 @@
                         function setupWaveParticle() {
                             let canvas = createCanvas(400, 200);
                             canvas.parent('wave-particle');
-                            noLoop();
+                            drawWaveParticle();
                         }
 
                         function drawWaveParticle() {
@@ -172,7 +175,6 @@
                         }
 
                         setupWaveParticle();
-                        drawWaveParticle();
                     </script>
                     <button onclick="toggleWaveParticleMode()" class="gold-button mt-4">Toggle Mode</button>
                 </div>
@@ -189,7 +191,7 @@
                         function setupDoubleSlit() {
                             let canvas = createCanvas(400, 200);
                             canvas.parent('double-slit');
-                            noLoop();
+                            drawDoubleSlit();
                         }
 
                         function drawDoubleSlit() {
@@ -218,7 +220,6 @@
                         }
 
                         setupDoubleSlit();
-                        drawDoubleSlit();
                     </script>
                     <button onclick="toggleObserver()" class="gold-button mt-4">Toggle Observer</button>
                     <input type="range" min="10" max="50" value="30" onchange="adjustSlitWidth(this.value)" class="mt-4">
@@ -236,7 +237,7 @@
                         function setupCat() {
                             let canvas = createCanvas(400, 200);
                             canvas.parent('schrodinger-cat');
-                            noLoop();
+                            drawCat();
                         }
 
                         function drawCat() {
@@ -261,7 +262,6 @@
                         }
 
                         setupCat();
-                        drawCat();
                     </script>
                     <button onclick="toggleObservation()" class="gold-button mt-4">Toggle Observation</button>
                 </div>
@@ -278,7 +278,7 @@
                         function setupEntanglement() {
                             let canvas = createCanvas(400, 200);
                             canvas.parent('entanglement');
-                            noLoop();
+                            drawEntanglement();
                         }
 
                         function drawEntanglement() {
@@ -305,13 +305,19 @@
                         }
 
                         setupEntanglement();
-                        drawEntanglement();
                     </script>
                     <button onclick="toggleParticleA()" class="gold-button mt-4">Toggle Particle A Spin</button>
                 </div>
             </div>
         </section>
     </main>
+
+    <script>
+        function toggleContent(chapterId) {
+            const chapter = document.getElementById(chapterId);
+            chapter.classList.toggle('hidden');
+        }
+    </script>
 
     <!-- Footer -->
     <footer class="py-10 bg-black text-center text-red-400">
