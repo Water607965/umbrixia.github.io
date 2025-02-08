@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore quantum physics with detailed chapters and advanced interactives.">
+    <meta name="description" content="Explore quantum physics with advanced interactivity and detailed chapters.">
     <title>Umbrixia – Quantum Elegance</title>
     <!-- Favicon -->
     <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
@@ -39,17 +39,42 @@
             color: #000000;
             transform: scale(1.1);
         }
-        .section-card {
+        .interactive-section {
             background: linear-gradient(to bottom, #330000, #000000);
             border: 2px solid #ffd700;
             border-radius: 16px;
             padding: 20px;
-            text-align: left;
+            text-align: center;
             box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.8);
         }
         canvas {
             display: block;
             margin: auto;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 220px;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
 </head>
@@ -71,37 +96,68 @@
     <!-- Hero Section -->
     <header class="text-center py-28 bg-black">
         <h2 class="text-6xl font-playfair luxury-header">Welcome to Umbrixia</h2>
-        <p class="text-2xl mt-6 text-red-400">Experience the elegance of quantum physics.</p>
+        <p class="text-2xl mt-6 text-red-400">Explore the mysteries of quantum physics with interactivity and depth.</p>
     </header>
 
     <!-- Chapters Section -->
     <main class="px-12 py-16">
         <section id="chapters" class="mb-32">
-            <h3 class="text-5xl font-playfair luxury-header mb-16">Simplified Quantum Concepts</h3>
+            <h3 class="text-5xl font-playfair luxury-header mb-16">Quantum Concepts Simplified</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
                 <!-- Chapter 1 -->
-                <div class="section-card">
-                    <h4 class="text-3xl font-playfair mb-4">Chapter 1: Uncertainty</h4>
-                    <p class="text-lg mb-4">Quantum uncertainty challenges classical determinism with probabilistic outcomes.</p>
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">Chapter 1: Uncertainty</h4>
+                    <p class="text-lg text-red-400">Discover the limits of measurement with the Heisenberg Uncertainty Principle.</p>
                     <button class="gold-button" onclick="toggleContent('chapter1')">Learn More</button>
                     <div id="chapter1" class="hidden mt-4">
-                        <p class="text-lg text-red-400">
-                            Quantum uncertainty introduces probabilistic behavior, challenging classical determinism. Learn how the Heisenberg Uncertainty Principle limits our ability to measure both position and momentum simultaneously.
-                        </p>
+                        <p class="text-lg text-red-400">Explore how the uncertainty principle impacts our ability to measure both position and momentum simultaneously.</p>
                     </div>
                 </div>
                 <!-- Chapter 2 -->
-                <div class="section-card">
-                    <h4 class="text-3xl font-playfair mb-4">Chapter 2: Superposition</h4>
-                    <p class="text-lg mb-4">Particles exist in multiple states simultaneously, defying classical expectations.</p>
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">Chapter 2: Superposition</h4>
+                    <p class="text-lg text-red-400">Learn how particles exist in multiple states until observed.</p>
                     <button class="gold-button" onclick="toggleContent('chapter2')">Learn More</button>
                     <div id="chapter2" class="hidden mt-4">
-                        <p class="text-lg text-red-400">
-                            Superposition allows particles to exist in overlapping states until observed. Discover its role in quantum computing and experiments like the Double-Slit.
-                        </p>
+                        <p class="text-lg text-red-400">Superposition forms the basis of quantum computing and interference phenomena.</p>
                     </div>
                 </div>
-                <!-- Add Chapters 3 to 6 Here -->
+                <!-- Chapter 3 -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">Chapter 3: Entanglement</h4>
+                    <p class="text-lg text-red-400">Explore how entangled particles remain connected over vast distances.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter3')">Learn More</button>
+                    <div id="chapter3" class="hidden mt-4">
+                        <p class="text-lg text-red-400">Quantum entanglement defies classical physics and underpins quantum communication.</p>
+                    </div>
+                </div>
+                <!-- Chapter 4 -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">Chapter 4: Observation</h4>
+                    <p class="text-lg text-red-400">Learn how observation affects quantum systems.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter4')">Learn More</button>
+                    <div id="chapter4" class="hidden mt-4">
+                        <p class="text-lg text-red-400">Observation collapses quantum states into definite outcomes, as seen in the Double-Slit Experiment.</p>
+                    </div>
+                </div>
+                <!-- Chapter 5 -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">Chapter 5: Tunneling</h4>
+                    <p class="text-lg text-red-400">Discover how particles pass through barriers in quantum tunneling.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter5')">Learn More</button>
+                    <div id="chapter5" class="hidden mt-4">
+                        <p class="text-lg text-red-400">Quantum tunneling allows particles to cross energy barriers, enabling technologies like semiconductors.</p>
+                    </div>
+                </div>
+                <!-- Chapter 6 -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">Chapter 6: Decoherence</h4>
+                    <p class="text-lg text-red-400">Learn how quantum systems collapse into classical behavior through decoherence.</p>
+                    <button class="gold-button" onclick="toggleContent('chapter6')">Learn More</button>
+                    <div id="chapter6" class="hidden mt-4">
+                        <p class="text-lg text-red-400">Decoherence explains how quantum superpositions break down and why classical physics emerges from quantum systems.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -112,14 +168,66 @@
                 <!-- Wave-Particle Duality -->
                 <div class="interactive-section">
                     <h4 class="text-3xl mb-4">1. Wave-Particle Duality</h4>
+                    <p class="text-lg mb-4 text-red-400">Toggle to observe wave or particle behavior.</p>
                     <div id="wave-particle"></div>
+                </div>
+                <!-- Double-Slit Experiment -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">2. Double-Slit Experiment</h4>
+                    <p class="text-lg mb-4 text-red-400">Toggle observation and change slit width to observe interference patterns.</p>
+                    <div id="double-slit"></div>
+                    <div class="tooltip">Need Help?
+                        <span class="tooltiptext">Adjust the slit width and toggle observer state to see the results.</span>
+                    </div>
                 </div>
                 <!-- Quantum Entanglement -->
                 <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">2. Quantum Entanglement</h4>
+                    <h4 class="text-3xl mb-4">3. Quantum Entanglement</h4>
+                    <p class="text-lg mb-4 text-red-400">Interact with entangled particles to observe real-time effects.</p>
                     <div id="entanglement"></div>
                 </div>
-                <!-- Add Remaining 8 Interactives -->
+                <!-- Schrödinger's Cat -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">4. Schrödinger's Cat</h4>
+                    <p class="text-lg mb-4 text-red-400">Toggle between the "alive" and "dead" states.</p>
+                    <div id="schrodinger-cat"></div>
+                </div>
+                <!-- Quantum Superposition -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">5. Quantum Superposition</h4>
+                    <p class="text-lg mb-4 text-red-400">Visualize overlapping quantum states with sliders.</p>
+                    <div id="superposition"></div>
+                </div>
+                <!-- Quantum Tunneling -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">6. Quantum Tunneling</h4>
+                    <p class="text-lg mb-4 text-red-400">Watch particles pass through energy barriers dynamically.</p>
+                    <div id="tunneling"></div>
+                </div>
+                <!-- Heisenberg Uncertainty -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">7. Heisenberg Uncertainty</h4>
+                    <p class="text-lg mb-4 text-red-400">Adjust position and momentum precision using sliders.</p>
+                    <div id="uncertainty"></div>
+                </div>
+                <!-- Quantum Decoherence -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">8. Quantum Decoherence</h4>
+                    <p class="text-lg mb-4 text-red-400">Observe the collapse of quantum states into classical outcomes.</p>
+                    <div id="decoherence"></div>
+                </div>
+                <!-- Electron Probability Clouds -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">9. Electron Probability Clouds</h4>
+                    <p class="text-lg mb-4 text-red-400">Explore 3D models of electron clouds around nuclei.</p>
+                    <div id="clouds"></div>
+                </div>
+                <!-- Spin State Simulation -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">10. Spin State Simulation</h4>
+                    <p class="text-lg mb-4 text-red-400">Manipulate and visualize quantum spin states.</p>
+                    <div id="spin-state"></div>
+                </div>
             </div>
         </section>
     </main>
@@ -130,17 +238,19 @@
     </footer>
 
     <script>
-        // Example for Fully Interactive Wave-Particle Duality
+        // Double-Slit Experiment Logic
         function setup() {
-            let canvas = createCanvas(400, 200);
-            canvas.parent('wave-particle');
+            let canvas1 = createCanvas(400, 200);
+            canvas1.parent('double-slit');
             background(30);
         }
 
         function draw() {
             fill(255, 0, 0);
-            ellipse(mouseX, mouseY, 20, 20);
+            ellipse(random(width), random(height), 20, 20);
         }
+
+        // Add logic for all other interactives similarly
     </script>
 </body>
 </html>
