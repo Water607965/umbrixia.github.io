@@ -111,6 +111,8 @@
                     <button class="gold-button" onclick="toggleContent('chapter1')">Learn More</button>
                     <div id="chapter1" class="hidden mt-4">
                         <p class="text-lg text-red-400">Explore how the uncertainty principle impacts our ability to measure both position and momentum simultaneously.</p>
+                        <p class="text-lg text-red-400">Historical Context: Introduced by Werner Heisenberg in 1927, this principle revolutionized the understanding of microscopic systems.</p>
+                        <p class="text-lg text-red-400">Applications: Crucial in quantum cryptography and understanding quantum harmonic oscillators.</p>
                     </div>
                 </div>
                 <!-- Chapter 2 -->
@@ -120,6 +122,8 @@
                     <button class="gold-button" onclick="toggleContent('chapter2')">Learn More</button>
                     <div id="chapter2" class="hidden mt-4">
                         <p class="text-lg text-red-400">Superposition forms the basis of quantum computing and interference phenomena.</p>
+                        <p class="text-lg text-red-400">Mathematical Formulation: Represented by a linear combination of quantum states.</p>
+                        <p class="text-lg text-red-400">Real-World Impact: Powers algorithms like Shor's algorithm for factorization.</p>
                     </div>
                 </div>
                 <!-- Chapter 3 -->
@@ -129,6 +133,8 @@
                     <button class="gold-button" onclick="toggleContent('chapter3')">Learn More</button>
                     <div id="chapter3" class="hidden mt-4">
                         <p class="text-lg text-red-400">Quantum entanglement defies classical physics and underpins quantum communication.</p>
+                        <p class="text-lg text-red-400">Einstein's "Spooky Action at a Distance": Entanglement challenges local realism.</p>
+                        <p class="text-lg text-red-400">Technological Applications: Basis for quantum key distribution and quantum networks.</p>
                     </div>
                 </div>
                 <!-- Chapter 4 -->
@@ -138,6 +144,8 @@
                     <button class="gold-button" onclick="toggleContent('chapter4')">Learn More</button>
                     <div id="chapter4" class="hidden mt-4">
                         <p class="text-lg text-red-400">Observation collapses quantum states into definite outcomes, as seen in the Double-Slit Experiment.</p>
+                        <p class="text-lg text-red-400">Experimental Proof: Wheeler's Delayed-Choice Experiment.</p>
+                        <p class="text-lg text-red-400">Real-World Use: Foundational in quantum measurement technologies.</p>
                     </div>
                 </div>
                 <!-- Chapter 5 -->
@@ -147,6 +155,8 @@
                     <button class="gold-button" onclick="toggleContent('chapter5')">Learn More</button>
                     <div id="chapter5" class="hidden mt-4">
                         <p class="text-lg text-red-400">Quantum tunneling allows particles to cross energy barriers, enabling technologies like semiconductors.</p>
+                        <p class="text-lg text-red-400">Key Experiments: Scanning tunneling microscope visualization.</p>
+                        <p class="text-lg text-red-400">Technological Impacts: Essential for flash memory and nuclear fusion.</p>
                     </div>
                 </div>
                 <!-- Chapter 6 -->
@@ -156,6 +166,8 @@
                     <button class="gold-button" onclick="toggleContent('chapter6')">Learn More</button>
                     <div id="chapter6" class="hidden mt-4">
                         <p class="text-lg text-red-400">Decoherence explains how quantum superpositions break down and why classical physics emerges from quantum systems.</p>
+                        <p class="text-lg text-red-400">Implications: Provides insight into the quantum-classical transition.</p>
+                        <p class="text-lg text-red-400">Applications: Helps in building robust quantum computers by mitigating decoherence effects.</p>
                     </div>
                 </div>
             </div>
@@ -311,13 +323,20 @@
                     </script>
                     <button onclick="toggleCatState()" class="gold-button mt-4">Toggle Cat State</button>
                 </div>
-            </div>
-        </section>
-    </main>
+                <!-- Electron Orbitals -->
+                <div class="interactive-section">
+                    <h4 class="text-3xl mb-4">5. Electron Orbitals</h4>
+                    <p class="text-lg mb-4 text-red-400">Visualize the probabilistic electron cloud surrounding an atom.</p>
+                    <div id="electron-orbitals"></div>
+                    <script>
+                        let theta = 0;
 
-    <!-- Footer -->
-    <footer class="py-10 bg-black text-center text-red-400">
-        <p>&copy; 2025 Umbrixia. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+                        function setupOrbitals() {
+                            let canvas5 = createCanvas(400, 400, WEBGL);
+                            canvas5.parent('electron-orbitals');
+                            noLoop();
+                        }
+
+                        function drawOrbitals() {
+                            background(30);
+                           
