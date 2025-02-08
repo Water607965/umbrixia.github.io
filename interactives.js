@@ -1,89 +1,119 @@
 // Wave-Particle Duality Interactive
 const waveParticleCanvas = document.getElementById("waveParticleCanvas");
 const waveParticleCtx = waveParticleCanvas.getContext("2d");
-let waveMode = false;
+let waveMode = true;
 
-function drawWaveParticle() {
+function drawWave() {
     waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
-    if (waveMode) {
-        waveParticleCtx.strokeStyle = "white";
-        for (let i = 0; i < waveParticleCanvas.width; i += 20) {
-            waveParticleCtx.beginPath();
-            waveParticleCtx.moveTo(i, 100);
-            waveParticleCtx.lineTo(i, 100 + Math.sin(i * 0.1) * 50);
-            waveParticleCtx.stroke();
-        }
-    } else {
-        waveParticleCtx.fillStyle = "red";
+    waveParticleCtx.strokeStyle = "white";
+    waveParticleCtx.lineWidth = 2;
+    for (let x = 0; x < waveParticleCanvas.width; x += 5) {
+        const y = 100 + Math.sin((x + Date.now() / 100) * 0.1) * 40;
         waveParticleCtx.beginPath();
-        waveParticleCtx.arc(200, 100, 25, 0, Math.PI * 2);
+        waveParticleCtx.arc(x, y, 2, 0, Math.PI * 2);
+        waveParticleCtx.fillStyle = "yellow";
         waveParticleCtx.fill();
     }
 }
 
-function toggleWaveParticleMode() {
-    waveMode = !waveMode;
-    drawWaveParticle();
+function drawParticle() {
+    waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
+    waveParticleCtx.fillStyle = "red";
+    waveParticleCtx.beginPath();
+    waveParticleCtx.arc(200, 100, 20, 0, Math.PI * 2);
+    waveParticleCtx.fill();
 }
 
-drawWaveParticle();
+function toggleWaveParticleMode() {
+    waveMode = !waveMode;
+}
+
+function animateWaveParticle() {
+    if (waveMode) {
+        drawWave();
+    } else {
+        drawParticle();
+    }
+    requestAnimationFrame(animateWaveParticle);
+}
+
+animateWaveParticle();
+
+// Double-Slit Experiment Interactive
+const doubleSlitCanvas = document.getElementById("doubleSlitCanvas");
+const doubleSlitCtx = doubleSlitCanvas.getContext("2d");
+let observerEnabled = false;
+
+function drawInterference() {
+    doubleSlitCtx.clearRect(0, 0, doubleSlitCanvas.width, doubleSlitCanvas.height);
+    for (let i = 0; i < doubleSlitCanvas.width; i += 10) {
+        const intensity = Math.sin(i * 0.1) ** 2 * 255;
+        doubleSlitCtx.fillStyle = `rgb(${intensity}, ${intensity}, ${intensity})`;
+        doubleSlitCtx.fillRect(i, 0, 10, doubleSlitCanvas.height);
+    }
+}
+
+function drawParticles() {
+    doubleSlitCtx.clearRect(0, 0, doubleSlitCanvas.width, doubleSlitCanvas.height);
+    doubleSlitCtx.fillStyle = "blue";
+    for (let i = 0; i < 100; i++) {
+        const x = Math.random() * doubleSlitCanvas.width;
+        const y = Math.random() * doubleSlitCanvas.height;
+        doubleSlitCtx.beginPath();
+        doubleSlitCtx.arc(x, y, 2, 0, Math.PI * 2);
+        doubleSlitCtx.fill();
+    }
+}
+
+function toggleObserverMode() {
+    observerEnabled = !observerEnabled;
+}
+
+function animateDoubleSlit() {
+    if (observerEnabled) {
+        drawParticles();
+    } else {
+        drawInterference();
+    }
+    requestAnimationFrame(animateDoubleSlit);
+}
+
+animateDoubleSlit();
 
 // Schrödinger's Cat Interactive
 const catCanvas = document.getElementById("catCanvas");
 const catCtx = catCanvas.getContext("2d");
 let catState = "Superposition";
 
-function drawCat() {
+function drawCatState() {
     catCtx.clearRect(0, 0, catCanvas.width, catCanvas.height);
     catCtx.fillStyle = "black";
     catCtx.fillRect(0, 0, catCanvas.width, catCanvas.height);
-    catCtx.fillStyle = catState === "Alive" ? "green" : catState === "Dead" ? "red" : "yellow";
+
+    if (catState === "Alive") {
+        catCtx.fillStyle = "green";
+    } else if (catState === "Dead") {
+        catCtx.fillStyle = "red";
+    } else {
+        catCtx.fillStyle = "yellow";
+    }
+
     catCtx.beginPath();
-    catCtx.arc(200, 100, 40, 0, Math.PI * 2);
+    catCtx.arc(200, 100, 50, 0, Math.PI * 2);
     catCtx.fill();
+
     catCtx.fillStyle = "white";
     catCtx.font = "20px Arial";
-    catCtx.fillText(`State: ${catState}`, 150, 180);
+    catCtx.fillText(`State: ${catState}`, 140, 180);
 }
 
 function toggleObservation() {
-    catState = catState === "Superposition" ? (Math.random() > 0.5 ? "Alive" : "Dead") : "Superposition";
-    drawCat();
-}
-
-drawCat();
-
-// Double-Slit Experiment
-const slitCanvas = document.createElement("canvas");
-slitCanvas.width = 400;
-slitCanvas.height = 200;
-document.body.appendChild(slitCanvas);
-const slitCtx = slitCanvas.getContext("2d");
-let observerMode = false;
-
-function drawDoubleSlit() {
-    slitCtx.clearRect(0, 0, slitCanvas.width, slitCanvas.height);
-    if (observerMode) {
-        slitCtx.fillStyle = "white";
-        for (let i = 0; i < slitCanvas.width; i += 20) {
-            slitCtx.beginPath();
-            slitCtx.arc(i, 100, Math.random() * 10, 0, Math.PI * 2);
-            slitCtx.fill();
-        }
+    if (catState === "Superposition") {
+        catState = Math.random() > 0.5 ? "Alive" : "Dead";
     } else {
-        slitCtx.strokeStyle = "white";
-        slitCtx.beginPath();
-        for (let i = 0; i < slitCanvas.width; i++) {
-            const y = 100 + Math.sin(i * 0.1) * 50;
-            slitCtx.lineTo(i, y);
-        }
-        slitCtx.stroke();
+        catState = "Superposition";
     }
+    drawCatState();
 }
 
-function toggleObserverMode() {
-    observerMode = !observerMode;
-    drawDoubleSlit();
-}
-
-drawDoubleSlit();
+drawCatState();
