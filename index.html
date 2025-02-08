@@ -7,19 +7,17 @@
     <title>Umbrixia – Quantum Elegance</title>
     <!-- Favicon -->
     <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gradient-to-b from-black to-gray-900 text-red-400">
+<body class="bg-gradient-to-b from-black to-gray-900 text-gold">
     <!-- Navbar -->
     <nav class="flex justify-between items-center py-6 px-8 border-b border-gray-800">
         <div class="flex items-center">
             <img src="logo.png" alt="Umbrixia Logo" class="h-12 w-12 mr-4">
-            <h1 class="text-4xl font-playfair luxury-header">Umbrixia</h1>
+            <h1 class="text-4xl font-raleway luxury-header">Umbrixia</h1>
         </div>
         <ul class="flex space-x-8 text-lg">
             <li><a href="index.html" class="hover:text-red-500">Home</a></li>
@@ -30,15 +28,15 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="text-center py-28 bg-black">
-        <h2 class="text-6xl font-playfair luxury-header">Welcome to Umbrixia</h2>
+    <header class="text-center py-28 bg-gradient-to-r from-gold-500 to-red-600">
+        <h2 class="text-6xl font-raleway luxury-header">Welcome to Umbrixia</h2>
         <p class="text-2xl mt-6">Explore the mysteries of quantum physics with interactivity and depth.</p>
     </header>
 
     <!-- Chapters Section -->
     <main class="px-12 py-16">
         <section id="chapters" class="mb-32">
-            <h3 class="text-5xl font-playfair luxury-header mb-16">Quantum Concepts Simplified</h3>
+            <h3 class="text-5xl font-raleway luxury-header mb-16">Quantum Concepts Simplified</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
                 <!-- Chapter 1 -->
                 <div class="interactive-section">
@@ -52,46 +50,46 @@
                 <!-- Chapter 2 -->
                 <div class="interactive-section">
                     <h4 class="text-3xl mb-4">Chapter 2: Superposition</h4>
-                    <p class="text-lg">Learn how particles exist in multiple states until observed.</p>
+                    <p class="text-lg">Learn how particles can exist in multiple states until observed.</p>
                     <button class="gold-button" onclick="toggleContent('chapter2')">Learn More</button>
                     <div id="chapter2" class="hidden mt-4">
-                        <p>Superposition forms the basis of quantum computing and interference phenomena.</p>
+                        <p>Discover quantum superposition and its role in quantum computing.</p>
                     </div>
                 </div>
                 <!-- Chapter 3 -->
                 <div class="interactive-section">
                     <h4 class="text-3xl mb-4">Chapter 3: Entanglement</h4>
-                    <p class="text-lg">Explore how entangled particles remain connected over vast distances.</p>
+                    <p class="text-lg">Explore the connection between entangled particles across distances.</p>
                     <button class="gold-button" onclick="toggleContent('chapter3')">Learn More</button>
                     <div id="chapter3" class="hidden mt-4">
-                        <p>Quantum entanglement defies classical physics and underpins quantum communication.</p>
+                        <p>Understand how entangled particles remain interconnected no matter the distance.</p>
                     </div>
                 </div>
                 <!-- Chapter 4 -->
                 <div class="interactive-section">
                     <h4 class="text-3xl mb-4">Chapter 4: Observation</h4>
-                    <p class="text-lg">Learn how observation affects quantum systems.</p>
+                    <p class="text-lg">Understand how observation affects quantum systems.</p>
                     <button class="gold-button" onclick="toggleContent('chapter4')">Learn More</button>
                     <div id="chapter4" class="hidden mt-4">
-                        <p>Observation collapses quantum states into definite outcomes, as seen in the Double-Slit Experiment.</p>
+                        <p>Explore the observer effect and its significance in quantum mechanics.</p>
                     </div>
                 </div>
                 <!-- Chapter 5 -->
                 <div class="interactive-section">
                     <h4 class="text-3xl mb-4">Chapter 5: Tunneling</h4>
-                    <p class="text-lg">Discover how particles pass through barriers in quantum tunneling.</p>
+                    <p class="text-lg">Discover how particles pass through seemingly impenetrable barriers.</p>
                     <button class="gold-button" onclick="toggleContent('chapter5')">Learn More</button>
                     <div id="chapter5" class="hidden mt-4">
-                        <p>Quantum tunneling allows particles to cross energy barriers, enabling technologies like semiconductors.</p>
+                        <p>Learn about quantum tunneling and its applications in technology.</p>
                     </div>
                 </div>
                 <!-- Chapter 6 -->
                 <div class="interactive-section">
                     <h4 class="text-3xl mb-4">Chapter 6: Decoherence</h4>
-                    <p class="text-lg">Learn how quantum systems collapse into classical behavior through decoherence.</p>
+                    <p class="text-lg">Understand how quantum systems lose their coherence over time.</p>
                     <button class="gold-button" onclick="toggleContent('chapter6')">Learn More</button>
                     <div id="chapter6" class="hidden mt-4">
-                        <p>Decoherence explains how quantum superpositions break down and why classical physics emerges from quantum systems.</p>
+                        <p>Explore quantum decoherence and its role in the transition from quantum to classical systems.</p>
                     </div>
                 </div>
             </div>
@@ -99,67 +97,32 @@
 
         <!-- Interactive Quantum Concepts -->
         <section id="interactives" class="mb-32">
-            <h3 class="text-5xl font-playfair luxury-header mb-16">Interactive Quantum Concepts</h3>
+            <h3 class="text-5xl font-raleway luxury-header mb-16">Interactive Quantum Concepts</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 <!-- Wave-Particle Duality -->
                 <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">Wave-Particle Duality</h4>
-                    <p class="text-lg">Toggle to observe wave or particle behavior.</p>
+                    <h4 class="text-3xl mb-4">1. Wave-Particle Duality</h4>
+                    <p class="text-lg mb-4">Toggle to observe wave or particle behavior.</p>
                     <canvas id="waveParticleCanvas" width="400" height="200"></canvas>
                     <button onclick="toggleWaveParticleMode()" class="gold-button mt-4">Toggle Mode</button>
                 </div>
-
-                <!-- Double-Slit Experiment -->
+                <!-- Other interactives -->
                 <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">Double-Slit Experiment</h4>
-                    <p class="text-lg">Toggle observation and change slit width to observe interference patterns.</p>
-                    <canvas id="doubleSlitCanvas" width="400" height="200"></canvas>
-                    <button onclick="toggleObserverMode()" class="gold-button mt-4">Toggle Observer</button>
-                </div>
-
-                <!-- Schrödinger's Cat -->
-                <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">Schrödinger's Cat</h4>
-                    <p class="text-lg">Observe the quantum state of the cat as alive or dead in real time.</p>
-                    <canvas id="catCanvas" width="400" height="200"></canvas>
-                    <button onclick="toggleObservation()" class="gold-button mt-4">Toggle Observation</button>
-                </div>
-
-                <!-- Quantum Entanglement -->
-                <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">Quantum Entanglement</h4>
-                    <p class="text-lg">Toggle to see the connection between entangled particles.</p>
-                    <canvas id="entanglementCanvas" width="400" height="200"></canvas>
-                    <button onclick="toggleEntanglement()" class="gold-button mt-4">Toggle Entanglement</button>
-                </div>
-
-                <!-- Quantum Tunneling -->
-                <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">Quantum Tunneling</h4>
-                    <p class="text-lg">See particles tunnel through barriers dynamically.</p>
-                    <canvas id="tunnelingCanvas" width="400" height="200"></canvas>
-                    <button onclick="toggleTunneling()" class="gold-button mt-4">Toggle Tunneling</button>
-                </div>
-
-                <!-- Quantum Superposition -->
-                <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">Quantum Superposition</h4>
-                    <p class="text-lg">Toggle between superposition and collapsed states.</p>
-                    <canvas id="superpositionCanvas" width="400" height="200"></canvas>
-                    <button onclick="toggleSuperposition()" class="gold-button mt-4">Toggle Superposition</button>
-                </div>
-
-                <!-- Quantum Decoherence -->
-                <div class="interactive-section">
-                    <h4 class="text-3xl mb-4">Quantum Decoherence</h4>
-                    <p class="text-lg">Watch waves lose coherence dynamically.</p>
+                    <h4 class="text-3xl mb-4">7. Quantum Decoherence</h4>
+                    <p class="text-lg mb-4">Visualize the loss of quantum coherence over time.</p>
                     <canvas id="decoherenceCanvas" width="400" height="200"></canvas>
+                    <button onclick="toggleDecoherence()" class="gold-button mt-4">Start</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Custom JavaScript -->
+    <!-- Footer -->
+    <footer class="py-10 bg-black text-center">
+        <p>&copy; 2025 Umbrixia. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
     <script src="interactives.js" defer></script>
     <script>
         function toggleContent(chapterId) {
@@ -167,10 +130,5 @@
             chapter.classList.toggle('hidden');
         }
     </script>
-
-    <!-- Footer -->
-    <footer class="py-10 bg-black text-center">
-        <p>&copy; 2025 Umbrixia. All rights reserved.</p>
-    </footer>
 </body>
 </html>
