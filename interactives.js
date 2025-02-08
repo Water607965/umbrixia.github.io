@@ -128,7 +128,6 @@ let entanglementState = true;
 
 function drawEntanglement() {
     entanglementCtx.clearRect(0, 0, entanglementCanvas.width, entanglementCanvas.height);
-
     entanglementCtx.strokeStyle = entanglementState ? "blue" : "green";
     entanglementCtx.lineWidth = 2;
     for (let i = 0; i < 5; i++) {
@@ -156,15 +155,12 @@ let tunnelingActive = false;
 
 function drawTunneling() {
     tunnelingCtx.clearRect(0, 0, tunnelingCanvas.width, tunnelingCanvas.height);
-
     tunnelingCtx.fillStyle = "gray";
     tunnelingCtx.fillRect(150, 50, 100, 100);
-
     tunnelingCtx.fillStyle = tunnelingActive ? "yellow" : "red";
     tunnelingCtx.beginPath();
     tunnelingCtx.arc(100, 100, 20, 0, Math.PI * 2);
     tunnelingCtx.fill();
-
     if (tunnelingActive) {
         tunnelingCtx.beginPath();
         tunnelingCtx.arc(300, 100, 20, 0, Math.PI * 2);
@@ -178,3 +174,61 @@ function toggleTunneling() {
 }
 
 drawTunneling();
+
+// Quantum Superposition Interactive
+const superpositionCanvas = document.createElement("canvas");
+superpositionCanvas.width = 400;
+superpositionCanvas.height = 200;
+document.body.appendChild(superpositionCanvas);
+const superpositionCtx = superpositionCanvas.getContext("2d");
+let superpositionActive = true;
+
+function drawSuperposition() {
+    superpositionCtx.clearRect(0, 0, superpositionCanvas.width, superpositionCanvas.height);
+    if (superpositionActive) {
+        superpositionCtx.fillStyle = "purple";
+        for (let i = 0; i < 10; i++) {
+            superpositionCtx.beginPath();
+            superpositionCtx.arc(Math.random() * superpositionCanvas.width, Math.random() * superpositionCanvas.height, 10, 0, Math.PI * 2);
+            superpositionCtx.fill();
+        }
+    } else {
+        superpositionCtx.fillStyle = "orange";
+        superpositionCtx.font = "20px Arial";
+        superpositionCtx.fillText("Collapsed State", 150, 100);
+    }
+}
+
+function toggleSuperposition() {
+    superpositionActive = !superpositionActive;
+    drawSuperposition();
+}
+
+drawSuperposition();
+
+// Quantum Decoherence Interactive
+const decoherenceCanvas = document.createElement("canvas");
+decoherenceCanvas.width = 400;
+decoherenceCanvas.height = 200;
+document.body.appendChild(decoherenceCanvas);
+const decoherenceCtx = decoherenceCanvas.getContext("2d");
+let decoherencePhase = 0;
+
+function drawDecoherence() {
+    decoherenceCtx.clearRect(0, 0, decoherenceCanvas.width, decoherenceCanvas.height);
+    for (let x = 0; x < decoherenceCanvas.width; x += 10) {
+        decoherenceCtx.strokeStyle = `rgba(255, 0, 0, ${Math.sin((x + decoherencePhase) * 0.1)})`;
+        decoherenceCtx.beginPath();
+        decoherenceCtx.moveTo(x, 100);
+        decoherenceCtx.lineTo(x, 100 + Math.sin((x + decoherencePhase) * 0.1) * 50);
+        decoherenceCtx.stroke();
+    }
+    decoherencePhase += 1;
+}
+
+function animateDecoherence() {
+    drawDecoherence();
+    requestAnimationFrame(animateDecoherence);
+}
+
+animateDecoherence();
