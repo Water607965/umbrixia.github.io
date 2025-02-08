@@ -117,3 +117,64 @@ function toggleObservation() {
 }
 
 drawCatState();
+
+// Quantum Entanglement Interactive
+const entanglementCanvas = document.createElement("canvas");
+entanglementCanvas.width = 400;
+entanglementCanvas.height = 200;
+document.body.appendChild(entanglementCanvas);
+const entanglementCtx = entanglementCanvas.getContext("2d");
+let entanglementState = true;
+
+function drawEntanglement() {
+    entanglementCtx.clearRect(0, 0, entanglementCanvas.width, entanglementCanvas.height);
+
+    entanglementCtx.strokeStyle = entanglementState ? "blue" : "green";
+    entanglementCtx.lineWidth = 2;
+    for (let i = 0; i < 5; i++) {
+        entanglementCtx.beginPath();
+        entanglementCtx.moveTo(50 + i * 60, 50);
+        entanglementCtx.lineTo(100 + i * 60, 150);
+        entanglementCtx.stroke();
+    }
+}
+
+function toggleEntanglement() {
+    entanglementState = !entanglementState;
+    drawEntanglement();
+}
+
+drawEntanglement();
+
+// Quantum Tunneling Interactive
+const tunnelingCanvas = document.createElement("canvas");
+tunnelingCanvas.width = 400;
+tunnelingCanvas.height = 200;
+document.body.appendChild(tunnelingCanvas);
+const tunnelingCtx = tunnelingCanvas.getContext("2d");
+let tunnelingActive = false;
+
+function drawTunneling() {
+    tunnelingCtx.clearRect(0, 0, tunnelingCanvas.width, tunnelingCanvas.height);
+
+    tunnelingCtx.fillStyle = "gray";
+    tunnelingCtx.fillRect(150, 50, 100, 100);
+
+    tunnelingCtx.fillStyle = tunnelingActive ? "yellow" : "red";
+    tunnelingCtx.beginPath();
+    tunnelingCtx.arc(100, 100, 20, 0, Math.PI * 2);
+    tunnelingCtx.fill();
+
+    if (tunnelingActive) {
+        tunnelingCtx.beginPath();
+        tunnelingCtx.arc(300, 100, 20, 0, Math.PI * 2);
+        tunnelingCtx.fill();
+    }
+}
+
+function toggleTunneling() {
+    tunnelingActive = !tunnelingActive;
+    drawTunneling();
+}
+
+drawTunneling();
