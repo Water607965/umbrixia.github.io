@@ -3,17 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Access a curated library of resources and tools for quantum physics exploration with Umbrixia.">
     <title>Umbrixia – Resources</title>
+    <!-- Favicon -->
+    <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="research.html">Research</a>
-        <a href="resources.html">Resources</a>
-        <a href="community.html">Community</a>
+<body class="bg-gradient-to-b from-black to-gray-900 text-gold">
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center py-6 px-8 border-b border-gray-800">
+        <div class="flex items-center">
+            <img src="logo.png" alt="Umbrixia Logo" class="h-12 w-12 mr-4">
+            <h1 class="text-4xl font-raleway luxury-header">Umbrixia</h1>
+        </div>
+        <ul class="flex space-x-8 text-lg">
+            <li><a href="index.html" class="hover:text-red-500">Home</a></li>
+            <li><a href="research.html" class="hover:text-red-500">Research</a></li>
+            <li><a href="resources.html" class="hover:text-red-500">Resources</a></li>
+            <li><a href="community.html" class="hover:text-red-500">Community</a></li>
+        </ul>
     </nav>
-    <h1>Resources</h1>
-    <p>Find educational materials, books, and tools to learn quantum physics.</p>
+
+    <!-- Resources Hero Section -->
+    <header class="text-center py-28 bg-black">
+        <h2 class="text-6xl font-raleway luxury-header">Quantum Resources</h2>
+        <p class="text-2xl mt-6">Unlock access to tools, guides, and materials to advance your quantum knowledge.</p>
+    </header>
+
+    <!-- Resources Section -->
+    <main class="px-12 py-16">
+        <section id="library" class="mb-16">
+            <h3 class="text-5xl font-raleway luxury-header mb-12">Resource Library</h3>
+            <p class="text-lg">Explore our comprehensive library of books, research papers, and study guides.</p>
+            <div class="mt-8">
+                <a href="#" class="gold-button">Access Library</a>
+            </div>
+        </section>
+
+        <section id="tools" class="mb-16">
+            <h3 class="text-5xl font-raleway luxury-header mb-12">Interactive Tools</h3>
+            <p class="text-lg">Utilize cutting-edge tools to simulate, calculate, and visualize quantum phenomena.</p>
+            <div class="mt-8">
+                <a href="#" class="gold-button">Explore Tools</a>
+            </div>
+        </section>
+
+        <section id="guides" class="mb-16">
+            <h3 class="text-5xl font-raleway luxury-header mb-12">Learning Guides</h3>
+            <p class="text-lg">Download step-by-step guides and tutorials for mastering quantum concepts.</p>
+            <div class="mt-8">
+                <a href="#" class="gold-button">Get Guides</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-black text-center">
+        <p>&copy; 2025 Umbrixia. All rights reserved.</p>
+    </footer>
 </body>
 </html>
