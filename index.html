@@ -11,47 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background: linear-gradient(to bottom, #000000, #1a1a1a);
-            font-family: 'Lora', serif;
-            color: #ff0000;
-        }
-        .luxury-header {
-            font-family: 'Playfair Display', serif;
-            background: linear-gradient(to right, #ffd700, #ff4500);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        .gold-button {
-            background-color: transparent;
-            border: 2px solid #ffd700;
-            border-radius: 16px;
-            color: #ffd700;
-            padding: 12px 20px;
-            transition: all 0.3s ease-in-out;
-        }
-        .gold-button:hover {
-            background-color: #ffd700;
-            color: #000000;
-            transform: scale(1.1);
-        }
-        .interactive-section {
-            background: linear-gradient(to bottom, #330000, #000000);
-            border: 2px solid #ffd700;
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.8);
-        }
-        canvas {
-            display: block;
-            margin: auto;
-        }
-        .hidden {
-            display: none;
-        }
-    </style>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -146,36 +107,6 @@
                     <p class="text-lg mb-4 text-red-400">Toggle to observe wave or particle behavior.</p>
                     <canvas id="waveParticleCanvas" width="400" height="200"></canvas>
                     <button onclick="toggleWaveParticleMode()" class="gold-button mt-4">Toggle Mode</button>
-                    <script>
-                        const waveParticleCanvas = document.getElementById("waveParticleCanvas");
-                        const waveParticleCtx = waveParticleCanvas.getContext("2d");
-                        let waveMode = false;
-
-                        function drawWaveParticle() {
-                            waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
-                            if (waveMode) {
-                                waveParticleCtx.strokeStyle = "white";
-                                for (let i = 0; i < waveParticleCanvas.width; i += 20) {
-                                    waveParticleCtx.beginPath();
-                                    waveParticleCtx.moveTo(i, 100);
-                                    waveParticleCtx.lineTo(i, 100 + Math.sin(i * 0.1) * 50);
-                                    waveParticleCtx.stroke();
-                                }
-                            } else {
-                                waveParticleCtx.fillStyle = "red";
-                                waveParticleCtx.beginPath();
-                                waveParticleCtx.arc(200, 100, 25, 0, Math.PI * 2);
-                                waveParticleCtx.fill();
-                            }
-                        }
-
-                        function toggleWaveParticleMode() {
-                            waveMode = !waveMode;
-                            drawWaveParticle();
-                        }
-
-                        drawWaveParticle();
-                    </script>
                 </div>
 
                 <!-- Double-Slit Experiment -->
@@ -183,27 +114,7 @@
                     <h4 class="text-3xl mb-4">Double-Slit Experiment</h4>
                     <p class="text-lg mb-4 text-red-400">Toggle observation and change slit width to observe interference patterns.</p>
                     <canvas id="doubleSlitCanvas" width="400" height="200"></canvas>
-                    <button onclick="toggleObserver()" class="gold-button mt-4">Toggle Observer</button>
-                    <script>
-                        const doubleSlitCanvas = document.getElementById("doubleSlitCanvas");
-                        const doubleSlitCtx = doubleSlitCanvas.getContext("2d");
-                        let observerActive = false;
-
-                        function drawDoubleSlit() {
-                            doubleSlitCtx.clearRect(0, 0, doubleSlitCanvas.width, doubleSlitCanvas.height);
-                            doubleSlitCtx.fillStyle = observerActive ? "blue" : "green";
-                            for (let x = 20; x < doubleSlitCanvas.width; x += 40) {
-                                doubleSlitCtx.fillRect(x, 50, 10, 100);
-                            }
-                        }
-
-                        function toggleObserver() {
-                            observerActive = !observerActive;
-                            drawDoubleSlit();
-                        }
-
-                        drawDoubleSlit();
-                    </script>
+                    <button onclick="toggleObserverMode()" class="gold-button mt-4">Toggle Observer</button>
                 </div>
 
                 <!-- Schrödinger's Cat -->
@@ -212,36 +123,13 @@
                     <p class="text-lg mb-4 text-red-400">Observe the quantum state of the cat as alive or dead in real time.</p>
                     <canvas id="catCanvas" width="400" height="200"></canvas>
                     <button onclick="toggleObservation()" class="gold-button mt-4">Toggle Observation</button>
-                    <script>
-                        const catCanvas = document.getElementById("catCanvas");
-                        const catCtx = catCanvas.getContext("2d");
-                        let catState = "Superposition";
-
-                        function drawCat() {
-                            catCtx.clearRect(0, 0, catCanvas.width, catCanvas.height);
-                            catCtx.fillStyle = "black";
-                            catCtx.fillRect(0, 0, catCanvas.width, catCanvas.height);
-                            catCtx.fillStyle = catState === "Alive" ? "green" : catState === "Dead" ? "red" : "yellow";
-                            catCtx.beginPath();
-                            catCtx.arc(200, 100, 40, 0, Math.PI * 2);
-                            catCtx.fill();
-                            catCtx.fillStyle = "white";
-                            catCtx.font = "20px Arial";
-                            catCtx.fillText(`State: ${catState}`, 150, 180);
-                        }
-
-                        function toggleObservation() {
-                            catState = catState === "Superposition" ? (Math.random() > 0.5 ? "Alive" : "Dead") : "Superposition";
-                            drawCat();
-                        }
-
-                        drawCat();
-                    </script>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Custom JavaScript -->
+    <script src="interactives.js" defer></script>
     <script>
         function toggleContent(chapterId) {
             const chapter = document.getElementById(chapterId);
