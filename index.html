@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Loading Screen -->
+<div id="loading-screen">
+    <div class="spinner"></div>
+    <h2>Loading Umbrixia...</h2>
+</div>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore quantum physics with advanced interactivity and detailed chapters.">
@@ -160,6 +166,63 @@
             background: #000;
             color: #ffd700;
         }
+        /* Loading Screen Styles */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, #000, #111);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    color: #ffd700;
+    font-family: 'Raleway', sans-serif;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255, 215, 0, 0.3);
+    border-top-color: #ffd700;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#loading-screen h2 {
+    font-size: 1.5rem;
+    animation: fadeIn 2s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Hide the loading screen after loading */
+body.loaded #loading-screen {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
     </style>
 </head>
 <body>
@@ -754,6 +817,14 @@
 
     
 </script>
+
+    <script>
+    // Hide the loading screen when the page fully loads
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+    });
+</script>
+
 
 
 </body>
