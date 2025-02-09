@@ -121,46 +121,43 @@
         }
 
         /* Interactive Section */
-        .interactives {
-            padding: 4rem 2rem;
-            background: #111;
-        }
+    /* Interactive Section */
+.interactives {
+    padding: 4rem 2rem;
+    background: #111;
+}
 
-        .interactives h3 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #ffd700;
-        }
+.interactives h3 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ffd700;
+}
 
-        .interactives-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
+.interactives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ensure even horizontal alignment */
+    gap: 1.5rem;
+    justify-items: center; /* Center align all cards horizontally */
+    align-items: start;
+}
 
-        .interactive-card {
-            background: #222;
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            border: 1px solid #ff0000;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+.interactive-card {
+    background: #222;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid #ff0000;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%; /* Ensure all cards take full width in their grid cell */
+    max-width: 400px; /* Keep a uniform width */
+}
 
-        .interactive-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 4px 15px #ff0000;
-        }
+.interactive-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 15px #ff0000;
+}
 
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 2rem 0;
-            background: #000;
-            color: #ffd700;
-        }
-    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -562,6 +559,8 @@
     }
 
     drawSuperposition();
+
+    
 
 </script>
 
