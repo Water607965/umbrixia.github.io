@@ -319,6 +319,37 @@
     <canvas id="wavefunctionCanvas" width="400" height="200"></canvas>
     <button class="gold-button" onclick="modifyWavefunction()">Modify Wave</button>
 </div>
+            <div class="interactive-card">
+    <h4>Quantum Harmonic Oscillator</h4>
+    <canvas id="harmonicOscillatorCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleOscillator()">Toggle Oscillation</button>
+</div>
+
+            <div class="interactive-card">
+    <h4>Quantum Probability Density</h4>
+    <canvas id="probabilityDensityCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="updateDensity()">Update Density</button>
+</div>
+
+            <div class="interactive-card">
+    <h4>Quantum Vacuum Fluctuations</h4>
+    <canvas id="vacuumFluctuationsCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleFluctuations()">Toggle Fluctuations</button>
+</div>
+
+            <div class="interactive-card">
+    <h4>Quantum Phase Shift</h4>
+    <canvas id="phaseShiftCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="changePhase()">Change Phase</button>
+</div>
+
+            <div class="interactive-card">
+    <h4>Quantum Energy Levels</h4>
+    <canvas id="energyLevelsCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="addEnergyLevel()">Add Energy Level</button>
+</div>
+
+            
 
             
             </div>
@@ -698,6 +729,139 @@ function animateWavefunction() {
 
 animateWavefunction();
 
+        const harmonicOscillatorCanvas = document.getElementById("harmonicOscillatorCanvas");
+const harmonicOscillatorCtx = harmonicOscillatorCanvas.getContext("2d");
+let oscillating = true;
+
+function drawOscillator() {
+    harmonicOscillatorCtx.clearRect(0, 0, harmonicOscillatorCanvas.width, harmonicOscillatorCanvas.height);
+    harmonicOscillatorCtx.strokeStyle = "cyan";
+    harmonicOscillatorCtx.lineWidth = 2;
+
+    const amplitude = 100;
+    const frequency = 0.05;
+
+    harmonicOscillatorCtx.beginPath();
+    for (let x = 0; x < harmonicOscillatorCanvas.width; x++) {
+        const y = 100 + amplitude * Math.sin((x * frequency) + (Date.now() / 200));
+        harmonicOscillatorCtx.lineTo(x, y);
+    }
+    harmonicOscillatorCtx.stroke();
+}
+
+function toggleOscillator() {
+    oscillating = !oscillating;
+    if (oscillating) animateOscillator();
+}
+
+function animateOscillator() {
+    if (oscillating) {
+        drawOscillator();
+        requestAnimationFrame(animateOscillator);
+    }
+}
+
+animateOscillator();
+
+        const probabilityDensityCanvas = document.getElementById("probabilityDensityCanvas");
+const probabilityDensityCtx = probabilityDensityCanvas.getContext("2d");
+
+function drawDensity() {
+    probabilityDensityCtx.clearRect(0, 0, probabilityDensityCanvas.width, probabilityDensityCanvas.height);
+    probabilityDensityCtx.fillStyle = "rgba(255, 0, 0, 0.2)";
+    for (let x = 0; x < probabilityDensityCanvas.width; x++) {
+        const height = 50 + Math.random() * 100;
+        probabilityDensityCtx.fillRect(x, 200 - height, 2, height);
+    }
+}
+
+function updateDensity() {
+    drawDensity();
+}
+
+drawDensity();
+
+        const vacuumFluctuationsCanvas = document.getElementById("vacuumFluctuationsCanvas");
+const vacuumFluctuationsCtx = vacuumFluctuationsCanvas.getContext("2d");
+let fluctuationsActive = true;
+
+function drawFluctuations() {
+    vacuumFluctuationsCtx.clearRect(0, 0, vacuumFluctuationsCanvas.width, vacuumFluctuationsCanvas.height);
+    for (let i = 0; i < 10; i++) {
+        const x = Math.random() * vacuumFluctuationsCanvas.width;
+        const y = Math.random() * vacuumFluctuationsCanvas.height;
+        vacuumFluctuationsCtx.fillStyle = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.7)`;
+        vacuumFluctuationsCtx.beginPath();
+        vacuumFluctuationsCtx.arc(x, y, Math.random() * 10 + 2, 0, Math.PI * 2);
+        vacuumFluctuationsCtx.fill();
+    }
+}
+
+function toggleFluctuations() {
+    fluctuationsActive = !fluctuationsActive;
+    if (fluctuationsActive) animateFluctuations();
+}
+
+function animateFluctuations() {
+    if (fluctuationsActive) {
+        drawFluctuations();
+        requestAnimationFrame(animateFluctuations);
+    }
+}
+
+animateFluctuations();
+
+        const phaseShiftCanvas = document.getElementById("phaseShiftCanvas");
+const phaseShiftCtx = phaseShiftCanvas.getContext("2d");
+let phase = 0;
+
+function drawPhaseShift() {
+    phaseShiftCtx.clearRect(0, 0, phaseShiftCanvas.width, phaseShiftCanvas.height);
+    phaseShiftCtx.strokeStyle = "yellow";
+    phaseShiftCtx.lineWidth = 2;
+
+    phaseShiftCtx.beginPath();
+    for (let x = 0; x < phaseShiftCanvas.width; x++) {
+        const y = 100 + 50 * Math.sin((x * 0.1) + phase);
+        phaseShiftCtx.lineTo(x, y);
+    }
+    phaseShiftCtx.stroke();
+}
+
+function changePhase() {
+    phase += Math.PI / 4;
+    drawPhaseShift();
+}
+
+drawPhaseShift();
+
+        const energyLevelsCanvas = document.getElementById("energyLevelsCanvas");
+const energyLevelsCtx = energyLevelsCanvas.getContext("2d");
+let energyLevels = 1;
+
+function drawEnergyLevels() {
+    energyLevelsCtx.clearRect(0, 0, energyLevelsCanvas.width, energyLevelsCanvas.height);
+    energyLevelsCtx.strokeStyle = "white";
+
+    for (let i = 1; i <= energyLevels; i++) {
+        const y = 200 - i * 30;
+        energyLevelsCtx.beginPath();
+        energyLevelsCtx.moveTo(50, y);
+        energyLevelsCtx.lineTo(350, y);
+        energyLevelsCtx.stroke();
+        energyLevelsCtx.fillStyle = "cyan";
+        energyLevelsCtx.fillText(`Level ${i}`, 10, y + 5);
+    }
+}
+
+function addEnergyLevel() {
+    energyLevels++;
+    drawEnergyLevels();
+}
+
+drawEnergyLevels();
+
+        
         
 
     </script>
