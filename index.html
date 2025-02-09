@@ -290,6 +290,38 @@
                 <canvas id="decoherenceCanvas" width="400" height="200"></canvas>
                 <button class="gold-button" onclick="startDecoherence()">Start Decoherence</button>
             </div>
+            <div class="interactive-card">
+            <h4>Quantum Spin States</h4>
+            <canvas id="spinCanvas" width="400" height="200"></canvas>
+            <button class="gold-button" onclick="toggleSpin()">Toggle Spin</button>
+</div>
+
+            <div class="interactive-card">
+    <h4>Quantum Entropy</h4>
+    <canvas id="entropyCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="increaseEntropy()">Increase Entropy</button>
+</div>
+
+            <div class="interactive-card">
+    <h4>Quantum Measurement Collapse</h4>
+    <canvas id="collapseCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="collapseState()">Collapse State</button>
+</div>
+
+            <div class="interactive-card">
+    <h4>Quantum Zeno Effect</h4>
+    <canvas id="zenoCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="observeQuantumDecay()">Observe Decay</button>
+</div>
+
+            <div class="interactive-card">
+    <h4>Quantum Wavefunction</h4>
+    <canvas id="wavefunctionCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="modifyWavefunction()">Modify Wave</button>
+</div>
+
+            
+            </div>
         </div>
     </section>
 
@@ -527,6 +559,146 @@ function startDecoherence() {
 }
 
 startDecoherence();
+
+        const spinCanvas = document.getElementById("spinCanvas");
+const spinCtx = spinCanvas.getContext("2d");
+let spinState = true;
+
+function drawSpin() {
+    spinCtx.clearRect(0, 0, spinCanvas.width, spinCanvas.height);
+    spinCtx.fillStyle = spinState ? "blue" : "red";
+    spinCtx.beginPath();
+    spinCtx.arc(200, 100, 50, 0, Math.PI * 2);
+    spinCtx.fill();
+
+    spinCtx.fillStyle = "white";
+    spinCtx.font = "20px Arial";
+    spinCtx.fillText(spinState ? "Spin Up" : "Spin Down", 150, 180);
+}
+
+function toggleSpin() {
+    spinState = !spinState;
+    drawSpin();
+}
+
+drawSpin();
+
+        const entropyCanvas = document.getElementById("entropyCanvas");
+const entropyCtx = entropyCanvas.getContext("2d");
+let entropyLevel = 1;
+
+function drawEntropy() {
+    entropyCtx.clearRect(0, 0, entropyCanvas.width, entropyCanvas.height);
+    entropyCtx.fillStyle = "black";
+    entropyCtx.fillRect(0, 0, entropyCanvas.width, entropyCanvas.height);
+
+    for (let i = 0; i < entropyLevel; i++) {
+        const x = Math.random() * entropyCanvas.width;
+        const y = Math.random() * entropyCanvas.height;
+        entropyCtx.fillStyle = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.7)`;
+        entropyCtx.beginPath();
+        entropyCtx.arc(x, y, Math.random() * 5 + 2, 0, Math.PI * 2);
+        entropyCtx.fill();
+    }
+}
+
+function increaseEntropy() {
+    entropyLevel += 10;
+    drawEntropy();
+}
+
+drawEntropy();
+
+        const collapseCanvas = document.getElementById("collapseCanvas");
+const collapseCtx = collapseCanvas.getContext("2d");
+let collapsed = false;
+
+function drawSuperpositionState() {
+    collapseCtx.clearRect(0, 0, collapseCanvas.width, collapseCanvas.height);
+    collapseCtx.fillStyle = "purple";
+    for (let i = 0; i < 20; i++) {
+        const x = Math.random() * collapseCanvas.width;
+        const y = Math.random() * collapseCanvas.height;
+        collapseCtx.beginPath();
+        collapseCtx.arc(x, y, Math.random() * 10 + 5, 0, Math.PI * 2);
+        collapseCtx.fill();
+    }
+}
+
+function drawCollapsedState() {
+    collapseCtx.clearRect(0, 0, collapseCanvas.width, collapseCanvas.height);
+    collapseCtx.fillStyle = "orange";
+    collapseCtx.fillRect(150, 75, 100, 50);
+    collapseCtx.fillStyle = "white";
+    collapseCtx.font = "20px Arial";
+    collapseCtx.fillText("Collapsed", 160, 100);
+}
+
+function collapseState() {
+    collapsed = !collapsed;
+    if (collapsed) {
+        drawCollapsedState();
+    } else {
+        drawSuperpositionState();
+    }
+}
+
+drawSuperpositionState();
+
+        const zenoCanvas = document.getElementById("zenoCanvas");
+const zenoCtx = zenoCanvas.getContext("2d");
+let decayProgress = 100;
+
+function drawQuantumDecay() {
+    zenoCtx.clearRect(0, 0, zenoCanvas.width, zenoCanvas.height);
+    zenoCtx.fillStyle = "blue";
+    zenoCtx.fillRect(50, 100, decayProgress * 3, 50);
+
+    zenoCtx.fillStyle = "white";
+    zenoCtx.font = "20px Arial";
+    zenoCtx.fillText(`Decay: ${decayProgress}%`, 150, 80);
+}
+
+function observeQuantumDecay() {
+    if (decayProgress > 0) {
+        decayProgress -= 5;
+    }
+    drawQuantumDecay();
+}
+
+drawQuantumDecay();
+
+        const wavefunctionCanvas = document.getElementById("wavefunctionCanvas");
+const wavefunctionCtx = wavefunctionCanvas.getContext("2d");
+let amplitude = 50;
+let frequency = 0.1;
+
+function drawWavefunction() {
+    wavefunctionCtx.clearRect(0, 0, wavefunctionCanvas.width, wavefunctionCanvas.height);
+    wavefunctionCtx.strokeStyle = "cyan";
+    wavefunctionCtx.lineWidth = 2;
+
+    wavefunctionCtx.beginPath();
+    for (let x = 0; x < wavefunctionCanvas.width; x++) {
+        const y = 100 + amplitude * Math.sin((x * frequency) + Date.now() / 100);
+        wavefunctionCtx.lineTo(x, y);
+    }
+    wavefunctionCtx.stroke();
+}
+
+function modifyWavefunction() {
+    amplitude = Math.random() * 50 + 20;
+    frequency = Math.random() * 0.2 + 0.05;
+}
+
+function animateWavefunction() {
+    drawWavefunction();
+    requestAnimationFrame(animateWavefunction);
+}
+
+animateWavefunction();
+
+        
 
     </script>
 </body>
