@@ -3,66 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Join the Umbrixia community to discuss, collaborate, and learn about quantum physics.">
+    <meta name="description" content="Join the Umbrixia quantum physics community to collaborate, learn, and share insights with others.">
     <title>Umbrixia – Community</title>
-    <!-- Favicon -->
     <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #000, #1a1a1a);
+            color: #ffd700;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #000;
+            border-bottom: 1px solid #444;
+        }
+
+        .navbar img {
+            height: 50px;
+            margin-right: 1rem;
+        }
+
+        .navbar h1 {
+            font-size: 2rem;
+            color: #ffd700;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: #ffd700;
+            font-weight: bold;
+            margin-left: 2rem;
+            transition: color 0.3s;
+        }
+
+        .navbar-links a:hover {
+            color: #ff0000;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(to right, #ff0000, #ffd700);
+            color: black;
+        }
+
+        .hero h2 {
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Community Section */
+        .community {
+            padding: 4rem 2rem;
+            background: #111;
+        }
+
+        .community h3 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ffd700;
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .community-card {
+            background: #222;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #ff0000;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .community-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 15px #ff0000;
+        }
+
+        .community-card h4 {
+            margin: 0 0 1rem;
+            color: #ffd700;
+        }
+
+        .community-card p {
+            font-size: 1rem;
+            margin: 0 0 1.5rem;
+            color: #fff;
+        }
+
+        .gold-button {
+            background: #ffd700;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .gold-button:hover {
+            background: #ff0000;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: #000;
+            color: #ffd700;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #222;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .modal p {
+            color: #fff;
+        }
+
+        .modal .close-button {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-b from-black to-gray-900 text-gold">
+<body>
     <!-- Navbar -->
-    <nav class="flex justify-between items-center py-6 px-8 border-b border-gray-800">
-        <div class="flex items-center">
-            <img src="logo.png" alt="Umbrixia Logo" class="h-12 w-12 mr-4">
-            <h1 class="text-4xl font-raleway luxury-header">Umbrixia</h1>
+    <nav class="navbar">
+        <div class="flex">
+            <img src="logo.png" alt="Umbrixia Logo">
+            <h1>Umbrixia</h1>
         </div>
-        <ul class="flex space-x-8 text-lg">
-            <li><a href="index.html" class="hover:text-red-500">Home</a></li>
-            <li><a href="research.html" class="hover:text-red-500">Research</a></li>
-            <li><a href="resources.html" class="hover:text-red-500">Resources</a></li>
-            <li><a href="community.html" class="hover:text-red-500">Community</a></li>
-        </ul>
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+            <a href="research.html">Research</a>
+            <a href="resources.html">Resources</a>
+            <a href="community.html">Community</a>
+        </div>
     </nav>
 
-    <!-- Community Hero Section -->
-    <header class="text-center py-28 bg-black">
-        <h2 class="text-6xl font-raleway luxury-header">Join the Community</h2>
-        <p class="text-2xl mt-6">Connect with quantum physics enthusiasts and collaborate on groundbreaking ideas.</p>
+    <!-- Hero Section -->
+    <header class="hero">
+        <h2>Community</h2>
+        <p>Connect with quantum enthusiasts, engage in discussions, and attend live events.</p>
     </header>
 
     <!-- Community Section -->
-    <main class="px-12 py-16">
-        <section id="forums" class="mb-16">
-            <h3 class="text-5xl font-raleway luxury-header mb-12">Discussion Forums</h3>
-            <p class="text-lg">Engage in thought-provoking discussions about quantum physics concepts, experiments, and advancements.</p>
-            <div class="mt-8">
-                <a href="#" class="gold-button">Visit Forums</a>
+    <section class="community">
+        <h3>Join the Quantum Community</h3>
+        <div class="community-grid">
+            <!-- Community Card 1 -->
+            <div class="community-card">
+                <h4>Discussion Forums</h4>
+                <p>Join vibrant discussions on quantum mechanics with like-minded enthusiasts.</p>
+                <button class="gold-button" onclick="openModal('forums')">Join Forums</button>
             </div>
-        </section>
 
-        <section id="events" class="mb-16">
-            <h3 class="text-5xl font-raleway luxury-header mb-12">Events & Webinars</h3>
-            <p class="text-lg">Join live webinars and events hosted by leading quantum physicists and researchers.</p>
-            <div class="mt-8">
-                <a href="#" class="gold-button">View Upcoming Events</a>
+            <!-- Community Card 2 -->
+            <div class="community-card">
+                <h4>Live Q&A Sessions</h4>
+                <p>Interact with quantum experts in real-time Q&A sessions.</p>
+                <button class="gold-button" onclick="openModal('qaSessions')">View Schedule</button>
             </div>
-        </section>
 
-        <section id="social" class="mb-16">
-            <h3 class="text-5xl font-raleway luxury-header mb-12">Social Media</h3>
-            <p class="text-lg">Follow us on social media for daily updates, exciting news, and community highlights.</p>
-            <div class="mt-8">
-                <a href="#" class="gold-button">Follow Us</a>
+            <!-- Community Card 3 -->
+            <div class="community-card">
+                <h4>Quantum Events</h4>
+                <p>Attend online webinars and workshops on cutting-edge quantum topics.</p>
+                <button class="gold-button" onclick="openModal('events')">Explore Events</button>
             </div>
-        </section>
-    </main>
+
+            <!-- Community Card 4 -->
+            <div class="community-card">
+                <h4>Social Media Groups</h4>
+                <p>Follow us on social media to stay updated and interact with our community.</p>
+                <button class="gold-button" onclick="openModal('socialMedia')">Connect</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <div id="forums" class="modal">
+        <h4>Discussion Forums</h4>
+        <p>Join active discussions on quantum physics. Share ideas, ask questions, and collaborate.</p>
+        <button class="close-button" onclick="closeModal('forums')">Close</button>
+    </div>
+
+    <div id="qaSessions" class="modal">
+        <h4>Live Q&A Sessions</h4>
+        <p>Check our schedule for upcoming live Q&A sessions with quantum physics experts.</p>
+        <button class="close-button" onclick="closeModal('qaSessions')">Close</button>
+    </div>
+
+    <div id="events" class="modal">
+        <h4>Quantum Events</h4>
+        <p>Attend online quantum physics webinars and workshops hosted by renowned scientists.</p>
+        <button class="close-button" onclick="closeModal('events')">Close</button>
+    </div>
+
+    <div id="socialMedia" class="modal">
+        <h4>Social Media Groups</h4>
+        <p>Follow us on platforms like Facebook, Twitter, and LinkedIn to join the conversation.</p>
+        <button class="close-button" onclick="closeModal('socialMedia')">Close</button>
+    </div>
 
     <!-- Footer -->
-    <footer class="py-10 bg-black text-center">
+    <footer class="footer">
         <p>&copy; 2025 Umbrixia. All rights reserved.</p>
     </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Open Modal
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) modal.classList.add('active');
+        }
+
+        // Close Modal
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) modal.classList.remove('active');
+        }
+    </script>
 </body>
 </html>
