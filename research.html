@@ -3,65 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore the latest research and breakthroughs in quantum physics with Umbrixia.">
+    <meta name="description" content="Explore cutting-edge research in quantum physics through curated articles, papers, and resources.">
     <title>Umbrixia – Research</title>
-    <!-- Favicon -->
     <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #000, #1a1a1a);
+            color: #ffd700;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #000;
+            border-bottom: 1px solid #444;
+        }
+
+        .navbar img {
+            height: 50px;
+            margin-right: 1rem;
+        }
+
+        .navbar h1 {
+            font-size: 2rem;
+            color: #ffd700;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: #ffd700;
+            font-weight: bold;
+            margin-left: 2rem;
+            transition: color 0.3s;
+        }
+
+        .navbar-links a:hover {
+            color: #ff0000;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(to right, #ff0000, #ffd700);
+            color: black;
+        }
+
+        .hero h2 {
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Research Section */
+        .research {
+            padding: 4rem 2rem;
+            background: #111;
+        }
+
+        .research h3 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ffd700;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .research-card {
+            background: #222;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #ff0000;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 15px #ff0000;
+        }
+
+        .research-card h4 {
+            margin: 0 0 1rem;
+            color: #ffd700;
+        }
+
+        .research-card p {
+            font-size: 1rem;
+            margin: 0 0 1rem;
+            color: #fff;
+        }
+
+        .gold-button {
+            background: #ffd700;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .gold-button:hover {
+            background: #ff0000;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: #000;
+            color: #ffd700;
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-b from-black to-gray-900 text-gold">
+<body>
     <!-- Navbar -->
-    <nav class="flex justify-between items-center py-6 px-8 border-b border-gray-800">
-        <div class="flex items-center">
-            <img src="logo.png" alt="Umbrixia Logo" class="h-12 w-12 mr-4">
-            <h1 class="text-4xl font-raleway luxury-header">Umbrixia</h1>
+    <nav class="navbar">
+        <div class="flex">
+            <img src="logo.png" alt="Umbrixia Logo">
+            <h1>Umbrixia</h1>
         </div>
-        <ul class="flex space-x-8 text-lg">
-            <li><a href="index.html" class="hover:text-red-500">Home</a></li>
-            <li><a href="research.html" class="hover:text-red-500">Research</a></li>
-            <li><a href="resources.html" class="hover:text-red-500">Resources</a></li>
-            <li><a href="community.html" class="hover:text-red-500">Community</a></li>
-        </ul>
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+            <a href="research.html">Research</a>
+            <a href="resources.html">Resources</a>
+            <a href="community.html">Community</a>
+        </div>
     </nav>
 
-    <!-- Research Hero Section -->
-    <header class="text-center py-28 bg-black">
-        <h2 class="text-6xl font-raleway luxury-header">Cutting-Edge Research</h2>
-        <p class="text-2xl mt-6">Delve into the latest breakthroughs and experiments in quantum physics.</p>
+    <!-- Hero Section -->
+    <header class="hero">
+        <h2>Research</h2>
+        <p>Explore the frontiers of quantum physics with our curated research and resources.</p>
     </header>
 
     <!-- Research Section -->
-    <main class="px-12 py-16">
-        <section id="papers" class="mb-16">
-            <h3 class="text-5xl font-raleway luxury-header mb-12">Published Papers</h3>
-            <p class="text-lg">Browse through groundbreaking studies and papers from our expert collaborators.</p>
-            <div class="mt-8">
-                <a href="#" class="gold-button">Explore Papers</a>
+    <section class="research">
+        <h3>Quantum Physics Research</h3>
+        <div class="research-grid">
+            <!-- Research Card 1 -->
+            <div class="research-card">
+                <h4>The Double-Slit Experiment</h4>
+                <p>An introduction to one of the most fundamental quantum experiments.</p>
+                <a href="https://plato.stanford.edu/entries/qm-copenhagen/" target="_blank" class="gold-button">Read More</a>
             </div>
-        </section>
 
-        <section id="breakthroughs" class="mb-16">
-            <h3 class="text-5xl font-raleway luxury-header mb-12">Recent Breakthroughs</h3>
-            <p class="text-lg">Discover the most recent advancements that are shaping the future of quantum physics.</p>
-            <div class="mt-8">
-                <a href="#" class="gold-button">See Breakthroughs</a>
+            <!-- Research Card 2 -->
+            <div class="research-card">
+                <h4>Quantum Entanglement</h4>
+                <p>Delve into the phenomenon that puzzled Einstein: "spooky action at a distance."</p>
+                <a href="https://journals.aps.org/prx/abstract/10.1103/PhysRevX.11.031045" target="_blank" class="gold-button">Explore Paper</a>
             </div>
-        </section>
 
-        <section id="collaborations" class="mb-16">
-            <h3 class="text-5xl font-raleway luxury-header mb-12">Collaborations</h3>
-            <p class="text-lg">Learn about our collaborations with leading research institutions and scientists worldwide.</p>
-            <div class="mt-8">
-                <a href="#" class="gold-button">View Collaborations</a>
+            <!-- Research Card 3 -->
+            <div class="research-card">
+                <h4>Quantum Computing</h4>
+                <p>Learn about the emerging field of quantum computation and its applications.</p>
+                <a href="https://arxiv.org/abs/2001.09710" target="_blank" class="gold-button">Read Article</a>
             </div>
-        </section>
-    </main>
+
+            <!-- Research Card 4 -->
+            <div class="research-card">
+                <h4>Schrödinger's Cat</h4>
+                <p>An explanation of quantum superposition and its philosophical implications.</p>
+                <a href="https://www.nature.com/articles/d41586-018-05003-9" target="_blank" class="gold-button">Learn More</a>
+            </div>
+
+            <!-- Research Card 5 -->
+            <div class="research-card">
+                <h4>Quantum Field Theory</h4>
+                <p>An advanced framework for understanding particles and fields in quantum mechanics.</p>
+                <a href="https://www.cambridge.org/core/books/quantum-field-theory-and-the-standard-model/0299D7F3DAEAB222CB3F3CDA7AA90B72" target="_blank" class="gold-button">View Resource</a>
+            </div>
+
+            <!-- Research Card 6 -->
+            <div class="research-card">
+                <h4>Quantum Tunneling</h4>
+                <p>How particles overcome energy barriers, revolutionizing modern technology.</p>
+                <a href="https://iopscience.iop.org/article/10.1088/0031-9120/50/4/385" target="_blank" class="gold-button">Explore Resource</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="py-10 bg-black text-center">
+    <footer class="footer">
         <p>&copy; 2025 Umbrixia. All rights reserved.</p>
     </footer>
 </body>
