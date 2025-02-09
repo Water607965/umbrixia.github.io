@@ -233,6 +233,84 @@
                 <canvas id="doubleSlitCanvas" width="400" height="200"></canvas>
                 <button class="gold-button" onclick="toggleObserverMode()">Toggle Observer</button>
             </div>
+            <!-- Wave-Particle Duality -->
+<div class="interactive-card">
+    <h4>Wave-Particle Duality</h4>
+    <canvas id="waveParticleCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleWaveParticleMode()">Toggle Mode</button>
+            </div>
+
+<!-- Double-Slit Experiment -->
+<div class="interactive-card">
+    <h4>Double-Slit Experiment</h4>
+    <canvas id="doubleSlitCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleObserverMode()">Toggle Observer</button>
+            </div>
+
+<!-- Schrödinger's Cat -->
+<div class="interactive-card">
+    <h4>Schrödinger's Cat</h4>
+    <canvas id="catCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleObservation()">Toggle State</button>
+            </div>
+
+<!-- Quantum Entanglement -->
+<div class="interactive-card">
+    <h4>Quantum Entanglement</h4>
+    <canvas id="entanglementCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleEntanglement()">Toggle Entanglement</button>
+            </div>
+
+<!-- Quantum Tunneling -->
+<div class="interactive-card">
+    <h4>Quantum Tunneling</h4>
+    <canvas id="tunnelingCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleTunneling()">Toggle Tunneling</button>
+            </div>
+
+<!-- Quantum Superposition -->
+<div class="interactive-card">
+    <h4>Quantum Superposition</h4>
+    <canvas id="superpositionCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleSuperposition()">Toggle State</button>
+            </div>
+
+<!-- Quantum Decoherence -->
+<div class="interactive-card">
+    <h4>Quantum Decoherence</h4>
+    <canvas id="decoherenceCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="startDecoherence()">Start Decoherence</button>
+            </div>
+
+<!-- Quantum Probability Density -->
+<div class="interactive-card">
+    <h4>Quantum Probability Density</h4>
+    <canvas id="probabilityDensityCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="updateDensity()">Update Density</button>
+            </div>
+
+<!-- Quantum Vacuum Fluctuations -->
+<div class="interactive-card">
+    <h4>Quantum Vacuum Fluctuations</h4>
+    <canvas id="vacuumFluctuationsCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleVacuumFluctuations()">Toggle Fluctuations</button>
+            </div>
+
+<!-- Quantum Path Integral -->
+<div class="interactive-card">
+    <h4>Quantum Path Integral</h4>
+    <canvas id="pathIntegralCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="updatePaths()">Generate New Paths</button>
+            </div>
+
+<!-- Quantum Interference -->
+<div class="interactive-card">
+    <h4>Quantum Interference</h4>
+    <canvas id="interferenceCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="changeInterference()">Change Interference</button>
+            </div>
+
+            
         </div>
     </section>
 
@@ -287,6 +365,172 @@
             requestAnimationFrame(animateWaveParticle);
         }
         animateWaveParticle();
+
+        // Wave-Particle Duality
+const waveParticleCanvas = document.getElementById("waveParticleCanvas");
+const waveParticleCtx = waveParticleCanvas.getContext("2d");
+let waveMode = true;
+
+function drawWave() {
+    waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
+    waveParticleCtx.strokeStyle = "white";
+    for (let x = 0; x < waveParticleCanvas.width; x += 5) {
+        const y = 100 + Math.sin((x + Date.now() / 100) * 0.1) * 40;
+        waveParticleCtx.beginPath();
+        waveParticleCtx.arc(x, y, 2, 0, Math.PI * 2);
+        waveParticleCtx.fillStyle = "yellow";
+        waveParticleCtx.fill();
+    }
+}
+
+function drawParticle() {
+    waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
+    waveParticleCtx.fillStyle = "red";
+    waveParticleCtx.beginPath();
+    waveParticleCtx.arc(200, 100, 20, 0, Math.PI * 2);
+    waveParticleCtx.fill();
+}
+
+function toggleWaveParticleMode() {
+    waveMode = !waveMode;
+}
+
+function animateWaveParticle() {
+    if (waveMode) {
+        drawWave();
+    } else {
+        drawParticle();
+    }
+    requestAnimationFrame(animateWaveParticle);
+}
+animateWaveParticle();
+
+// Double-Slit Experiment
+const doubleSlitCanvas = document.getElementById("doubleSlitCanvas");
+const doubleSlitCtx = doubleSlitCanvas.getContext("2d");
+let observerEnabled = false;
+
+function drawInterference() {
+    doubleSlitCtx.clearRect(0, 0, doubleSlitCanvas.width, doubleSlitCanvas.height);
+    for (let i = 0; i < doubleSlitCanvas.width; i += 10) {
+        const intensity = Math.sin(i * 0.1) ** 2 * 255;
+        doubleSlitCtx.fillStyle = `rgb(${intensity}, ${intensity}, ${intensity})`;
+        doubleSlitCtx.fillRect(i, 0, 10, doubleSlitCanvas.height);
+    }
+}
+
+function drawParticles() {
+    doubleSlitCtx.clearRect(0, 0, doubleSlitCanvas.width, doubleSlitCanvas.height);
+    doubleSlitCtx.fillStyle = "blue";
+    for (let i = 0; i < 100; i++) {
+        const x = Math.random() * doubleSlitCanvas.width;
+        const y = Math.random() * doubleSlitCanvas.height;
+        doubleSlitCtx.beginPath();
+        doubleSlitCtx.arc(x, y, 2, 0, Math.PI * 2);
+        doubleSlitCtx.fill();
+    }
+}
+
+function toggleObserverMode() {
+    observerEnabled = !observerEnabled;
+}
+
+function animateDoubleSlit() {
+    if (observerEnabled) {
+        drawParticles();
+    } else {
+        drawInterference();
+    }
+    requestAnimationFrame(animateDoubleSlit);
+}
+animateDoubleSlit();
+
+// Schrödinger's Cat
+const catCanvas = document.getElementById("catCanvas");
+const catCtx = catCanvas.getContext("2d");
+let catState = "Superposition";
+
+function drawCatState() {
+    catCtx.clearRect(0, 0, catCanvas.width, catCanvas.height);
+    catCtx.fillStyle = "black";
+    catCtx.fillRect(0, 0, catCanvas.width, catCanvas.height);
+
+    if (catState === "Alive") {
+        catCtx.fillStyle = "green";
+    } else if (catState === "Dead") {
+        catCtx.fillStyle = "red";
+    } else {
+        catCtx.fillStyle = "yellow";
+    }
+
+    catCtx.beginPath();
+    catCtx.arc(200, 100, 50, 0, Math.PI * 2);
+    catCtx.fill();
+
+    catCtx.fillStyle = "white";
+    catCtx.font = "20px Arial";
+    catCtx.fillText(`State: ${catState}`, 140, 180);
+}
+
+function toggleObservation() {
+    if (catState === "Superposition") {
+        catState = Math.random() > 0.5 ? "Alive" : "Dead";
+    } else {
+        catState = "Superposition";
+    }
+    drawCatState();
+}
+drawCatState();
+
+// Quantum Entanglement
+const entanglementCanvas = document.getElementById("entanglementCanvas");
+const entanglementCtx = entanglementCanvas.getContext("2d");
+let entanglementState = true;
+
+function drawEntanglement() {
+    entanglementCtx.clearRect(0, 0, entanglementCanvas.width, entanglementCanvas.height);
+    entanglementCtx.strokeStyle = entanglementState ? "blue" : "green";
+    entanglementCtx.lineWidth = 2;
+    for (let i = 0; i < 5; i++) {
+        entanglementCtx.beginPath();
+        entanglementCtx.moveTo(50 + i * 60, 50);
+        entanglementCtx.lineTo(100 + i * 60, 150);
+        entanglementCtx.stroke();
+    }
+}
+
+function toggleEntanglement() {
+    entanglementState = !entanglementState;
+    drawEntanglement();
+}
+drawEntanglement();
+
+// Quantum Tunneling
+const tunnelingCanvas = document.getElementById("tunnelingCanvas");
+const tunnelingCtx = tunnelingCanvas.getContext("2d");
+let tunnelingActive = false;
+
+function drawTunneling() {
+    tunnelingCtx.clearRect(0, 0, tunnelingCanvas.width, tunnelingCanvas.height);
+    tunnelingCtx.fillStyle = "gray";
+    tunnelingCtx.fillRect(150, 50, 100, 100);
+    tunnelingCtx.fillStyle = tunnelingActive ? "yellow" : "red";
+    tunnelingCtx.beginPath();
+    tunnelingCtx.arc(100, 100, 20, 0, Math.PI * 2);
+    tunnelingCtx.fill();
+    if (tunnelingActive) {
+        tunnelingCtx.beginPath();
+        tunnelingCtx.arc(300, 100, 20, 0, Math.PI * 2);
+        tunnelingCtx.fill();
+    }
+}
+
+function toggleTunneling() {
+    tunnelingActive = !tunnelingActive;
+    drawTunneling();
+}
+drawTunneling();
+
     </script>
 </body>
 </html>
