@@ -121,43 +121,46 @@
         }
 
         /* Interactive Section */
-    /* Interactive Section */
-.interactives {
-    padding: 4rem 2rem;
-    background: #111;
-}
+        .interactives {
+            padding: 4rem 2rem;
+            background: #111;
+        }
 
-.interactives h3 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #ffd700;
-}
+        .interactives h3 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ffd700;
+        }
 
-.interactives-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ensure even horizontal alignment */
-    gap: 1.5rem;
-    justify-items: center; /* Center align all cards horizontally */
-    align-items: start;
-}
+        .interactives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
 
-.interactive-card {
-    background: #222;
-    border-radius: 10px;
-    padding: 1.5rem;
-    text-align: center;
-    border: 1px solid #ff0000;
-    transition: transform 0.3s, box-shadow 0.3s;
-    width: 100%; /* Ensure all cards take full width in their grid cell */
-    max-width: 400px; /* Keep a uniform width */
-}
+        .interactive-card {
+            background: #222;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #ff0000;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-.interactive-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 4px 15px #ff0000;
-}
-<style>
+        .interactive-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 15px #ff0000;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: #000;
+            color: #ffd700;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -223,130 +226,12 @@
                 <h4>Wave-Particle Duality</h4>
                 <canvas id="waveParticleCanvas" width="400" height="200"></canvas>
                 <button class="gold-button" onclick="toggleWaveParticleMode()">Toggle Mode</button>
-                <section class="interactives">
-    <h3>Interactive Quantum Concepts</h3>
-    <div class="interactives-grid">
-        <!-- Wave-Particle Duality -->
-        <div class="interactive-card">
-            <h4>Wave-Particle Duality</h4>
-            <canvas id="waveParticleCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="toggleWaveParticleMode()">Toggle Mode</button>
-        </div>
-        
-        <!-- Double-Slit Experiment -->
-        <div class="interactive-card">
-            <h4>Double-Slit Experiment</h4>
-            <canvas id="doubleSlitCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="toggleObserverMode()">Toggle Observer</button>
-        </div>
-        
-        <!-- Schrödinger's Cat -->
-        <div class="interactive-card">
-            <h4>Schrödinger's Cat</h4>
-            <canvas id="catCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="toggleObservation()">Toggle State</button>
-        </div>
-        
-        <!-- Quantum Entanglement -->
-        <div class="interactive-card">
-            <h4>Quantum Entanglement</h4>
-            <canvas id="entanglementCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="toggleEntanglement()">Toggle Entanglement</button>
-        </div>
-        
-        <!-- Quantum Tunneling -->
-        <div class="interactive-card">
-            <h4>Quantum Tunneling</h4>
-            <canvas id="tunnelingCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="toggleTunneling()">Toggle Tunneling</button>
-        </div>
-        
-        <!-- Quantum Superposition -->
-        <div class="interactive-card">
-            <h4>Quantum Superposition</h4>
-            <canvas id="superpositionCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="toggleSuperposition()">Toggle State</button>
-        </div>
-        
-        <!-- Quantum Decoherence -->
-        <div class="interactive-card">
-            <h4>Quantum Decoherence</h4>
-            <canvas id="decoherenceCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="startDecoherence()">Start Decoherence</button>
-        </div>
-
-        <!-- Quantum Harmonic Oscillator -->
-        <div class="interactive-card">
-            <h4>Quantum Harmonic Oscillator</h4>
-            <canvas id="harmonicOscillatorCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="toggleOscillator()">Toggle Oscillation</button>
-        </div>
-
-        <!-- Quantum Probability Density -->
-        <div class="interactive-card">
-            <h4>Quantum Probability Density</h4>
-            <canvas id="probabilityDensityCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="updateDensity()">Update Density</button>
-        </div>
-
-        <!-- Quantum Vacuum Fluctuations -->
-        <div class="interactive-card">
-            <h4>Quantum Vacuum Fluctuations</h4>
-            <canvas id="vacuumFluctuationsCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="toggleVacuumFluctuations()">Toggle Fluctuations</button>
-        </div>
-
-        <!-- Quantum Phase Shift -->
-        <div class="interactive-card">
-            <h4>Quantum Phase Shift</h4>
-            <canvas id="phaseShiftCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="changePhase()">Change Phase</button>
-        </div>
-
-        <!-- Quantum Energy Levels -->
-        <div class="interactive-card">
-            <h4>Quantum Energy Levels</h4>
-            <canvas id="energyLevelsCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="addEnergyLevel()">Add Energy Level</button>
-        </div>
-
-        <!-- Quantum Field Fluctuations -->
-        <div class="interactive-card">
-            <h4>Quantum Field Fluctuations</h4>
-            <canvas id="fieldFluctuationsCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="toggleFieldFluctuations()">Toggle Fluctuations</button>
-        </div>
-
-        <!-- Particle Decay -->
-        <div class="interactive-card">
-            <h4>Particle Decay</h4>
-            <canvas id="particleDecayCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="resetDecay()">Reset Decay</button>
-        </div>
-
-        <!-- Bell's Inequality -->
-        <div class="interactive-card">
-            <h4>Bell's Inequality</h4>
-            <canvas id="bellCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="toggleBellCorrelations()">Toggle Correlations</button>
-        </div>
-
-        <!-- Quantum Path Integral -->
-        <div class="interactive-card">
-            <h4>Quantum Path Integral</h4>
-            <canvas id="pathIntegralCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="updatePaths()">Generate New Paths</button>
-        </div>
-
-        <!-- Quantum Interference -->
-        <div class="interactive-card">
-            <h4>Quantum Interference</h4>
-            <canvas id="interferenceCanvas" width="400" height="200"></canvas>
-            <button class="gold-button" onclick="changeInterference()">Change Interference</button>
-        </div>
-    </div>
-</section>
-
+            </div>
+            <!-- Double-Slit Experiment -->
+            <div class="interactive-card">
+                <h4>Double-Slit Experiment</h4>
+                <canvas id="doubleSlitCanvas" width="400" height="200"></canvas>
+                <button class="gold-button" onclick="toggleObserverMode()">Toggle Observer</button>
             </div>
         </div>
     </section>
@@ -355,215 +240,53 @@
     <footer class="footer">
         <p>&copy; 2025 Umbrixia. All rights reserved.</p>
     </footer>
-<script>
-    // Toggle visibility for chapters
-    function toggleContent(id) {
-        const content = document.getElementById(id);
-        content.classList.toggle("hidden");
-    }
 
-    // Wave-Particle Duality Interactive
-    const waveParticleCanvas = document.getElementById("waveParticleCanvas");
-    const waveParticleCtx = waveParticleCanvas.getContext("2d");
-    let waveMode = true;
+    <!-- JavaScript -->
+    <script>
+        // Toggle visibility for chapters
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle("hidden");
+        }
 
-    function drawWave() {
-        waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
-        waveParticleCtx.strokeStyle = "white";
-        for (let x = 0; x < waveParticleCanvas.width; x += 5) {
-            const y = 100 + Math.sin((x + Date.now() / 100) * 0.1) * 40;
+        // Wave-Particle Duality Interactive
+        const waveParticleCanvas = document.getElementById("waveParticleCanvas");
+        const waveParticleCtx = waveParticleCanvas.getContext("2d");
+        let waveMode = true;
+
+        function drawWave() {
+            waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
+            waveParticleCtx.strokeStyle = "white";
+            for (let x = 0; x < waveParticleCanvas.width; x += 5) {
+                const y = 100 + Math.sin((x + Date.now() / 100) * 0.1) * 40;
+                waveParticleCtx.beginPath();
+                waveParticleCtx.arc(x, y, 2, 0, Math.PI * 2);
+                waveParticleCtx.fillStyle = "yellow";
+                waveParticleCtx.fill();
+            }
+        }
+
+        function drawParticle() {
+            waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
+            waveParticleCtx.fillStyle = "red";
             waveParticleCtx.beginPath();
-            waveParticleCtx.arc(x, y, 2, 0, Math.PI * 2);
-            waveParticleCtx.fillStyle = "yellow";
+            waveParticleCtx.arc(200, 100, 20, 0, Math.PI * 2);
             waveParticleCtx.fill();
         }
-    }
 
-    function drawParticle() {
-        waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
-        waveParticleCtx.fillStyle = "red";
-        waveParticleCtx.beginPath();
-        waveParticleCtx.arc(200, 100, 20, 0, Math.PI * 2);
-        waveParticleCtx.fill();
-    }
-
-    function toggleWaveParticleMode() {
-        waveMode = !waveMode;
-    }
-
-    function animateWaveParticle() {
-        if (waveMode) {
-            drawWave();
-        } else {
-            drawParticle();
-        }
-        requestAnimationFrame(animateWaveParticle);
-    }
-
-    animateWaveParticle();
-
-    // Double-Slit Experiment Interactive
-    const doubleSlitCanvas = document.getElementById("doubleSlitCanvas");
-    const doubleSlitCtx = doubleSlitCanvas.getContext("2d");
-    let observerEnabled = false;
-
-    function drawInterference() {
-        doubleSlitCtx.clearRect(0, 0, doubleSlitCanvas.width, doubleSlitCanvas.height);
-        for (let i = 0; i < doubleSlitCanvas.width; i += 10) {
-            const intensity = Math.sin(i * 0.1) ** 2 * 255;
-            doubleSlitCtx.fillStyle = `rgb(${intensity}, ${intensity}, ${intensity})`;
-            doubleSlitCtx.fillRect(i, 0, 10, doubleSlitCanvas.height);
-        }
-    }
-
-    function drawParticles() {
-        doubleSlitCtx.clearRect(0, 0, doubleSlitCanvas.width, doubleSlitCanvas.height);
-        doubleSlitCtx.fillStyle = "blue";
-        for (let i = 0; i < 100; i++) {
-            const x = Math.random() * doubleSlitCanvas.width;
-            const y = Math.random() * doubleSlitCanvas.height;
-            doubleSlitCtx.beginPath();
-            doubleSlitCtx.arc(x, y, 2, 0, Math.PI * 2);
-            doubleSlitCtx.fill();
-        }
-    }
-
-    function toggleObserverMode() {
-        observerEnabled = !observerEnabled;
-    }
-
-    function animateDoubleSlit() {
-        if (observerEnabled) {
-            drawParticles();
-        } else {
-            drawInterference();
-        }
-        requestAnimationFrame(animateDoubleSlit);
-    }
-
-    animateDoubleSlit();
-
-    // Schrödinger's Cat Interactive
-    const catCanvas = document.getElementById("catCanvas");
-    const catCtx = catCanvas.getContext("2d");
-    let catState = "Superposition";
-
-    function drawCatState() {
-        catCtx.clearRect(0, 0, catCanvas.width, catCanvas.height);
-        catCtx.fillStyle = "black";
-        catCtx.fillRect(0, 0, catCanvas.width, catCanvas.height);
-
-        if (catState === "Alive") {
-            catCtx.fillStyle = "green";
-        } else if (catState === "Dead") {
-            catCtx.fillStyle = "red";
-        } else {
-            catCtx.fillStyle = "yellow";
+        function toggleWaveParticleMode() {
+            waveMode = !waveMode;
         }
 
-        catCtx.beginPath();
-        catCtx.arc(200, 100, 50, 0, Math.PI * 2);
-        catCtx.fill();
-
-        catCtx.fillStyle = "white";
-        catCtx.font = "20px Arial";
-        catCtx.fillText(`State: ${catState}`, 140, 180);
-    }
-
-    function toggleObservation() {
-        if (catState === "Superposition") {
-            catState = Math.random() > 0.5 ? "Alive" : "Dead";
-        } else {
-            catState = "Superposition";
-        }
-        drawCatState();
-    }
-
-    drawCatState();
-
-    // Quantum Entanglement Interactive
-    const entanglementCanvas = document.getElementById("entanglementCanvas");
-    const entanglementCtx = entanglementCanvas.getContext("2d");
-    let entanglementState = true;
-
-    function drawEntanglement() {
-        entanglementCtx.clearRect(0, 0, entanglementCanvas.width, entanglementCanvas.height);
-        entanglementCtx.strokeStyle = entanglementState ? "blue" : "green";
-        entanglementCtx.lineWidth = 2;
-        for (let i = 0; i < 5; i++) {
-            entanglementCtx.beginPath();
-            entanglementCtx.moveTo(50 + i * 60, 50);
-            entanglementCtx.lineTo(100 + i * 60, 150);
-            entanglementCtx.stroke();
-        }
-    }
-
-    function toggleEntanglement() {
-        entanglementState = !entanglementState;
-        drawEntanglement();
-    }
-
-    drawEntanglement();
-
-    // Quantum Tunneling Interactive
-    const tunnelingCanvas = document.getElementById("tunnelingCanvas");
-    const tunnelingCtx = tunnelingCanvas.getContext("2d");
-    let tunnelingActive = false;
-
-    function drawTunneling() {
-        tunnelingCtx.clearRect(0, 0, tunnelingCanvas.width, tunnelingCanvas.height);
-        tunnelingCtx.fillStyle = "gray";
-        tunnelingCtx.fillRect(150, 50, 100, 100);
-        tunnelingCtx.fillStyle = tunnelingActive ? "yellow" : "red";
-        tunnelingCtx.beginPath();
-        tunnelingCtx.arc(100, 100, 20, 0, Math.PI * 2);
-        tunnelingCtx.fill();
-        if (tunnelingActive) {
-            tunnelingCtx.beginPath();
-            tunnelingCtx.arc(300, 100, 20, 0, Math.PI * 2);
-            tunnelingCtx.fill();
-        }
-    }
-
-    function toggleTunneling() {
-        tunnelingActive = !tunnelingActive;
-        drawTunneling();
-    }
-
-    drawTunneling();
-
-    // Quantum Superposition Interactive
-    const superpositionCanvas = document.getElementById("superpositionCanvas");
-    const superpositionCtx = superpositionCanvas.getContext("2d");
-    let superpositionActive = true;
-
-    function drawSuperposition() {
-        superpositionCtx.clearRect(0, 0, superpositionCanvas.width, superpositionCanvas.height);
-        if (superpositionActive) {
-            superpositionCtx.fillStyle = "purple";
-            for (let i = 0; i < 10; i++) {
-                superpositionCtx.beginPath();
-                superpositionCtx.arc(Math.random() * superpositionCanvas.width, Math.random() * superpositionCanvas.height, 10, 0, Math.PI * 2);
-                superpositionCtx.fill();
+        function animateWaveParticle() {
+            if (waveMode) {
+                drawWave();
+            } else {
+                drawParticle();
             }
-        } else {
-            superpositionCtx.fillStyle = "orange";
-            superpositionCtx.font = "20px Arial";
-            superpositionCtx.fillText("Collapsed State", 150, 100);
+            requestAnimationFrame(animateWaveParticle);
         }
-    }
-
-    function toggleSuperposition() {
-        superpositionActive = !superpositionActive;
-        drawSuperposition();
-    }
-
-    drawSuperposition();
-
-    
-
-</script>
-
-    
+        animateWaveParticle();
+    </script>
 </body>
 </html>
