@@ -617,6 +617,80 @@
 
         window.updateDensity = () => drawProbabilityDensity();
     })();
+        // Quantum Entanglement Interactive
+(() => {
+    const ctx = getCanvasContext("entanglementCanvas");
+    let entanglementState = true;
+
+    function drawEntanglement() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+
+        ctx.strokeStyle = entanglementState ? "blue" : "green";
+        ctx.lineWidth = 2;
+
+        for (let i = 0; i < 5; i++) {
+            ctx.beginPath();
+            ctx.moveTo(50 + i * 60, 50);
+            ctx.lineTo(100 + i * 60, 150);
+            ctx.stroke();
+        }
+
+        ctx.font = "18px Arial";
+        ctx.fillStyle = "white";
+        ctx.fillText(entanglementState ? "Entangled" : "Not Entangled", 150, 180);
+    }
+
+    window.toggleEntanglement = () => {
+        entanglementState = !entanglementState;
+        drawEntanglement();
+    };
+
+    // Draw immediately on page load
+    drawEntanglement();
+})();
+
+// Quantum Tunneling Interactive
+(() => {
+    const ctx = getCanvasContext("tunnelingCanvas");
+    let tunnelingActive = false;
+
+    function drawTunneling() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+
+        // Barrier
+        ctx.fillStyle = "gray";
+        ctx.fillRect(150, 50, 100, 100);
+
+        // Particle before barrier
+        ctx.fillStyle = tunnelingActive ? "yellow" : "red";
+        ctx.beginPath();
+        ctx.arc(100, 100, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Particle after barrier (if tunneling active)
+        if (tunnelingActive) {
+            ctx.beginPath();
+            ctx.arc(300, 100, 20, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        ctx.font = "18px Arial";
+        ctx.fillStyle = "white";
+        ctx.fillText(tunnelingActive ? "Tunneled" : "Not Tunneled", 140, 180);
+    }
+
+    window.toggleTunneling = () => {
+        tunnelingActive = !tunnelingActive;
+        drawTunneling();
+    };
+
+    // Draw immediately on page load
+    drawTunneling();
+})();
+
+    
 </script>
 
 
