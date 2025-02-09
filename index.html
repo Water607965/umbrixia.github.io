@@ -277,15 +277,15 @@
         </div>
         
         <div class="interactive-card">
-    <h4>Quantum Harmonic Oscillator</h4>
-    <canvas id="harmonicOscillatorCanvas" width="400" height="200"></canvas>
-    <button class="gold-button" onclick="toggleHarmonicOscillation()">Toggle Oscillation</button>
-        </div>
-
-        <div class="interactive-card">
     <h4>Quantum Vacuum Fluctuations</h4>
     <canvas id="vacuumFluctuationsCanvas" width="400" height="200"></canvas>
     <button class="gold-button" onclick="toggleVacuumFluctuations()">Toggle Fluctuations</button>
+        </div>
+
+        <div class="interactive-card">
+    <h4>Quantum Harmonic Oscillator</h4>
+    <canvas id="harmonicOscillatorCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleHarmonicOscillation()">Toggle Oscillation</button>
         </div>
 
         <div class="interactive-card">
@@ -314,323 +314,311 @@
         <p>&copy; 2025 Umbrixia. All rights reserved.</p>
     </footer>
 <script>
+    // Helper: Safely get canvas context
+    function getCanvasContext(canvasId) {
+        const canvas = document.getElementById(canvasId);
+        return canvas ? canvas.getContext("2d") : null;
+    }
+
     // Toggle visibility for chapters
     function toggleContent(id) {
         const content = document.getElementById(id);
-        content.classList.toggle("hidden");
+        if (content) {
+            content.classList.toggle("hidden");
+        }
     }
 
     // Wave-Particle Duality Interactive
-    const waveParticleCanvas = document.getElementById("waveParticleCanvas");
-    const waveParticleCtx = waveParticleCanvas.getContext("2d");
-    let waveMode = true;
+    (() => {
+        const ctx = getCanvasContext("waveParticleCanvas");
+        let waveMode = true;
 
-    function drawWave() {
-        waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
-        waveParticleCtx.strokeStyle = "white";
-        for (let x = 0; x < waveParticleCanvas.width; x += 5) {
-            const y = 100 + Math.sin((x + Date.now() / 100) * 0.1) * 40;
-            waveParticleCtx.beginPath();
-            waveParticleCtx.arc(x, y, 2, 0, Math.PI * 2);
-            waveParticleCtx.fillStyle = "yellow";
-            waveParticleCtx.fill();
-        }
-    }
-
-    function drawParticle() {
-        waveParticleCtx.clearRect(0, 0, waveParticleCanvas.width, waveParticleCanvas.height);
-        waveParticleCtx.fillStyle = "red";
-        waveParticleCtx.beginPath();
-        waveParticleCtx.arc(200, 100, 20, 0, Math.PI * 2);
-        waveParticleCtx.fill();
-    }
-
-    function toggleWaveParticleMode() {
-        waveMode = !waveMode;
-    }
-
-    function animateWaveParticle() {
-        if (waveMode) {
-            drawWave();
-        } else {
-            drawParticle();
-        }
-        requestAnimationFrame(animateWaveParticle);
-    }
-    animateWaveParticle();
-
-    // Double-Slit Experiment Interactive
-    const doubleSlitCanvas = document.getElementById("doubleSlitCanvas");
-    const doubleSlitCtx = doubleSlitCanvas.getContext("2d");
-    let observerEnabled = false;
-
-    function drawInterference() {
-        doubleSlitCtx.clearRect(0, 0, doubleSlitCanvas.width, doubleSlitCanvas.height);
-        for (let i = 0; i < doubleSlitCanvas.width; i += 10) {
-            const intensity = Math.sin(i * 0.1) ** 2 * 255;
-            doubleSlitCtx.fillStyle = `rgb(${intensity}, ${intensity}, ${intensity})`;
-            doubleSlitCtx.fillRect(i, 0, 10, doubleSlitCanvas.height);
-        }
-    }
-
-    function drawParticles() {
-        doubleSlitCtx.clearRect(0, 0, doubleSlitCanvas.width, doubleSlitCanvas.height);
-        doubleSlitCtx.fillStyle = "blue";
-        for (let i = 0; i < 100; i++) {
-            const x = Math.random() * doubleSlitCanvas.width;
-            const y = Math.random() * doubleSlitCanvas.height;
-            doubleSlitCtx.beginPath();
-            doubleSlitCtx.arc(x, y, 2, 0, Math.PI * 2);
-            doubleSlitCtx.fill();
-        }
-    }
-
-    function toggleObserverMode() {
-        observerEnabled = !observerEnabled;
-    }
-
-    function animateDoubleSlit() {
-        if (observerEnabled) {
-            drawParticles();
-        } else {
-            drawInterference();
-        }
-        requestAnimationFrame(animateDoubleSlit);
-    }
-    animateDoubleSlit();
-
-    // Schrödinger's Cat Interactive
-    const catCanvas = document.getElementById("catCanvas");
-    const catCtx = catCanvas.getContext("2d");
-    let catState = "Superposition";
-
-    function drawCatState() {
-        catCtx.clearRect(0, 0, catCanvas.width, catCanvas.height);
-        catCtx.fillStyle = "black";
-        catCtx.fillRect(0, 0, catCanvas.width, catCanvas.height);
-
-        if (catState === "Alive") {
-            catCtx.fillStyle = "green";
-        } else if (catState === "Dead") {
-            catCtx.fillStyle = "red";
-        } else {
-            catCtx.fillStyle = "yellow";
-        }
-
-        catCtx.beginPath();
-        catCtx.arc(200, 100, 50, 0, Math.PI * 2);
-        catCtx.fill();
-
-        catCtx.fillStyle = "white";
-        catCtx.font = "20px Arial";
-        catCtx.fillText(`State: ${catState}`, 140, 180);
-    }
-
-    function toggleObservation() {
-        if (catState === "Superposition") {
-            catState = Math.random() > 0.5 ? "Alive" : "Dead";
-        } else {
-            catState = "Superposition";
-        }
-        drawCatState();
-    }
-    drawCatState();
-
-    // Quantum Entanglement Interactive
-    const entanglementCanvas = document.getElementById("entanglementCanvas");
-    const entanglementCtx = entanglementCanvas.getContext("2d");
-    let entanglementState = true;
-
-    function drawEntanglement() {
-        entanglementCtx.clearRect(0, 0, entanglementCanvas.width, entanglementCanvas.height);
-        entanglementCtx.strokeStyle = entanglementState ? "blue" : "green";
-        entanglementCtx.lineWidth = 2;
-        for (let i = 0; i < 5; i++) {
-            entanglementCtx.beginPath();
-            entanglementCtx.moveTo(50 + i * 60, 50);
-            entanglementCtx.lineTo(100 + i * 60, 150);
-            entanglementCtx.stroke();
-        }
-    }
-
-    function toggleEntanglement() {
-        entanglementState = !entanglementState;
-        drawEntanglement();
-    }
-    drawEntanglement();
-
-    // Quantum Tunneling Interactive
-    const tunnelingCanvas = document.getElementById("tunnelingCanvas");
-    const tunnelingCtx = tunnelingCanvas.getContext("2d");
-    let tunnelingActive = false;
-
-    function drawTunneling() {
-        tunnelingCtx.clearRect(0, 0, tunnelingCanvas.width, tunnelingCanvas.height);
-        tunnelingCtx.fillStyle = "gray";
-        tunnelingCtx.fillRect(150, 50, 100, 100);
-        tunnelingCtx.fillStyle = tunnelingActive ? "yellow" : "red";
-        tunnelingCtx.beginPath();
-        tunnelingCtx.arc(100, 100, 20, 0, Math.PI * 2);
-        tunnelingCtx.fill();
-        if (tunnelingActive) {
-            tunnelingCtx.beginPath();
-            tunnelingCtx.arc(300, 100, 20, 0, Math.PI * 2);
-            tunnelingCtx.fill();
-        }
-    }
-
-    function toggleTunneling() {
-        tunnelingActive = !tunnelingActive;
-        drawTunneling();
-    }
-    drawTunneling();
-
-    function toggleSuperposition() {
-    const canvas = document.getElementById("superpositionCanvas");
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "purple";
-    ctx.fillText("Quantum Superposition State", 50, 100);
-}
-function startDecoherence() {
-    const canvas = document.getElementById("decoherenceCanvas");
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = "lime";
-    for (let i = 0; i < canvas.width; i += 20) {
-        ctx.beginPath();
-        ctx.moveTo(i, 0);
-        ctx.lineTo(canvas.width / 2, canvas.height);
-        ctx.stroke();
-    }
-}
-function updateDensity() {
-    const canvas = document.getElementById("probabilityDensityCanvas");
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "rgba(255, 215, 0, 0.7)";
-    for (let i = 0; i < 20; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        ctx.beginPath();
-        ctx.arc(x, y, Math.random() * 15, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-    function toggleHarmonicOscillation() {
-    const canvas = document.getElementById("harmonicOscillatorCanvas");
-    const ctx = canvas.getContext("2d");
-    let oscillating = true;
-
-    function drawOscillation() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.strokeStyle = "blue";
-        for (let i = 0; i < canvas.width; i++) {
-            const y = canvas.height / 2 + Math.sin((i + Date.now() / 100) * 0.05) * 50;
-            ctx.beginPath();
-            ctx.arc(i, y, 1, 0, Math.PI * 2);
-            ctx.stroke();
-        }
-        if (oscillating) requestAnimationFrame(drawOscillation);
-    }
-
-    oscillating = !oscillating;
-    if (oscillating) drawOscillation();
-}
-
-    function toggleVacuumFluctuations() {
-    const canvas = document.getElementById("vacuumFluctuationsCanvas");
-    const ctx = canvas.getContext("2d");
-    let fluctuating = true;
-
-    function drawFluctuations() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < 100; i++) {
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * canvas.height;
-            const radius = Math.random() * 5;
-            ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.8)`;
-            ctx.fill();
-        }
-        if (fluctuating) requestAnimationFrame(drawFluctuations);
-    }
-
-    fluctuating = !fluctuating;
-    if (fluctuating) drawFluctuations();
-}
-
-    function changePhase() {
-    const canvas = document.getElementById("phaseShiftCanvas");
-    const ctx = canvas.getContext("2d");
-    let phase = 0;
-
-    function drawPhaseShift() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.strokeStyle = "cyan";
-        for (let x = 0; x < canvas.width; x += 5) {
-            const y = canvas.height / 2 + Math.sin((x + phase) * 0.1) * 50;
-            ctx.beginPath();
-            ctx.arc(x, y, 2, 0, Math.PI * 2);
-            ctx.stroke();
-        }
-        phase += Math.PI / 20;
-    }
-
-    drawPhaseShift();
-}
-
-    function addEnergyLevel() {
-    const canvas = document.getElementById("energyLevelsCanvas");
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (let i = 1; i <= 5; i++) {
-        const y = canvas.height - i * 30;
-        ctx.beginPath();
-        ctx.moveTo(50, y);
-        ctx.lineTo(canvas.width - 50, y);
-        ctx.strokeStyle = `rgba(${i * 50}, ${255 - i * 50}, 100, 1)`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-    }
-}
-
-    function resetDecay() {
-    const canvas = document.getElementById("particleDecayCanvas");
-    const ctx = canvas.getContext("2d");
-    let particles = Array.from({ length: 50 }, () => ({
-        x: canvas.width / 2,
-        y: canvas.height / 2,
-        vx: (Math.random() - 0.5) * 5,
-        vy: (Math.random() - 0.5) * 5,
-        life: Math.random() * 100 + 50,
-    }));
-
-    function drawDecay() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach((p) => {
-            if (p.life > 0) {
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life--;
+        function drawWave() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, 400, 200);
+            ctx.strokeStyle = "white";
+            for (let x = 0; x < 400; x += 5) {
+                const y = 100 + Math.sin((x + Date.now() / 100) * 0.1) * 40;
                 ctx.beginPath();
-                ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 0, 0, ${p.life / 100})`;
+                ctx.arc(x, y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = "yellow";
                 ctx.fill();
             }
-        });
-        particles = particles.filter((p) => p.life > 0);
-        if (particles.length > 0) requestAnimationFrame(drawDecay);
-    }
+        }
 
-    drawDecay();
-}
+        function drawParticle() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, 400, 200);
+            ctx.fillStyle = "red";
+            ctx.beginPath();
+            ctx.arc(200, 100, 20, 0, Math.PI * 2);
+            ctx.fill();
+        }
 
-    
+        function animate() {
+            if (waveMode) drawWave();
+            else drawParticle();
+            requestAnimationFrame(animate);
+        }
 
+        window.toggleWaveParticleMode = () => (waveMode = !waveMode);
+        animate();
+    })();
+
+    // Double-Slit Experiment Interactive
+    (() => {
+        const ctx = getCanvasContext("doubleSlitCanvas");
+        let observerEnabled = false;
+
+        function drawInterference() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, 400, 200);
+            for (let i = 0; i < 400; i += 10) {
+                const intensity = Math.sin(i * 0.1) ** 2 * 255;
+                ctx.fillStyle = `rgb(${intensity}, ${intensity}, ${intensity})`;
+                ctx.fillRect(i, 0, 10, 200);
+            }
+        }
+
+        function drawParticles() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, 400, 200);
+            ctx.fillStyle = "blue";
+            for (let i = 0; i < 100; i++) {
+                const x = Math.random() * 400;
+                const y = Math.random() * 200;
+                ctx.beginPath();
+                ctx.arc(x, y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function animate() {
+            if (observerEnabled) drawParticles();
+            else drawInterference();
+            requestAnimationFrame(animate);
+        }
+
+        window.toggleObserverMode = () => (observerEnabled = !observerEnabled);
+        animate();
+    })();
+
+    // Schrödinger's Cat Interactive
+    (() => {
+        const ctx = getCanvasContext("catCanvas");
+        let catState = "Superposition";
+
+        function drawCatState() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, 400, 200);
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, 400, 200);
+
+            ctx.fillStyle = catState === "Alive" ? "green" : catState === "Dead" ? "red" : "yellow";
+            ctx.beginPath();
+            ctx.arc(200, 100, 50, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = "white";
+            ctx.font = "20px Arial";
+            ctx.fillText(`State: ${catState}`, 140, 180);
+        }
+
+        window.toggleObservation = () => {
+            catState = catState === "Superposition" ? (Math.random() > 0.5 ? "Alive" : "Dead") : "Superposition";
+            drawCatState();
+        };
+
+        drawCatState();
+    })();
+
+    // Quantum Vacuum Fluctuations Interactive
+    (() => {
+        const ctx = getCanvasContext("vacuumFluctuationsCanvas");
+        let fluctuating = false;
+
+        function drawFluctuations() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, 400, 200);
+            for (let i = 0; i < 100; i++) {
+                const x = Math.random() * 400;
+                const y = Math.random() * 200;
+                const radius = Math.random() * 5;
+                ctx.beginPath();
+                ctx.arc(x, y, radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.8)`;
+                ctx.fill();
+            }
+            if (fluctuating) requestAnimationFrame(drawFluctuations);
+        }
+
+        window.toggleVacuumFluctuations = () => {
+            fluctuating = !fluctuating;
+            if (fluctuating) drawFluctuations();
+        };
+    })();
+
+    // Quantum Harmonic Oscillator Interactive
+    (() => {
+        const ctx = getCanvasContext("harmonicOscillatorCanvas");
+        let oscillating = false;
+
+        function drawOscillation() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, 400, 200);
+            ctx.strokeStyle = "blue";
+            for (let i = 0; i < 400; i++) {
+                const y = 100 + Math.sin((i + Date.now() / 100) * 0.1) * 40;
+                ctx.beginPath();
+                ctx.arc(i, y, 1, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            if (oscillating) requestAnimationFrame(drawOscillation);
+        }
+
+        window.toggleHarmonicOscillation = () => {
+            oscillating = !oscillating;
+            if (oscillating) drawOscillation();
+        };
+    })();
+
+    // Quantum Phase Shift Interactive
+    (() => {
+        const ctx = getCanvasContext("phaseShiftCanvas");
+        let phase = 0;
+
+        function drawPhaseShift() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, 400, 200);
+            ctx.strokeStyle = "cyan";
+            for (let x = 0; x < 400; x += 5) {
+                const y = 100 + Math.sin((x + phase) * 0.1) * 50;
+                ctx.beginPath();
+                ctx.arc(x, y, 2, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            phase += Math.PI / 20;
+        }
+
+        window.changePhase = () => drawPhaseShift();
+    })();
+
+    // Quantum Energy Levels Interactive
+    (() => {
+        const ctx = getCanvasContext("energyLevelsCanvas");
+
+        function drawEnergyLevels() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, 400, 200);
+            for (let i = 1; i <= 5; i++) {
+                const y = 200 - i * 30;
+                ctx.beginPath();
+                ctx.moveTo(50, y);
+                ctx.lineTo(350, y);
+                ctx.strokeStyle = `rgba(${i * 50}, ${255 - i * 50}, 100, 1)`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        }
+
+        window.addEnergyLevel = () => drawEnergyLevels();
+    })();
+
+    // Particle Decay Interactive
+    (() => {
+        const ctx = getCanvasContext("particleDecayCanvas");
+        let particles = [];
+
+        function initParticles() {
+            particles = Array.from({ length: 50 }, () => ({
+                x: 200,
+                y: 100,
+                vx: (Math.random() - 0.5) * 5,
+                vy: (Math.random() - 0.5) * 5,
+                life: Math.random() * 100 + 50,
+            }));
+        }
+
+        function drawDecay() {
+            if (!ctx || particles.length === 0) return;
+            ctx.clearRect(0, 0, 400, 200);
+            particles.forEach((p) => {
+                if (p.life > 0) {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.life--;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 0, 0, ${p.life / 100})`;
+                    ctx.fill();
+                }
+            });
+            particles = particles.filter((p) => p.life > 0);
+            if (particles.length > 0) requestAnimationFrame(drawDecay);
+        }
+
+        window.resetDecay = () => {
+            initParticles();
+            drawDecay();
+        };
+
+        initParticles();
+    })();
+
+    // Quantum Superposition Interactive
+    (() => {
+        const ctx = getCanvasContext("superpositionCanvas");
+
+        function drawSuperpositionState() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, 400, 200);
+            ctx.fillStyle = "purple";
+            ctx.fillText("Quantum Superposition State", 50, 100);
+        }
+
+        window.toggleSuperposition = () => drawSuperpositionState();
+    })();
+
+    // Quantum Decoherence Interactive
+    (() => {
+        const ctx = getCanvasContext("decoherenceCanvas");
+
+        function drawDecoherence() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, 400, 200);
+            ctx.strokeStyle = "lime";
+            for (let i = 0; i < 400; i += 20) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(200, 200);
+                ctx.stroke();
+            }
+        }
+
+        window.startDecoherence = () => drawDecoherence();
+    })();
+
+    // Quantum Probability Density Interactive
+    (() => {
+        const ctx = getCanvasContext("probabilityDensityCanvas");
+
+        function drawProbabilityDensity() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, 400, 200);
+            ctx.fillStyle = "rgba(255, 215, 0, 0.7)";
+            for (let i = 0; i < 20; i++) {
+                const x = Math.random() * 400;
+                const y = Math.random() * 200;
+                ctx.beginPath();
+                ctx.arc(x, y, Math.random() * 15, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        window.updateDensity = () => drawProbabilityDensity();
+    })();
 </script>
+
 
 </body>
 </html>
