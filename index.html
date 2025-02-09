@@ -348,6 +348,36 @@
     <canvas id="energyLevelsCanvas" width="400" height="200"></canvas>
     <button class="gold-button" onclick="addEnergyLevel()">Add Energy Level</button>
 </div>
+            <div class="interactive-card">
+    <h4>Quantum Field Fluctuations</h4>
+    <canvas id="fieldFluctuationsCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleFieldFluctuations()">Toggle Fluctuations</button>
+</div>
+
+            <div class="interactive-card">
+    <h4>Particle Decay</h4>
+    <canvas id="particleDecayCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="resetDecay()">Reset Decay</button>
+</div>
+
+            <div class="interactive-card">
+    <h4>Bell's Inequality</h4>
+    <canvas id="bellCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleBellCorrelations()">Toggle Correlations</button>
+</div>
+
+            <div class="interactive-card">
+    <h4>Quantum Path Integral</h4>
+    <canvas id="pathIntegralCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="updatePaths()">Generate New Paths</button>
+</div>
+
+            <div class="interactive-card">
+    <h4>Quantum Interference</h4>
+    <canvas id="interferenceCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="changeInterference()">Change Interference</button>
+</div>
+
 
             
 
@@ -860,6 +890,172 @@ function addEnergyLevel() {
 }
 
 drawEnergyLevels();
+
+        const fieldFluctuationsCanvas = document.getElementById("fieldFluctuationsCanvas");
+const fieldFluctuationsCtx = fieldFluctuationsCanvas.getContext("2d");
+let fieldFluctuationsActive = true;
+
+function drawFieldFluctuations() {
+    fieldFluctuationsCtx.clearRect(0, 0, fieldFluctuationsCanvas.width, fieldFluctuationsCanvas.height);
+    for (let i = 0; i < 20; i++) {
+        const x = Math.random() * fieldFluctuationsCanvas.width;
+        const y = Math.random() * fieldFluctuationsCanvas.height;
+        const size = Math.random() * 10 + 3;
+
+        // Dynamic Glow Effect
+        const gradient = fieldFluctuationsCtx.createRadialGradient(x, y, 0, x, y, size);
+        gradient.addColorStop(0, `rgba(255, ${Math.random() * 255}, ${Math.random() * 255}, 0.8)`);
+        gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+        fieldFluctuationsCtx.fillStyle = gradient;
+        fieldFluctuationsCtx.beginPath();
+        fieldFluctuationsCtx.arc(x, y, size, 0, Math.PI * 2);
+        fieldFluctuationsCtx.fill();
+    }
+}
+
+function toggleFieldFluctuations() {
+    fieldFluctuationsActive = !fieldFluctuationsActive;
+    if (fieldFluctuationsActive) animateFieldFluctuations();
+}
+
+function animateFieldFluctuations() {
+    if (fieldFluctuationsActive) {
+        drawFieldFluctuations();
+        requestAnimationFrame(animateFieldFluctuations);
+    }
+}
+
+animateFieldFluctuations();
+
+        const particleDecayCanvas = document.getElementById("particleDecayCanvas");
+const particleDecayCtx = particleDecayCanvas.getContext("2d");
+let particles = Array.from({ length: 50 }, () => ({
+    x: Math.random() * particleDecayCanvas.width,
+    y: Math.random() * particleDecayCanvas.height,
+    size: Math.random() * 5 + 3,
+    alpha: 1,
+    color: `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 1)`,
+}));
+
+function drawDecay() {
+    particleDecayCtx.clearRect(0, 0, particleDecayCanvas.width, particleDecayCanvas.height);
+    particles.forEach((particle) => {
+        particle.alpha -= 0.02;
+        particle.size -= 0.1;
+        if (particle.alpha > 0 && particle.size > 0) {
+            particleDecayCtx.fillStyle = particle.color.replace("1)", `${particle.alpha})`);
+            particleDecayCtx.beginPath();
+            particleDecayCtx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+            particleDecayCtx.fill();
+        }
+    });
+    particles = particles.filter((particle) => particle.alpha > 0 && particle.size > 0);
+}
+
+function animateDecay() {
+    drawDecay();
+    if (particles.length > 0) requestAnimationFrame(animateDecay);
+}
+
+function resetDecay() {
+    particles = Array.from({ length: 50 }, () => ({
+        x: Math.random() * particleDecayCanvas.width,
+        y: Math.random() * particleDecayCanvas.height,
+        size: Math.random() * 5 + 3,
+        alpha: 1,
+        color: `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 1)`,
+    }));
+    animateDecay();
+}
+
+animateDecay();
+
+        const bellCanvas = document.getElementById("bellCanvas");
+const bellCtx = bellCanvas.getContext("2d");
+let bellCorrelationState = true;
+
+function drawBellCorrelations() {
+    bellCtx.clearRect(0, 0, bellCanvas.width, bellCanvas.height);
+
+    const classicalLimit = 75;
+    const quantumCorrelation = bellCorrelationState ? 120 : 60;
+
+    // Draw Classical Limit
+    bellCtx.fillStyle = "white";
+    bellCtx.fillRect(50, 100, classicalLimit, 30);
+    bellCtx.fillStyle = "blue";
+    bellCtx.font = "14px Arial";
+    bellCtx.fillText("Classical Limit", 55, 95);
+
+    // Animate Quantum Correlation
+    bellCtx.fillStyle = "red";
+    bellCtx.fillRect(50, 150, quantumCorrelation, 30);
+    bellCtx.fillStyle = "orange";
+    bellCtx.fillText("Quantum Correlation", 55, 145);
+}
+
+function toggleBellCorrelations() {
+    bellCorrelationState = !bellCorrelationState;
+    drawBellCorrelations();
+}
+
+drawBellCorrelations();
+
+        const pathIntegralCanvas = document.getElementById("pathIntegralCanvas");
+const pathIntegralCtx = pathIntegralCanvas.getContext("2d");
+
+function drawPaths() {
+    pathIntegralCtx.clearRect(0, 0, pathIntegralCanvas.width, pathIntegralCanvas.height);
+    for (let i = 0; i < 15; i++) {
+        pathIntegralCtx.strokeStyle = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.8)`;
+        pathIntegralCtx.lineWidth = Math.random() * 3 + 1;
+        pathIntegralCtx.beginPath();
+        let x = 0;
+        let y = Math.random() * pathIntegralCanvas.height;
+        pathIntegralCtx.moveTo(x, y);
+        while (x < pathIntegralCanvas.width) {
+            x += Math.random() * 20;
+            y += Math.random() * 40 - 20;
+            pathIntegralCtx.lineTo(x, y);
+        }
+        pathIntegralCtx.stroke();
+    }
+}
+
+function updatePaths() {
+    drawPaths();
+}
+
+drawPaths();
+
+        const interferenceCanvas = document.getElementById("interferenceCanvas");
+const interferenceCtx = interferenceCanvas.getContext("2d");
+let interferencePhase = 0;
+
+function drawInterference() {
+    interferenceCtx.clearRect(0, 0, interferenceCanvas.width, interferenceCanvas.height);
+    interferenceCtx.strokeStyle = "cyan";
+    interferenceCtx.lineWidth = 2;
+
+    interferenceCtx.beginPath();
+    for (let x = 0; x < interferenceCanvas.width; x++) {
+        const y =
+            100 +
+            40 * Math.sin((x * 0.1) + interferencePhase) +
+            40 * Math.sin((x * 0.1) - interferencePhase);
+        interferenceCtx.lineTo(x, y);
+    }
+    interferenceCtx.stroke();
+}
+
+function changeInterference() {
+    interferencePhase += Math.PI / 4;
+    drawInterference();
+}
+
+drawInterference();
+
 
         
         
