@@ -453,6 +453,40 @@
         drawTunneling();
     }
     drawTunneling();
+
+    function toggleSuperposition() {
+    const canvas = document.getElementById("superpositionCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "purple";
+    ctx.fillText("Quantum Superposition State", 50, 100);
+}
+function startDecoherence() {
+    const canvas = document.getElementById("decoherenceCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = "lime";
+    for (let i = 0; i < canvas.width; i += 20) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(canvas.width / 2, canvas.height);
+        ctx.stroke();
+    }
+}
+function updateDensity() {
+    const canvas = document.getElementById("probabilityDensityCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(255, 215, 0, 0.7)";
+    for (let i = 0; i < 20; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        ctx.beginPath();
+        ctx.arc(x, y, Math.random() * 15, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
 </script>
 
 </body>
