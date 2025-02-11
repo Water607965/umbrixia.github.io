@@ -213,6 +213,21 @@
         transform: rotate(360deg);
     }
 }
+        .typing {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #00ff00; /* Blinking cursor effect */
+    font-family: "Raleway", sans-serif;
+    color: #ffffff;
+    font-size: 1.5rem;
+    animation: blinkCursor 0.5s infinite;
+}
+
+@keyframes blinkCursor {
+    50% { border-color: transparent; }
+}
+
 
     </style>
 </head>
@@ -810,6 +825,39 @@
 })();
 
 </script>
+
+    <script>
+    function typeEffect(element, text, callback) {
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, getRandomTypingSpeed());
+            } else {
+                element.style.borderRight = "none"; // Remove blinking cursor
+                if (callback) callback();
+            }
+        }
+        type();
+    }
+
+    function getRandomTypingSpeed() {
+        return Math.floor(Math.random() * (80 - 30) + 30); // Random speed between 30ms - 80ms
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const typingElements = document.querySelectorAll("h1, h2, h3, p, span, div");
+        typingElements.forEach((element) => {
+            const textContent = element.innerText.trim(); // Preserve original text
+            if (textContent) {
+                element.innerHTML = ""; // Clear text only if it exists
+                typeEffect(element, textContent);
+            }
+        });
+    });
+</script>
+
 
 
 </body>
