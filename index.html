@@ -312,6 +312,37 @@
     <header class="hero">
     <h2 id="typingText" class="typing-container" data-text="Welcome to Umbrixia"></h2>
     <p>Quantum Physics At It's Finest!</p>
+        <script>
+    function typeEffect(element, text, speed, callback) {
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else {
+                element.style.borderRight = "none"; // Remove cursor after typing
+                if (callback) callback();
+            }
+        }
+        type();
+    }
+
+    function startTypingEffect() {
+        const typingElement = document.getElementById("typingText");
+        if (!typingElement) return;
+
+        const textContent = typingElement.getAttribute("data-text");
+        typingElement.innerHTML = ""; // Clear text for typing effect
+
+        typeEffect(typingElement, textContent, 80, () => {
+            typingElement.classList.add("glitch"); // Add glitch effect after typing
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", startTypingEffect);
+</script>
+
 </header>
 
         
