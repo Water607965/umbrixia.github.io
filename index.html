@@ -228,6 +228,67 @@
     50% { border-color: transparent; }
 }
 
+        @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    50% { border-color: transparent; }
+}
+
+@keyframes glitchEffect {
+    0% { opacity: 1; transform: translate(0); }
+    20% { opacity: 0.8; transform: translate(-2px, -2px); }
+    40% { opacity: 1; transform: translate(2px, 2px); }
+    60% { opacity: 0.7; transform: translate(-1px, 1px); }
+    80% { opacity: 1; transform: translate(1px, -1px); }
+    100% { opacity: 1; transform: translate(0); }
+}
+
+/* Typing effect container */
+.typing-container {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #00ff00; /* Blinking cursor */
+    font-size: 4rem;
+    font-weight: bold;
+    font-family: "Courier New", monospace;
+    color: #00ff00;
+    animation: blinkCursor 0.7s infinite;
+}
+
+/* Glitch effect */
+.glitch {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    opacity: 0.8;
+}
+
+.glitch::before {
+    color: red;
+    transform: translate(-2px, -2px);
+    clip-path: inset(0 0 50% 0);
+    animation: glitchEffect 0.3s infinite;
+}
+
+.glitch::after {
+    color: blue;
+    transform: translate(2px, 2px);
+    clip-path: inset(50% 0 0 0);
+    animation: glitchEffect 0.3s infinite reverse;
+}
+
 
     </style>
 </head>
@@ -249,8 +310,11 @@
 
     <!-- Hero Section -->
     <header class="hero">
-    <h2 class="glowing-text">Welcome to Umbrixia</h2>
-    <p>See the mysteries of quantum physics with interactivity and creativity</p>
+    <h2 id="typingText" class="typing-container" data-text="Welcome to Umbrixia"></h2>
+    <p>Quantum Physics At It's Finest!</p>
+</header>
+
+        
 
         
 </header>
@@ -857,6 +921,38 @@
         });
     });
 </script>
+
+    <script>
+    function typeEffect(element, text, speed, callback) {
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else {
+                element.style.borderRight = "none"; // Remove cursor after typing
+                if (callback) callback();
+            }
+        }
+        type();
+    }
+
+    function startTypingEffect() {
+        const typingElement = document.getElementById("typingText");
+        if (!typingElement) return;
+
+        const textContent = typingElement.getAttribute("data-text");
+        typingElement.innerHTML = ""; // Clear text for typing effect
+
+        typeEffect(typingElement, textContent, 80, () => {
+            typingElement.classList.add("glitch"); // Add glitch effect after typing
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", startTypingEffect);
+</script>
+
 
 
 
