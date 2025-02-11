@@ -40,7 +40,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore quantum physics with advanced interactivity and detailed chapters.">
-    <title>Umbrixia – Quantum Elegance</title>
+    <title>Umbrixia</title>
     <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -274,6 +274,7 @@ body.loaded #loading-screen {
 }
 
         
+        
     </style>
 </head>
 <body>
@@ -295,7 +296,8 @@ body.loaded #loading-screen {
     <!-- Hero Section -->
     <header class="hero">
     <h2 class="glowing-text">Welcome to Umbrixia</h2>
-    <p>Explore the mysteries of quantum physics with interactivity and depth.</p>
+    <p>See the mysteries of quantum physics with interactivity and creativity</p>
+        <h2 id="typingText" class="typing-container"></h2>
 </header>
 
 
@@ -877,6 +879,27 @@ body.loaded #loading-screen {
     });
 </script>
 
+<script>
+    function typeEffect(element, text, speed = 100) {
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else {
+                element.style.borderRight = "none"; // Remove blinking cursor after typing
+            }
+        }
+        type();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const textElement = document.getElementById("typingText");
+        const textContent = "Welcome to Umbrixia";
+        typeEffect(textElement, textContent, 100); // Adjust speed if needed
+    });
+</script>
 
 
 </body>
