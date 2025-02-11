@@ -431,27 +431,152 @@
     }
 
     document.addEventListener("DOMContentLoaded", startTypingEffect);
+
+            /* Expanded About Section */
+.about-umbrixia {
+    background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+    color: #ffd700;
+    padding: 5rem 3rem;
+    text-align: center;
+    border-top: 2px solid #ff0000;
+    border-bottom: 2px solid #ff0000;
+}
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-text {
+    flex: 1;
+    padding: 2rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.about-image {
+    flex: 1;
+    text-align: center;
+}
+
+.about-image img {
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    border: 3px solid #ff0000;
+    box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.7);
+}
+
+.caption {
+    margin-top: 1rem;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #aaa;
+}
+
+/* Glitchy Animated Title */
+.glitch-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    animation: glitchEffect 1s infinite;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.glitch-title::before {
+    left: 2px;
+    text-shadow: -2px 0 red;
+    animation: glitchEffect 0.3s infinite;
+}
+
+.glitch-title::after {
+    left: -2px;
+    text-shadow: 2px 0 blue;
+    animation: glitchEffect 0.3s infinite reverse;
+}
+
+/* Glitch Effect */
+@keyframes glitchEffect {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, -2px); }
+    40% { transform: translate(2px, 2px); }
+    60% { transform: translate(-1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}
+
+/* Typing Effect */
+.typing-text {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #ffd700;
+    font-size: 1.6rem;
+    animation: typing 3s steps(40, end) forwards, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* Highlighted Text */
+.highlight {
+    color: #ff0000;
+    font-weight: bold;
+}
+
 </script>
 
 </header>
 
         <section class="about-umbrixia">
-    <div class="about-content">
-        <h2 class="glitch-title" data-text="About Us">About Us</h2>
-        <p class="typing-text">
-            At <span class="highlight">Umbrixia</span>, we believe quantum physics should be **accessible, engaging, and fun**.  
-            Our mission is to break the barriers of complexity and bring you into the **fascinating world of quantum mechanics**  
-            through **interactive learning, visual simulations, and hands-on experiments**.
-        </p>
-        <p class="typing-text">
-            From **Schrödinger’s Cat** to **Quantum Entanglement**, we guide you through the mysteries of the universe  
-            in a way that's easy to grasp and exciting to explore.
-        </p>
-        <p class="typing-text">
-            Join us as we **decode the quantum realm, one experiment at a time!**
-        </p>
+    <div class="about-container">
+        <div class="about-text">
+            <h2 class="glitch-title" data-text="About Umbrixia">About Umbrixia</h2>
+            <p class="typing-text">
+                <span class="highlight">Umbrixia</span> is more than just a website – it's a revolution in <strong>quantum education</strong>.  
+                Our mission is to **simplify the mysteries of quantum mechanics** through **cutting-edge interactive learning**  
+                and **immersive simulations** that bridge the gap between curiosity and understanding.
+            </p>
+            <p class="typing-text">
+                We believe **learning should be hands-on, intuitive, and exciting**.  
+                That’s why we offer **dynamic experiments, simulations, and visual storytelling**,  
+                allowing learners to engage with concepts like **superposition, entanglement, and quantum tunneling**  
+                in a way that feels natural and fun.
+            </p>
+            <p class="typing-text">
+                Join our **growing community** of students, researchers, and enthusiasts as we explore the **quantum realm together**.  
+                From **fundamental principles** to **advanced applications**, Umbrixia is your gateway to mastering quantum physics.
+            </p>
+        </div>
+        <div class="about-image">
+            <img src="quantum.png" alt="Umbrixia Quantum Education">
+            <p class="caption">"Bringing Quantum Physics to Life Through Interactive Learning & Simulations"</p>
+        </div>
     </div>
 </section>
+
 
 
         
