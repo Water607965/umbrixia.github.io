@@ -238,65 +238,6 @@
     text-shadow: 0 0 10px #ff0000, 0 0 20px #ffd700, 0 0 30px #00ff00, 0 0 40px #00ffff, 0 0 50px #ff00ff;
 }
 
-@keyframes glowAnimation {
-    0% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ffd700, 0 0 30px #00ff00; }
-    25% { text-shadow: 0 0 20px #ffd700, 0 0 30px #00ff00, 0 0 40px #00ffff; }
-    50% { text-shadow: 0 0 30px #00ff00, 0 0 40px #00ffff, 0 0 50px #ff00ff; }
-    75% { text-shadow: 0 0 40px #00ffff, 0 0 50px #ff00ff, 0 0 60px #ff0000; }
-    100% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ffd700, 0 0 30px #00ff00; }
-}
-        @keyframes fadeInSlide {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.typing {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid #00ff00; /* Cursor effect */
-    font-size: 1.5rem;
-    font-family: "Raleway", sans-serif;
-    color: #00ff00;
-    animation: fadeInSlide 1s ease-in-out forwards, blinkCursor 0.5s infinite;
-}
-
-@keyframes blinkCursor {
-    50% { border-color: transparent; }
-}
-
-        @keyframes fadeInSlide {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.typing {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid #00ff00; /* Cursor effect */
-    font-size: 1.5rem;
-    font-family: "Raleway", sans-serif;
-    color: #ffffff;
-    animation: fadeInSlide 1.2s ease-in-out forwards, blinkCursor 0.5s infinite;
-}
-
-@keyframes blinkCursor {
-    50% { border-color: transparent; }
-}
-
     </style>
 </head>
 <body>
@@ -319,7 +260,6 @@
     <header class="hero">
     <h2 class="glowing-text">Welcome to Umbrixia</h2>
     <p>See the mysteries of quantum physics with interactivity and creativity</p>
-        
 
         
 </header>
@@ -892,45 +832,6 @@
     // Draw immediately on page load
     drawTunneling();
 })();
-
-    
-
-
-    
-
-
-
-    function typeEffect(element, text) {
-        let i = 0;
-        element.innerHTML = ""; // Clear existing text
-
-        function type() {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, getRandomTypingSpeed());
-            } else {
-                element.style.borderRight = "none"; // Remove blinking cursor
-            }
-        }
-        type();
-    }
-
-    function getRandomTypingSpeed() {
-        return Math.floor(Math.random() * (80 - 30) + 30); // Random speed between 30ms - 80ms
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const typingElements = document.querySelectorAll("h1, h2, h3, p, span, div");
-        typingElements.forEach((element) => {
-            const textContent = element.innerText;
-            element.classList.add("typing");
-            element.innerText = ""; // Clear existing text
-            typeEffect(element, textContent);
-        });
-    });
-
-
 
 </script>
 
