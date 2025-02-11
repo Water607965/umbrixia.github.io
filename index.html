@@ -272,8 +272,83 @@ body.loaded #loading-screen {
     75% { text-shadow: 0 0 40px #00ffff, 0 0 50px #ff00ff, 0 0 60px #ff0000; }
     100% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ffd700, 0 0 30px #00ff00; }
 }
+        @keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        
+.typing {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #00ff00; /* Cursor effect */
+    font-size: 1.5rem;
+    font-family: "Raleway", sans-serif;
+    color: #00ff00;
+    animation: fadeInSlide 1s ease-in-out forwards, blinkCursor 0.5s infinite;
+}
+
+@keyframes blinkCursor {
+    50% { border-color: transparent; }
+}
+
+/* Glitch Effect */
+@keyframes glitch {
+    0% { text-shadow: 2px 2px red; }
+    20% { text-shadow: -2px -2px cyan; }
+    40% { text-shadow: 2px -2px lime; }
+    60% { text-shadow: -2px 2px yellow; }
+    80% { text-shadow: 2px 2px magenta; }
+    100% { text-shadow: -2px -2px blue; }
+}
+
+.glitch {
+    animation: glitch 0.3s infinite alternate;
+}
+
+/* Neon Glow on Hover */
+.typing:hover {
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #ff0000, 0 0 30px #00ff00;
+}
+
+/* Page-wide Glitch */
+@keyframes pageGlitch {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(2px); }
+    50% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+    100% { transform: translateX(0); }
+}
+
+body {
+    background: black;
+    animation: pageGlitch 0.1s infinite;
+}
+
+/* Matrix Background */
+.matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: black;
+    overflow: hidden;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
         
     </style>
 </head>
@@ -881,6 +956,87 @@ body.loaded #loading-screen {
     });
 </script>
 
+<script>
+    function typeEffect(element, text) {
+        let i = 0;
+        element.innerHTML = ""; // Clear existing text
+
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                playTypingSound();
+                i++;
+                setTimeout(type, getRandomTypingSpeed());
+            } else {
+                element.classList.add("glitch"); // Add glitch effect after typing
+                element.style.borderRight = "none"; // Remove blinking cursor
+            }
+        }
+        type();
+    }
+
+    function playTypingSound() {
+        const sounds = ["hacker1.mp3", "hacker2.mp3", "hacker3.mp3"];
+        const audio = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
+        audio.volume = 0.2; // Adjust volume
+        audio.play();
+    }
+
+    function getRandomTypingSpeed() {
+        return Math.floor(Math.random() * (70 - 30) + 30); // Random speed between 30ms - 70ms
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const typingElements = document.querySelectorAll("h1, h2, h3, p, span, div");
+        typingElements.forEach((element) => {
+            const textContent = element.innerText;
+            element.classList.add("typing");
+            element.innerText = ""; // Clear existing text
+            typeEffect(element, textContent);
+        });
+    });
+
+    // Matrix Background Effect
+    const canvas = document.createElement("canvas");
+    document.body.appendChild(canvas);
+    canvas.classList.add("matrix");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#0F0";
+        ctx.font = `${fontSize}px monospace`;
+
+        drops.forEach((y, index) => {
+            const text = letters[Math.floor(Math.random() * letters.length)];
+            const x = index * fontSize;
+            ctx.fillText(text, x, y * fontSize);
+
+            if (y * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[index] = 0;
+            }
+            drops[index]++;
+        });
+
+        requestAnimationFrame(drawMatrix);
+    }
+    drawMatrix();
+
+    window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+</script>
 
 
 
