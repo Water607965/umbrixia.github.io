@@ -224,6 +224,21 @@
         opacity: 1;
     }
 }
+        .typing {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #00ff00; /* Blinking cursor effect */
+    font-family: "Raleway", sans-serif;
+    color: #ffffff;
+    font-size: 1.5rem;
+    animation: blinkCursor 0.5s infinite;
+}
+
+@keyframes blinkCursor {
+    50% { border-color: transparent; }
+}
+
 
 
         
@@ -822,6 +837,39 @@
     // Draw immediately on page load
     drawTunneling();
 })();
+
+    
+    function typeEffect(element, text) {
+        let i = 0;
+        element.innerHTML = ""; // Clear existing text
+
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, getRandomTypingSpeed());
+            } else {
+                element.style.borderRight = "none"; // Remove blinking cursor
+            }
+        }
+        type();
+    }
+
+    function getRandomTypingSpeed() {
+        return Math.floor(Math.random() * (80 - 30) + 30); // Random speed between 30ms - 80ms
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const typingElements = document.querySelectorAll("h1, h2, h3, p, span, div");
+        typingElements.forEach((element) => {
+            const textContent = element.innerText;
+            element.classList.add("typing");
+            element.innerText = ""; // Clear existing text
+            typeEffect(element, textContent);
+        });
+    });
+
+
 
 </script>
 
