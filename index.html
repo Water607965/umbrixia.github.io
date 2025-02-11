@@ -273,6 +273,20 @@ body.loaded #loading-screen {
     100% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ffd700, 0 0 30px #00ff00; }
 }
 
+        .typing {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #ffd700; /* Simulates cursor */
+    font-size: 1.5rem; /* Adjust as needed */
+    font-family: "Raleway", sans-serif;
+    color: #ffd700;
+}
+
+@keyframes blinkCursor {
+    50% { border-color: transparent; }
+}
+
         
         
     </style>
@@ -297,7 +311,11 @@ body.loaded #loading-screen {
     <header class="hero">
     <h2 class="glowing-text">Welcome to Umbrixia</h2>
     <p>See the mysteries of quantum physics with interactivity and creativity</p>
-        <h2 id="typingText" class="typing-container"></h2>
+        <h1 class="typing" data-text="Welcome to Umbrixia"></h1>
+<p class="typing" data-text="Explore the mysteries of quantum physics."></p>
+<h3 class="typing" data-text="Quantum Concepts Simplified"></h3>
+
+        
 </header>
 
 
@@ -880,7 +898,7 @@ body.loaded #loading-screen {
 </script>
 
 <script>
-    function typeEffect(element, text, speed = 100) {
+    function typeEffect(element, text, speed = 50) {
         let i = 0;
         function type() {
             if (i < text.length) {
@@ -888,18 +906,22 @@ body.loaded #loading-screen {
                 i++;
                 setTimeout(type, speed);
             } else {
-                element.style.borderRight = "none"; // Remove blinking cursor after typing
+                element.style.borderRight = "none"; // Hide cursor after typing
             }
         }
         type();
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        const textElement = document.getElementById("typingText");
-        const textContent = "Welcome to Umbrixia";
-        typeEffect(textElement, textContent, 100); // Adjust speed if needed
+        const typingElements = document.querySelectorAll(".typing");
+        typingElements.forEach((element) => {
+            const textContent = element.getAttribute("data-text");
+            element.innerHTML = ""; // Clear existing text
+            typeEffect(element, textContent, 150); // Adjust speed if needed
+        });
     });
 </script>
+
 
 
 </body>
