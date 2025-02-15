@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Understanding Quantum Uncertainty">
+    <title>Chapter 1 – Quantum Uncertainty</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Navigation Back to Main Page -->
+<nav class="navbar">
+    <a href="index.html" class="back-button">⬅ Back to Main Page</a>
+</nav>
+
+<!-- Chapter Title -->
+<section class="chapter-content">
+    <h1 class="glitch-title" data-text="Chapter 1: Uncertainty">Chapter 1: Uncertainty</h1>
+
+    <p class="fade-in">
+        The <span class="highlight">Heisenberg Uncertainty Principle</span> is one of the cornerstones of quantum mechanics. 
+        It states that there is a fundamental limit to how precisely we can know certain pairs of properties of a quantum particle, such as position and momentum.
+    </p>
+
+    <p class="fade-in">
+        Unlike classical mechanics, where we can measure everything with absolute precision, quantum mechanics introduces a natural limit.
+        The more precisely we measure one property, the less precisely we can know the other.
+    </p>
+
+    <p class="fade-in">
+        Mathematically, the uncertainty principle is expressed as:
+        <br>
+        <strong>Δx • Δp ≥ ℏ/2</strong>
+        <br>
+        where <i>Δx</i> is the uncertainty in position, <i>Δp</i> is the uncertainty in momentum, and <i>ℏ</i> is the reduced Planck's constant.
+    </p>
+
+    <p class="fade-in">
+        The uncertainty principle is often misunderstood as a limitation of measurement tools.
+        However, it is not about imperfections in measurement—it's a fundamental property of nature.
+        Particles don't have exact positions and momenta at the same time.
+    </p>
+
+    <p class="fade-in">
+        The implications of this principle extend beyond physics.
+        It affects the way we perceive reality, challenging our classical notions of determinism.
+        This principle plays a key role in quantum field theory, particle physics, and even the stability of atoms.
+    </p>
+
+    <p class="fade-in">
+        In conclusion, quantum uncertainty is an essential feature of the universe.
+        It defines the limits of what we can know and reshapes our understanding of reality.
+    </p>
+</section>
+
+<script>
+    // Fade-in effect for paragraphs
+    document.addEventListener("DOMContentLoaded", function() {
+        let fadeElements = document.querySelectorAll(".fade-in");
+        let delay = 200;
+
+        fadeElements.forEach((element, index) => {
+            setTimeout(() => {
+                element.style.opacity = 1;
+                element.style.transform = "translateY(0)";
+            }, index * delay);
+        });
+    });
+</script>
+
+<style>
+
+
+  /* General Styling */
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #000, #1a1a1a);
+    color: #ffd700;
+}
+
+/* Navbar */
+.navbar {
+    background: #000;
+    padding: 1rem;
+    text-align: left;
+}
+
+.back-button {
+    color: #ffd700;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.back-button:hover {
+    color: #ff0000;
+}
+
+/* Chapter Content */
+.chapter-content {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: rgba(34, 34, 34, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.7);
+}
+
+/* Glitchy Animated Title */
+.glitch-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    animation: glitchEffect 1s infinite;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.glitch-title::before {
+    left: 2px;
+    text-shadow: -2px 0 red;
+    animation: glitchEffect 0.3s infinite;
+}
+
+.glitch-title::after {
+    left: -2px;
+    text-shadow: 2px 0 blue;
+    animation: glitchEffect 0.3s infinite reverse;
+}
+
+/* Glitch Effect */
+@keyframes glitchEffect {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, -2px); }
+    40% { transform: translate(2px, 2px); }
+    60% { transform: translate(-1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}
+
+/* Fade-in Text Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Paragraph Formatting */
+.chapter-content p {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 1.5rem;
+}
+
+/* Highlighted Text */
+.highlight {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+  </style>
+
+  
+</body>
+</html>
