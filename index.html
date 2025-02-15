@@ -379,6 +379,17 @@
     100% { opacity: 0; visibility: hidden; }
 }
 
+        .fade-text {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+.fade-in-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
 
     </style>
 </head>
@@ -401,6 +412,9 @@
     <!-- Hero Section -->
     <header class="hero">
     <h2 id="typingText" class="typing-container" data-text="Welcome to Umbrixia"></h2>
+        <h2 class="fade-text">Welcome to Umbrixia</h2>
+<p class="fade-text">Explore the mysteries of quantum physics.</p>
+
     <h2 id="typingText" class="typing-container" data-text="Quantum Physics At It's Finest!"></h2>
         <script>
     function typeEffect(element, text, speed, callback) {
@@ -1023,6 +1037,43 @@
     });
 </script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    function typeText(element, text, speed = 50) {
+        let index = 0;
+        function type() {
+            if (index < text.length) {
+                element.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(type, speed + Math.random() * 50); // Randomized speed
+            }
+        }
+        element.innerHTML = ""; // Clear text before typing
+        type();
+    }
+
+    function fadeInOnScroll() {
+        document.querySelectorAll('.fade-text').forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            if (sectionTop < window.innerHeight - 100) {
+                section.classList.add('fade-in-visible');
+            }
+        });
+    }
+
+    document.querySelectorAll('.fade-text').forEach(el => {
+        const fullText = el.innerText;
+        el.innerText = ""; // Clear initial text
+        typeText(el, fullText);
+    });
+
+    window.addEventListener('scroll', fadeInOnScroll);
+    fadeInOnScroll();
+});
+
+    </script>
+
+    
 
 
 </body>
