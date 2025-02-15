@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Understanding Quantum Entanglement">
+    <title>Chapter 3 – Quantum Entanglement</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Navigation Back to Main Page -->
+<nav class="navbar">
+    <a href="index.html" class="back-button">⬅ Back to Main Page</a>
+</nav>
+
+<!-- Chapter Title -->
+<section class="chapter-content">
+    <h1 class="glitch-title" data-text="Chapter 3: Quantum Entanglement">Chapter 3: Quantum Entanglement</h1>
+
+    <p class="fade-in">
+        The prime conceptual appeal of <span class="highlight">quantum entanglement</span> is its huge capacity to fulfill deep connections between particles that essentially defy classical separability entirely.
+        For instance, when two particles become entangled, their quantum states are no longer independent of each other, but rather solely defined by one unified, strong wave function.
+    </p>
+
+    <p class="fade-in">
+        This phenomenon is immensely powerful because it questions the traditional beliefs of locality and compels us to rethink the limits between systems.
+    </p>
+
+    <p class="fade-in">
+        Furthermore, experimental evidence of entanglement has been made through experiments, like those in <span class="highlight">Bell’s Inequality Tests</span>.
+        These demonstrate that the measurements done on one particle instantaneously affect the overall state of the other entangled particle, no matter the distance between them.
+    </p>
+
+    <p class="fade-in">
+        The non-local behavior underscores how the relationship between entangled particles is not controlled by the limitations set by classical physics, but rather by a set of interconnected rules that collectively lead up to a deeper sense of reality.
+    </p>
+
+    <p class="fade-in">
+        Additionally, entanglement is a strong conceptual metaphor for its inherent interconnectedness in nature.
+        Entangled particles illustrate that the very properties of a system cannot be completely understood when in isolation.
+        Therefore, it is wise to conclude that the behavior of each particle is defined by the significant influence from its partner.
+    </p>
+
+    <p class="fade-in">
+        Moreover, the theoretical structure of quantum mechanics illustrates a strong mathematical description of entanglement through the utilization of tensor products of state vectors in Hilbert space.
+        In this context, the composite state of an entangled system <span class="highlight">cannot</span> be factorized into distinct, independent states for each particle.
+    </p>
+
+    <p class="fade-in">
+        This reinforces the concept that <span class="highlight">the whole is greater than the sum of its parts</span>.
+        This very mathematical formalism is extremely important not only for understanding the mechanics of entanglement, but also for creating practical applications such as <span class="highlight">quantum communication</span> and <span class="highlight">quantum cryptography</span>.
+    </p>
+
+    <p class="fade-in">
+        In addition, entanglement has profound implications for our understanding of <span class="highlight">information transfer</span> and the limits of measurement.
+        The phenomenon directly challenges the classical idea that information is limited to local interactions, demonstrating that the measurement of one part of an entangled system can reveal insight into the other.
+    </p>
+
+    <p class="fade-in">
+        Therefore, entanglement isn’t just a theoretical curiosity but an essential aspect of emerging technologies that utilize the non-local properties of quantum systems to achieve tasks exceeding the capacity of classical methods.
+    </p>
+
+    <p class="fade-in">
+        Quantum entanglement utilizes both experimental and theoretical aspects to illustrate a fundamental break from classical intuition.
+        The instant, non-local correlations between entangled particles compel us to reconsider the nature of reality and see the extensive interconnectedness at the heart of the quantum world.
+    </p>
+</section>
+
+<script>
+    // Fade-in effect for paragraphs
+    document.addEventListener("DOMContentLoaded", function() {
+        let fadeElements = document.querySelectorAll(".fade-in");
+        let delay = 200;
+
+        fadeElements.forEach((element, index) => {
+            setTimeout(() => {
+                element.style.opacity = 1;
+                element.style.transform = "translateY(0)";
+            }, index * delay);
+        });
+    });
+</script>
+
+  <style>
+    /* General Styling */
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #000, #1a1a1a);
+    color: #ffd700;
+}
+
+/* Navbar */
+.navbar {
+    background: #000;
+    padding: 1rem;
+    text-align: left;
+}
+
+.back-button {
+    color: #ffd700;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.back-button:hover {
+    color: #ff0000;
+}
+
+/* Chapter Content */
+.chapter-content {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: rgba(34, 34, 34, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.7);
+}
+
+/* Glitchy Animated Title */
+.glitch-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    animation: glitchEffect 1s infinite;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.glitch-title::before {
+    left: 2px;
+    text-shadow: -2px 0 red;
+    animation: glitchEffect 0.3s infinite;
+}
+
+.glitch-title::after {
+    left: -2px;
+    text-shadow: 2px 0 blue;
+    animation: glitchEffect 0.3s infinite reverse;
+}
+
+/* Glitch Effect */
+@keyframes glitchEffect {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, -2px); }
+    40% { transform: translate(2px, 2px); }
+    60% { transform: translate(-1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}
+
+/* Fade-in Text Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Paragraph Formatting */
+.chapter-content p {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 1.5rem;
+}
+
+/* Highlighted Text */
+.highlight {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+  </style>
+
+</body>
+</html>
