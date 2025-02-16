@@ -1762,19 +1762,151 @@
 
     drawChaos();
 })();
+        // Ensure the canvas elements exist before running
+function getCanvasContext(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    return canvas ? canvas.getContext("2d") : null;
+}
+
+/* =========================== Quantum Time Distortion =========================== */
+(() => {
+    const ctx = getCanvasContext("timeDistortionCanvas");
+    const slider = document.getElementById("timeSpeed");
+    let timeFactor = 1;
+
+    slider.addEventListener("input", () => {
+        timeFactor = parseFloat(slider.value);
+    });
+
+    function drawTimeDistortion() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.strokeStyle = "lime";
+        for (let i = 0; i < 400; i += 10) {
+            const y = 100 + Math.sin((i + Date.now() * timeFactor * 0.01) * 0.1) * 40;
+            ctx.beginPath();
+            ctx.arc(i, y, 3, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+        requestAnimationFrame(drawTimeDistortion);
+    }
+    drawTimeDistortion();
+})();
+
+/* =========================== Quantum Wormhole Generator =========================== */
+(() => {
+    const ctx = getCanvasContext("wormholeCanvas");
+    let angle = 0;
+
+    function drawWormhole() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.strokeStyle = "purple";
+        ctx.lineWidth = 3;
+        for (let i = 0; i < 20; i++) {
+            ctx.beginPath();
+            const x = 200 + Math.cos(angle + i * 0.2) * (i * 5);
+            const y = 100 + Math.sin(angle + i * 0.2) * (i * 5);
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+        angle += 0.1;
+        requestAnimationFrame(drawWormhole);
+    }
+    drawWormhole();
+})();
+
+/* =========================== Quantum Reality Splitter =========================== */
+(() => {
+    const ctx = getCanvasContext("realitySplitterCanvas");
+
+    function drawRealitySplit() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.fillStyle = "white";
+
+        for (let i = 0; i < 10; i++) {
+            const x = Math.random() * 400;
+            const y = Math.random() * 200;
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        ctx.fillStyle = "red";
+        ctx.font = "20px Arial";
+        ctx.fillText("Reality Splitting...", 120, 100);
+    }
+
+    window.splitReality = () => {
+        drawRealitySplit();
+    };
+})();
+
+/* =========================== Subatomic Chaos Engine =========================== */
+(() => {
+    const ctx = getCanvasContext("chaosCanvas");
+
+    function drawChaos() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        for (let i = 0; i < 100; i++) {
+            const x = Math.random() * 400;
+            const y = Math.random() * 200;
+            const size = Math.random() * 5;
+            ctx.beginPath();
+            ctx.arc(x, y, size, 0, Math.PI * 2);
+            ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            ctx.fill();
+        }
+        requestAnimationFrame(drawChaos);
+    }
+    drawChaos();
+})();
+
+/* =========================== Quantum Gravity Well (Black Hole) =========================== */
+(() => {
+    const ctx = getCanvasContext("gravityWellCanvas");
+    let particles = [];
+
+    function createParticle() {
+        return {
+            x: Math.random() * 400,
+            y: Math.random() * 200,
+            vx: (Math.random() - 0.5) * 2,
+            vy: (Math.random() - 0.5) * 2
+        };
+    }
+
+    function drawGravityWell() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.arc(200, 100, 30, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "white";
+        particles.forEach(p => {
+            p.vx += (200 - p.x) * 0.001;
+            p.vy += (100 - p.y) * 0.001;
+            p.x += p.vx;
+            p.y += p.vy;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        requestAnimationFrame(drawGravityWell);
+    }
+
+    for (let i = 0; i < 50; i++) particles.push(createParticle());
+    drawGravityWell();
+})();
+
 
         
 
-    </script>
-
-    <script>
-        <canvas id="timeDistortionCanvas" width="400" height="200"></canvas>
-<input type="range" id="timeSpeed" min="-3" max="3" step="0.1" value="1">
-
-<canvas id="wormholeCanvas" width="400" height="200"></canvas>
-<canvas id="realitySplitterCanvas" width="400" height="200"></canvas>
-<canvas id="chaosCanvas" width="400" height="200"></canvas>
-<canvas id="gravityWellCanvas" width="400" height="200"></canvas>
     </script>
 
     
