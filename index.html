@@ -362,6 +362,7 @@
     from { text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.6); }
     to { text-shadow: 0px 0px 20px rgba(255, 215, 0, 1); }
 }
+
         #podcast-section {
     text-align: center;
     padding: 3rem 2rem;
@@ -382,14 +383,36 @@
     opacity: 0.85;
 }
 
-#podcast-section img {
+/* Podcast Containers */
+.podcast-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Apple Podcast Badge */
+.podcast-link img {
     width: 280px;
     height: auto;
     transition: transform 0.3s ease-in-out;
 }
 
-#podcast-section img:hover {
+.podcast-link img:hover {
     transform: scale(1.1);
+}
+
+/* Spotify Embed */
+.spotify-embed {
+    width: 100%;
+    max-width: 360px;
+    height: 152px;
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.spotify-embed:hover {
+    transform: scale(1.05);
 }
 
 
@@ -468,11 +491,25 @@
     <section id="podcast-section">
     <h3>🎙️ Explore Quantum Physics with Umbrixia</h3>
     <p>Listen to our in-depth discussions on quantum physics, explained in a way that's engaging and insightful.</p>
-    <a href="https://podcasts.apple.com/us/podcast/quantum-physics-through-umbrixia/id1796713977?itscg=30200&itsct=podcast_box_badge&ls=1&mttnsubad=1796713977" style="display: inline-block;">
-        <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/listen-on-apple-podcasts/standard-white/en-us" 
-             alt="Listen on Apple Podcasts" />
-    </a>
+
+    <div class="podcast-container">
+        <!-- Apple Podcasts Badge -->
+        <a href="https://podcasts.apple.com/us/podcast/quantum-physics-through-umbrixia/id1796713977?itscg=30200&itsct=podcast_box_badge&ls=1&mttnsubad=1796713977" 
+           class="podcast-link">
+            <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/listen-on-apple-podcasts/standard-white/en-us" 
+                 alt="Listen on Apple Podcasts" />
+        </a>
+
+        <!-- Spotify Podcast Embed -->
+        <iframe class="spotify-embed"
+                src="https://open.spotify.com/embed/show/7EPiByiBobkSeJ79CrxfLF?utm_source=generator" 
+                frameBorder="0" allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+        </iframe>
+    </div>
 </section>
+
 
 
    <section class="chapters">
