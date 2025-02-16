@@ -243,57 +243,7 @@
     50% { border-color: transparent; }
 }
 
-@keyframes glitchEffect {
-    0% { opacity: 1; transform: translate(0); }
-    20% { opacity: 0.8; transform: translate(-2px, -2px); }
-    40% { opacity: 1; transform: translate(2px, 2px); }
-    60% { opacity: 0.7; transform: translate(-1px, 1px); }
-    80% { opacity: 1; transform: translate(1px, -1px); }
-    100% { opacity: 1; transform: translate(0); }
-}
 
-/* Typing effect container */
-.typing-container {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 3px solid #00ff00; /* Blinking cursor */
-    font-size: 4rem;
-    font-weight: bold;
-    font-family: "Courier New", monospace;
-    color: #00ff00;
-    animation: blinkCursor 0.7s infinite;
-}
-
-/* Glitch effect */
-.glitch {
-    position: relative;
-    display: inline-block;
-}
-
-.glitch::before,
-.glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    opacity: 0.8;
-}
-
-.glitch::before {
-    color: red;
-    transform: translate(-2px, -2px);
-    clip-path: inset(0 0 50% 0);
-    animation: glitchEffect 0.3s infinite;
-}
-
-.glitch::after {
-    color: blue;
-    transform: translate(2px, 2px);
-    clip-path: inset(50% 0 0 0);
-    animation: glitchEffect 0.3s infinite reverse;
-}
 
         /* Fullscreen loading overlay */
 .loading-screen {
@@ -390,6 +340,29 @@
     transform: translateY(0) !important;
 }
 
+        .typing-glow {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.8);
+    display: inline-block;
+    border-right: 3px solid #ffd700;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 2s steps(30, end) forwards, glow 1.5s infinite alternate;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes glow {
+    from { text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.6); }
+    to { text-shadow: 0px 0px 20px rgba(255, 215, 0, 1); }
+}
+
 
     </style>
 </head>
@@ -411,9 +384,12 @@
 
     <!-- Hero Section -->
     <header class="hero">
-    <h2 id="typingText" class="typing-container" data-text="Welcome to Umbrixia"></h2>
-        <h2 class="fade-text">Welcome to Umbrixia</h2>
-<p class="fade-text">Explore the mysteries of quantum physics.</p>
+    
+        <header class="hero">
+    <h2 class="typing-glow">Welcome to Umbrixia</h2>
+    <p class="fade-text">Explore the mysteries of quantum physics.</p>
+</header>
+
 
     <h2 id="typingText" class="typing-container" data-text="Quantum Physics At It's Finest!"></h2>
         <script>
