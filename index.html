@@ -676,6 +676,38 @@
     <button class="gold-button" onclick="splitMultiverse()">Split Reality</button>
         </div>
 
+        <!-- Quantum Eraser Experiment -->
+        <div class="interactive-card">
+    <h4>Quantum Eraser Experiment</h4>
+    <canvas id="quantumEraserCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="toggleQuantumEraser()">Toggle Observer</button>
+        </div>
+
+<!-- Quantum Wormhole Simulator -->
+        <div class="interactive-card">
+    <h4>Quantum Wormhole Simulator</h4>
+    <canvas id="wormholeCanvas" width="400" height="200"></canvas>
+        </div>
+
+<!-- Quantum Fractal Generator -->
+        <div class="interactive-card">
+    <h4>Quantum Fractal Generator</h4>
+    <canvas id="fractalCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="generateFractal()">Generate</button>
+        </div>
+
+<!-- Quantum Energy Field Distortion -->
+        <div class="interactive-card">
+    <h4>Quantum Energy Field Distortion</h4>
+    <canvas id="energyFieldCanvas" width="400" height="200"></canvas>
+        </div>
+
+<!-- Quantum Gravity Well -->
+        <div class="interactive-card">
+    <h4>Quantum Gravity Well</h4>
+    <canvas id="gravityWellCanvas" width="400" height="200"></canvas>
+        </div>
+
 
 
 
@@ -1389,6 +1421,161 @@
 
     drawMultiverse();
 })();
+        // Helper: Get Canvas Context
+function getCanvasContext(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    return canvas ? canvas.getContext("2d") : null;
+}
+
+// 🚀 Quantum Eraser Experiment
+(() => {
+    const ctx = getCanvasContext("quantumEraserCanvas");
+    let observerPresent = false;
+
+    function drawInterference() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        for (let i = 0; i < 400; i += 10) {
+            const intensity = Math.sin(i * 0.1) ** 2 * 255;
+            ctx.fillStyle = `rgb(${intensity}, ${intensity}, ${intensity})`;
+            ctx.fillRect(i, 0, 10, 200);
+        }
+    }
+
+    function drawParticles() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.fillStyle = "blue";
+        for (let i = 0; i < 100; i++) {
+            const x = Math.random() * 400;
+            const y = Math.random() * 200;
+            ctx.beginPath();
+            ctx.arc(x, y, 2, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function animate() {
+        if (observerPresent) drawParticles();
+        else drawInterference();
+        requestAnimationFrame(animate);
+    }
+
+    window.toggleQuantumEraser = () => {
+        observerPresent = !observerPresent;
+    };
+
+    animate();
+})();
+
+// 🌌 Quantum Wormhole Simulator
+(() => {
+    const ctx = getCanvasContext("wormholeCanvas");
+
+    function drawWormhole() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        const gradient = ctx.createRadialGradient(200, 100, 10, 200, 100, 100);
+        gradient.addColorStop(0, "black");
+        gradient.addColorStop(1, "purple");
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(200, 100, 80, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = "cyan";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(200, 100, 90, 0, Math.PI * 2);
+        ctx.stroke();
+    }
+
+    function animateWormhole() {
+        drawWormhole();
+        requestAnimationFrame(animateWormhole);
+    }
+
+    animateWormhole();
+})();
+
+// 🌀 Quantum Fractal Generator
+(() => {
+    const ctx = getCanvasContext("fractalCanvas");
+
+    function drawFractal(x, y, size, depth) {
+        if (!ctx || depth > 6) return;
+        ctx.strokeStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + size, y - size);
+        ctx.stroke();
+
+        drawFractal(x + size, y - size, size * 0.7, depth + 1);
+        drawFractal(x - size, y - size, size * 0.7, depth + 1);
+    }
+
+    window.generateFractal = () => {
+        ctx.clearRect(0, 0, 400, 200);
+        drawFractal(200, 180, 50, 0);
+    };
+
+    generateFractal();
+})();
+
+// ⚡ Quantum Energy Field Distortion
+(() => {
+    const ctx = getCanvasContext("energyFieldCanvas");
+
+    function drawEnergyField() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        for (let i = 0; i < 100; i++) {
+            const x = Math.random() * 400;
+            const y = Math.random() * 200;
+            const radius = Math.random() * 5 + 2;
+            ctx.fillStyle = `rgba(${Math.random() * 255}, ${Math.random() * 255}, 255, 0.8)`;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        requestAnimationFrame(drawEnergyField);
+    }
+
+    drawEnergyField();
+})();
+
+// 🕳️ Quantum Gravity Well
+(() => {
+    const ctx = getCanvasContext("gravityWellCanvas");
+
+    function drawGravityWell() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.arc(200, 100, 80, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = "white";
+        for (let i = 1; i < 10; i++) {
+            ctx.beginPath();
+            ctx.arc(200, 100, 80 + i * 5, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+    }
+
+    function animateGravityWell() {
+        drawGravityWell();
+        requestAnimationFrame(animateGravityWell);
+    }
+
+    animateGravityWell();
+})();
+
 
         
 
