@@ -754,6 +754,14 @@
 <canvas id="chaosCanvas" width="400" height="200"></canvas>
 <canvas id="gravityWellCanvas" width="400" height="200"></canvas>
                 </script>
+
+    </script>
+        <canvas id="quantumStormCanvas" width="400" height="200"></canvas>
+<canvas id="spacetimeRippleCanvas" width="400" height="200"></canvas>
+<canvas id="darkMatterFieldCanvas" width="400" height="200"></canvas>
+<canvas id="quantumFluxCanvas" width="400" height="200"></canvas>
+<canvas id="hypercubePortalCanvas" width="400" height="200"></canvas>
+        </script>
     </div>
 </section>
 
@@ -1904,6 +1912,161 @@ function getCanvasContext(canvasId) {
     drawGravityWell();
 })();
 
+// Ensure the canvas elements exist before running
+function getCanvasContext(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    return canvas ? canvas.getContext("2d") : null;
+}
+
+/* =========================== Quantum Storm (Charged Particle Chaos) =========================== */
+(() => {
+    const ctx = getCanvasContext("quantumStormCanvas");
+    let particles = Array.from({ length: 100 }, () => ({
+        x: Math.random() * 400,
+        y: Math.random() * 200,
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2,
+        charge: Math.random() > 0.5 ? 1 : -1
+    }));
+
+    function drawQuantumStorm() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > 400) p.vx *= -1;
+            if (p.y < 0 || p.y > 200) p.vy *= -1;
+
+            ctx.fillStyle = p.charge > 0 ? "cyan" : "magenta";
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        requestAnimationFrame(drawQuantumStorm);
+    }
+
+    drawQuantumStorm();
+})();
+
+/* =========================== Spacetime Ripples (Gravity Waves) =========================== */
+(() => {
+    const ctx = getCanvasContext("spacetimeRippleCanvas");
+    let time = 0;
+
+    function drawRipples() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 2;
+
+        for (let i = 0; i < 5; i++) {
+            let radius = Math.abs(Math.sin(time + i * 0.5)) * 80;
+            ctx.beginPath();
+            ctx.arc(200, 100, radius, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+        time += 0.05;
+        requestAnimationFrame(drawRipples);
+    }
+
+    drawRipples();
+})();
+
+/* =========================== Dark Matter Field =========================== */
+(() => {
+    const ctx = getCanvasContext("darkMatterFieldCanvas");
+    let particles = Array.from({ length: 50 }, () => ({
+        x: Math.random() * 400,
+        y: Math.random() * 200,
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2,
+        alpha: Math.random() * 0.5 + 0.2
+    }));
+
+    function drawDarkMatter() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.fillStyle = "rgba(128, 0, 128, 0.2)"; // Dark purple
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > 400) p.vx *= -1;
+            if (p.y < 0 || p.y > 200) p.vy *= -1;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(100, 0, 150, ${p.alpha})`;
+            ctx.fill();
+        });
+
+        requestAnimationFrame(drawDarkMatter);
+    }
+
+    drawDarkMatter();
+})();
+
+/* =========================== Quantum Flux Field (Reality Distortions) =========================== */
+(() => {
+    const ctx = getCanvasContext("quantumFluxCanvas");
+    let t = 0;
+
+    function drawFluxField() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+
+        for (let i = 0; i < 100; i++) {
+            let x = Math.random() * 400;
+            let y = Math.random() * 200;
+            let distortion = Math.sin(t + x * 0.01) * 10;
+            ctx.fillStyle = `hsl(${(t * 10) % 360}, 100%, 50%)`;
+            ctx.fillRect(x + distortion, y, 2, 2);
+        }
+        t += 0.1;
+        requestAnimationFrame(drawFluxField);
+    }
+
+    drawFluxField();
+})();
+
+/* =========================== Hypercube Portal (Dimensional Rift) =========================== */
+(() => {
+    const ctx = getCanvasContext("hypercubePortalCanvas");
+    let angle = 0;
+
+    function drawHypercube() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+
+        ctx.strokeStyle = "cyan";
+        ctx.lineWidth = 2;
+
+        for (let i = 0; i < 4; i++) {
+            let x = 200 + Math.cos(angle + i * Math.PI / 2) * 50;
+            let y = 100 + Math.sin(angle + i * Math.PI / 2) * 50;
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        ctx.strokeStyle = "purple";
+        for (let i = 0; i < 4; i++) {
+            let x = 200 + Math.cos(angle + i * Math.PI / 2 + Math.PI / 4) * 70;
+            let y = 100 + Math.sin(angle + i * Math.PI / 2 + Math.PI / 4) * 70;
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        angle += 0.02;
+        requestAnimationFrame(drawHypercube);
+    }
+
+    drawHypercube();
+})();
 
         
 
