@@ -618,6 +618,11 @@
     <canvas id="particleDecayCanvas" width="400" height="200"></canvas>
     <button class="gold-button" onclick="resetDecay()">Reset Decay</button>
         </div>
+        
+        <div class="interactive-card">
+    <h4>Quantum Time Evolution</h4>
+    <canvas id="timeEvolutionCanvas" width="400" height="200"></canvas>
+        </div>
 
     </div>
 </section>
@@ -1046,6 +1051,30 @@
     window.addEventListener('scroll', fadeInOnScroll);
     fadeInOnScroll();
 });
+        (() => {
+    const ctx = getCanvasContext("timeEvolutionCanvas");
+    let time = 0;
+
+    function drawWavePacket() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.strokeStyle = "cyan";
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        for (let x = 0; x < 400; x++) {
+            let y = 100 + Math.sin((x + time) * 0.05) * Math.exp(-0.005 * Math.pow(x - 200, 2)) * 50;
+            ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        time += 1.5;
+        requestAnimationFrame(drawWavePacket);
+    }
+
+    drawWavePacket();
+})();
+
 
     </script>
 
