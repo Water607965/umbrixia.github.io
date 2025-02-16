@@ -692,6 +692,7 @@
 <!-- Quantum Fractal Generator -->
         <div class="interactive-card">
     <h4>Quantum Fractal Generator</h4>
+            <h5>Hover cursor once over wormhole to pop inside out.</h5>
     <canvas id="fractalCanvas" width="400" height="200"></canvas>
     <button class="gold-button" onclick="generateFractal()">Generate</button>
         </div>
@@ -699,16 +700,183 @@
 <!-- Quantum Energy Field Distortion -->
         <div class="interactive-card">
     <h4>Quantum Energy Field Distortion</h4>
-            <h5>Move cursor across to interact.</h5>
+            <h5>Move cursor across to beam and project particles.</h5>
     <canvas id="energyFieldCanvas" width="400" height="200"></canvas>
         </div>
 
 <!-- Quantum Gravity Well -->
         <div class="interactive-card">
     <h4>Quantum Gravity Well</h4>
-            <h5>Click in black holl to drop objects into darkness.</h5>
+            <h5>Click in black holl to drop objects into the darkness. Spamming is encouraged.</h5>
     <canvas id="gravityWellCanvas" width="400" height="200"></canvas>
         </div>
+
+        <!-- Quantum Time Distortion -->
+<div class="interactive-card">
+    <h4>Quantum Time Distortion</h4>
+    <canvas id="timeDistortionCanvas" width="400" height="200"></canvas>
+    <input type="range" id="timeSpeed" min="-3" max="3" step="0.1" value="1">
+</div>
+
+        
+<script>
+(() => {
+    const canvas = document.getElementById("timeDistortionCanvas");
+    const ctx = canvas.getContext("2d");
+    const speedControl = document.getElementById("timeSpeed");
+    let timeSpeed = 1;
+    let time = 0;
+
+    speedControl.addEventListener("input", (e) => {
+        timeSpeed = parseFloat(e.target.value);
+    });
+
+    function drawTimeDistortion() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        time += timeSpeed * 0.1;
+
+        // Redshift/Blueshift Effect
+        const color = timeSpeed > 0 ? `rgb(255, ${255 - timeSpeed * 50}, ${255 - timeSpeed * 50})` : 
+                                      `rgb(${255 + timeSpeed * 50}, 255, 255)`;
+
+        ctx.fillStyle = color;
+        ctx.font = "20px Arial";
+        ctx.fillText(`Time Flow: ${timeSpeed.toFixed(2)}`, 100, 100);
+
+        // Time Bubble Effect
+        ctx.strokeStyle = color;
+        ctx.beginPath();
+        ctx.arc(200, 100, Math.abs(timeSpeed) * 30, 0, Math.PI * 2);
+        ctx.stroke();
+
+        requestAnimationFrame(drawTimeDistortion);
+    }
+    
+    drawTimeDistortion();
+})();
+</script>
+
+        <!-- Quantum Wormhole -->
+<div class="interactive-card">
+    <h4>Quantum Wormhole Generator</h4>
+    <canvas id="wormholeCanvas" width="400" height="200"></canvas>
+</div>
+
+<script>
+(() => {
+    const canvas = document.getElementById("wormholeCanvas");
+    const ctx = canvas.getContext("2d");
+    let wormholeX = 200;
+    let wormholeY = 100;
+
+    canvas.addEventListener("mousemove", (e) => {
+        wormholeX = e.offsetX;
+        wormholeY = e.offsetY;
+    });
+
+    function drawWormhole() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Wormhole Event Horizon
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.arc(wormholeX, wormholeY, 30, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Glowing Effect
+        ctx.strokeStyle = `rgba(0, 255, 255, ${Math.sin(Date.now() * 0.005)})`;
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(wormholeX, wormholeY, 35, 0, Math.PI * 2);
+        ctx.stroke();
+
+        requestAnimationFrame(drawWormhole);
+    }
+
+    drawWormhole();
+})();
+</script>
+
+        <!-- Quantum Reality Splitter -->
+<div class="interactive-card">
+    <h4>Quantum Reality Splitter</h4>
+    <canvas id="realitySplitterCanvas" width="400" height="200"></canvas>
+</div>
+
+<script>
+(() => {
+    const canvas = document.getElementById("realitySplitterCanvas");
+    const ctx = canvas.getContext("2d");
+    let particles = [{ x: 200, y: 100, dx: 2, dy: 2 }];
+
+    canvas.addEventListener("click", () => {
+        particles = particles.flatMap(p => [
+            { ...p, dx: p.dx + Math.random() * 2 - 1 },
+            { ...p, dy: p.dy + Math.random() * 2 - 1 }
+        ]);
+    });
+
+    function drawRealitySplit() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+            p.x += p.dx;
+            p.y += p.dy;
+            ctx.fillStyle = `rgba(0, 255, 0, ${Math.random()})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        requestAnimationFrame(drawRealitySplit);
+    }
+
+    drawRealitySplit();
+})();
+</script>
+
+        <!-- Subatomic Chaos Engine -->
+<div class="interactive-card">
+    <h4>Subatomic Chaos Engine</h4>
+    <canvas id="chaosCanvas" width="400" height="200"></canvas>
+</div>
+
+<script>
+(() => {
+    const canvas = document.getElementById("chaosCanvas");
+    const ctx = canvas.getContext("2d");
+    let particles = Array.from({ length: 50 }, () => ({
+        x: Math.random() * 400,
+        y: Math.random() * 200,
+        dx: (Math.random() - 0.5) * 4,
+        dy: (Math.random() - 0.5) * 4
+    }));
+
+    canvas.addEventListener("click", (e) => {
+        particles.push({ x: e.offsetX, y: e.offsetY, dx: Math.random() * 4, dy: Math.random() * 4 });
+    });
+
+    function drawChaos() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+            p.x += p.dx;
+            p.y += p.dy;
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        requestAnimationFrame(drawChaos);
+    }
+
+    drawChaos();
+})();
+</script>
+
+        
+
 
 
 
