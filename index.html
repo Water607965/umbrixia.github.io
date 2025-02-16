@@ -647,6 +647,38 @@
     <button class="gold-button" onclick="collapseWave()">Measure System</button>
         </div>
 
+        <div class="interactive-card">
+    <h4>Quantum Time Reversal</h4>
+    <canvas id="timeReversalCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="reverseTime()">Reverse Time</button>
+        </div>
+
+        <div class="interactive-card">
+    <h4>Quantum Eraser</h4>
+    <canvas id="eraserCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="erasePath()">Erase Path</button>
+        </div>
+
+        <div class="interactive-card">
+    <h4>Quantum Superdeterminism</h4>
+    <canvas id="superdeterminismCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="changeOutcome()">Change Outcome</button>
+        </div>
+
+        <div class="interactive-card">
+    <h4>Quantum Virtual Particles</h4>
+    <canvas id="virtualParticlesCanvas" width="400" height="200"></canvas>
+        </div>
+
+        <div class="interactive-card">
+    <h4>Quantum Multiverse Split</h4>
+    <canvas id="multiverseSplitCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="splitMultiverse()">Split Reality</button>
+        </div>
+
+
+
+
 
 
 
@@ -1216,6 +1248,149 @@
     window.collapseWave = collapseWave;
 })();
 
+        (() => {
+    const ctx = getCanvasContext("timeReversalCanvas");
+    let timeReversed = false;
+
+    function drawTimeFlow() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+
+        ctx.fillStyle = "blue";
+        ctx.beginPath();
+        ctx.arc(timeReversed ? 300 : 100, 100, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "white";
+        ctx.fillText(timeReversed ? "Past → Future" : "Future → Past", 140, 180);
+    }
+
+    window.reverseTime = () => {
+        timeReversed = !timeReversed;
+        drawTimeFlow();
+    };
+
+    drawTimeFlow();
+})();
+
+        (() => {
+    const ctx = getCanvasContext("eraserCanvas");
+    let pathErased = false;
+
+    function drawEraserEffect() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+
+        if (pathErased) {
+            for (let i = 0; i < 400; i += 10) {
+                const intensity = Math.sin(i * 0.1) ** 2 * 255;
+                ctx.fillStyle = `rgb(${intensity}, ${intensity}, ${intensity})`;
+                ctx.fillRect(i, 0, 10, 200);
+            }
+        } else {
+            ctx.fillStyle = "blue";
+            for (let i = 0; i < 50; i++) {
+                const x = Math.random() * 400;
+                const y = Math.random() * 200;
+                ctx.beginPath();
+                ctx.arc(x, y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        ctx.fillStyle = "white";
+        ctx.fillText(pathErased ? "Interference Restored" : "Which-Path Known", 120, 180);
+    }
+
+    window.erasePath = () => {
+        pathErased = !pathErased;
+        drawEraserEffect();
+    };
+
+    drawEraserEffect();
+})();
+
+        (() => {
+    const ctx = getCanvasContext("superdeterminismCanvas");
+    let outcome = Math.random() > 0.5 ? "Fixed" : "Changeable";
+
+    function drawOutcome() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+
+        ctx.fillStyle = outcome === "Fixed" ? "red" : "green";
+        ctx.beginPath();
+        ctx.arc(200, 100, 30, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "white";
+        ctx.fillText(`Outcome: ${outcome}`, 140, 180);
+    }
+
+    window.changeOutcome = () => {
+        if (outcome !== "Fixed") {
+            outcome = "Changed!";
+        }
+        drawOutcome();
+    };
+
+    drawOutcome();
+})();
+
+        (() => {
+    const ctx = getCanvasContext("virtualParticlesCanvas");
+
+    function drawVirtualParticles() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        
+        for (let i = 0; i < 30; i++) {
+            const x = Math.random() * 400;
+            const y = Math.random() * 200;
+            const size = Math.random() * 5;
+            
+            ctx.fillStyle = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.8)`;
+            ctx.beginPath();
+            ctx.arc(x, y, size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        requestAnimationFrame(drawVirtualParticles);
+    }
+
+    drawVirtualParticles();
+})();
+
+        (() => {
+    const ctx = getCanvasContext("multiverseSplitCanvas");
+    let branches = 0;
+
+    function drawMultiverse() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+
+        ctx.fillStyle = "white";
+        ctx.fillText("Branches: " + branches, 150, 180);
+        
+        for (let i = 0; i < branches; i++) {
+            const x = 200 + (i % 2 === 0 ? i * 10 : -i * 10);
+            const y = 100 + (i * 5);
+            ctx.fillStyle = i % 2 === 0 ? "blue" : "red";
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    window.splitMultiverse = () => {
+        branches += 1;
+        drawMultiverse();
+    };
+
+    drawMultiverse();
+})();
+
+        
 
     </script>
 
