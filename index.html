@@ -1421,13 +1421,8 @@
 
     drawMultiverse();
 })();
-        // Helper: Get Canvas Context
-function getCanvasContext(canvasId) {
-    const canvas = document.getElementById(canvasId);
-    return canvas ? canvas.getContext("2d") : null;
-}
 
-// 🚀 Quantum Eraser Experiment
+        // 🌌 Quantum Eraser Experiment (Click to change)
 (() => {
     const ctx = getCanvasContext("quantumEraserCanvas");
     let observerPresent = false;
@@ -1461,45 +1456,40 @@ function getCanvasContext(canvasId) {
         requestAnimationFrame(animate);
     }
 
-    window.toggleQuantumEraser = () => {
+    document.getElementById("quantumEraserCanvas").addEventListener("click", () => {
         observerPresent = !observerPresent;
-    };
+    });
 
     animate();
 })();
 
-// 🌌 Quantum Wormhole Simulator
+// 🚀 Quantum Wormhole Simulator (Drag to distort)
 (() => {
     const ctx = getCanvasContext("wormholeCanvas");
+    let distortion = 0;
 
     function drawWormhole() {
         if (!ctx) return;
         ctx.clearRect(0, 0, 400, 200);
-        const gradient = ctx.createRadialGradient(200, 100, 10, 200, 100, 100);
+        const gradient = ctx.createRadialGradient(200, 100, 10, 200, 100, 80 + distortion);
         gradient.addColorStop(0, "black");
         gradient.addColorStop(1, "purple");
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(200, 100, 80, 0, Math.PI * 2);
+        ctx.arc(200, 100, 80 + distortion, 0, Math.PI * 2);
         ctx.fill();
-
-        ctx.strokeStyle = "cyan";
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.arc(200, 100, 90, 0, Math.PI * 2);
-        ctx.stroke();
     }
 
-    function animateWormhole() {
+    document.getElementById("wormholeCanvas").addEventListener("mousemove", (event) => {
+        distortion = Math.sin(event.clientX * 0.01) * 10;
         drawWormhole();
-        requestAnimationFrame(animateWormhole);
-    }
+    });
 
-    animateWormhole();
+    drawWormhole();
 })();
 
-// 🌀 Quantum Fractal Generator
+// 🌀 Quantum Fractal Generator (Click to generate)
 (() => {
     const ctx = getCanvasContext("fractalCanvas");
 
@@ -1517,15 +1507,15 @@ function getCanvasContext(canvasId) {
         drawFractal(x - size, y - size, size * 0.7, depth + 1);
     }
 
-    window.generateFractal = () => {
+    document.getElementById("fractalCanvas").addEventListener("click", () => {
         ctx.clearRect(0, 0, 400, 200);
         drawFractal(200, 180, 50, 0);
-    };
+    });
 
-    generateFractal();
+    drawFractal(200, 180, 50, 0);
 })();
 
-// ⚡ Quantum Energy Field Distortion
+// ⚡ Quantum Energy Field Distortion (Hover to distort)
 (() => {
     const ctx = getCanvasContext("energyFieldCanvas");
 
@@ -1541,15 +1531,18 @@ function getCanvasContext(canvasId) {
             ctx.arc(x, y, radius, 0, Math.PI * 2);
             ctx.fill();
         }
-        requestAnimationFrame(drawEnergyField);
     }
 
-    drawEnergyField();
+    document.getElementById("energyFieldCanvas").addEventListener("mouseenter", drawEnergyField);
+    document.getElementById("energyFieldCanvas").addEventListener("mouseleave", () => {
+        ctx.clearRect(0, 0, 400, 200);
+    });
 })();
 
-// 🕳️ Quantum Gravity Well
+// 🕳️ Quantum Gravity Well (Click to add particles)
 (() => {
     const ctx = getCanvasContext("gravityWellCanvas");
+    let particles = [];
 
     function drawGravityWell() {
         if (!ctx) return;
@@ -1566,18 +1559,35 @@ function getCanvasContext(canvasId) {
             ctx.arc(200, 100, 80 + i * 5, 0, Math.PI * 2);
             ctx.stroke();
         }
+
+        // Draw particles falling into black hole
+        particles.forEach((p, index) => {
+            p.y += p.vy;
+            p.vy *= 0.98; // Slow down
+            p.vy += 0.1; // Simulate gravity
+            p.x += (200 - p.x) * 0.02; // Pull towards center
+
+            ctx.fillStyle = "yellow";
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            if (p.y > 120) particles.splice(index, 1); // Remove if inside black hole
+        });
+
+        requestAnimationFrame(drawGravityWell);
     }
 
-    function animateGravityWell() {
-        drawGravityWell();
-        requestAnimationFrame(animateGravityWell);
-    }
+    document.getElementById("gravityWellCanvas").addEventListener("click", (event) => {
+        const rect = event.target.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        particles.push({ x, y, vy: -2 });
+    });
 
-    animateGravityWell();
+    drawGravityWell();
 })();
 
-
-        
 
     </script>
 
