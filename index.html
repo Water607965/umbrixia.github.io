@@ -1424,11 +1424,11 @@
 
         // 🌌 Quantum Eraser Experiment (Click to change)
 (() => {
-    const ctx = getCanvasContext("quantumEraserCanvas");
+    const canvas = document.getElementById("quantumEraserCanvas");
+    const ctx = canvas.getContext("2d");
     let observerPresent = false;
 
     function drawInterference() {
-        if (!ctx) return;
         ctx.clearRect(0, 0, 400, 200);
         for (let i = 0; i < 400; i += 10) {
             const intensity = Math.sin(i * 0.1) ** 2 * 255;
@@ -1438,7 +1438,6 @@
     }
 
     function drawParticles() {
-        if (!ctx) return;
         ctx.clearRect(0, 0, 400, 200);
         ctx.fillStyle = "blue";
         for (let i = 0; i < 100; i++) {
@@ -1451,25 +1450,24 @@
     }
 
     function animate() {
-        if (observerPresent) drawParticles();
-        else drawInterference();
+        observerPresent ? drawParticles() : drawInterference();
         requestAnimationFrame(animate);
     }
 
-    document.getElementById("quantumEraserCanvas").addEventListener("click", () => {
+    canvas.addEventListener("click", () => {
         observerPresent = !observerPresent;
     });
 
     animate();
 })();
 
-// 🚀 Quantum Wormhole Simulator (Drag to distort)
+// 🚀 Quantum Wormhole Simulator (Click to distort)
 (() => {
-    const ctx = getCanvasContext("wormholeCanvas");
+    const canvas = document.getElementById("wormholeCanvas");
+    const ctx = canvas.getContext("2d");
     let distortion = 0;
 
     function drawWormhole() {
-        if (!ctx) return;
         ctx.clearRect(0, 0, 400, 200);
         const gradient = ctx.createRadialGradient(200, 100, 10, 200, 100, 80 + distortion);
         gradient.addColorStop(0, "black");
@@ -1481,7 +1479,7 @@
         ctx.fill();
     }
 
-    document.getElementById("wormholeCanvas").addEventListener("mousemove", (event) => {
+    canvas.addEventListener("mousemove", (event) => {
         distortion = Math.sin(event.clientX * 0.01) * 10;
         drawWormhole();
     });
@@ -1491,10 +1489,11 @@
 
 // 🌀 Quantum Fractal Generator (Click to generate)
 (() => {
-    const ctx = getCanvasContext("fractalCanvas");
+    const canvas = document.getElementById("fractalCanvas");
+    const ctx = canvas.getContext("2d");
 
     function drawFractal(x, y, size, depth) {
-        if (!ctx || depth > 6) return;
+        if (depth > 5) return;
         ctx.strokeStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
         ctx.lineWidth = 2;
 
@@ -1507,7 +1506,7 @@
         drawFractal(x - size, y - size, size * 0.7, depth + 1);
     }
 
-    document.getElementById("fractalCanvas").addEventListener("click", () => {
+    canvas.addEventListener("click", () => {
         ctx.clearRect(0, 0, 400, 200);
         drawFractal(200, 180, 50, 0);
     });
@@ -1515,39 +1514,47 @@
     drawFractal(200, 180, 50, 0);
 })();
 
-// ⚡ Quantum Energy Field Distortion (Hover to distort)
+// ⚡ Quantum Energy Field Distortion (Always visible, reacts to mouse)
 (() => {
-    const ctx = getCanvasContext("energyFieldCanvas");
+    const canvas = document.getElementById("energyFieldCanvas");
+    const ctx = canvas.getContext("2d");
 
-    function drawEnergyField() {
-        if (!ctx) return;
+    function drawEnergyField(x, y) {
         ctx.clearRect(0, 0, 400, 200);
         for (let i = 0; i < 100; i++) {
-            const x = Math.random() * 400;
-            const y = Math.random() * 200;
-            const radius = Math.random() * 5 + 2;
-            ctx.fillStyle = `rgba(${Math.random() * 255}, ${Math.random() * 255}, 255, 0.8)`;
+            const randomX = Math.random() * 400;
+            const randomY = Math.random() * 200;
+            ctx.fillStyle = `rgba(0, 255, 255, 0.5)`;
             ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.arc(randomX, randomY, 3, 0, Math.PI * 2);
             ctx.fill();
         }
+
+        // Distortion effect at cursor
+        ctx.fillStyle = "rgba(255, 0, 0, 0.8)";
+        ctx.beginPath();
+        ctx.arc(x, y, 15, 0, Math.PI * 2);
+        ctx.fill();
     }
 
-    document.getElementById("energyFieldCanvas").addEventListener("mouseenter", drawEnergyField);
-    document.getElementById("energyFieldCanvas").addEventListener("mouseleave", () => {
-        ctx.clearRect(0, 0, 400, 200);
+    canvas.addEventListener("mousemove", (event) => {
+        const rect = canvas.getBoundingClientRect();
+        drawEnergyField(event.clientX - rect.left, event.clientY - rect.top);
     });
+
+    drawEnergyField(200, 100);
 })();
 
-// 🕳️ Quantum Gravity Well (Click to add particles)
+// 🕳️ Quantum Gravity Well (Click to spawn particles)
 (() => {
-    const ctx = getCanvasContext("gravityWellCanvas");
+    const canvas = document.getElementById("gravityWellCanvas");
+    const ctx = canvas.getContext("2d");
     let particles = [];
 
     function drawGravityWell() {
-        if (!ctx) return;
         ctx.clearRect(0, 0, 400, 200);
 
+        // Draw black hole
         ctx.fillStyle = "black";
         ctx.beginPath();
         ctx.arc(200, 100, 80, 0, Math.PI * 2);
@@ -1560,7 +1567,7 @@
             ctx.stroke();
         }
 
-        // Draw particles falling into black hole
+        // Draw particles falling into the black hole
         particles.forEach((p, index) => {
             p.y += p.vy;
             p.vy *= 0.98; // Slow down
@@ -1572,14 +1579,14 @@
             ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
             ctx.fill();
 
-            if (p.y > 120) particles.splice(index, 1); // Remove if inside black hole
+            if (p.y > 120) particles.splice(index, 1); // Remove when inside black hole
         });
 
         requestAnimationFrame(drawGravityWell);
     }
 
-    document.getElementById("gravityWellCanvas").addEventListener("click", (event) => {
-        const rect = event.target.getBoundingClientRect();
+    canvas.addEventListener("click", (event) => {
+        const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         particles.push({ x, y, vy: -2 });
@@ -1587,7 +1594,6 @@
 
     drawGravityWell();
 })();
-
 
     </script>
 
