@@ -624,6 +624,32 @@
     <canvas id="timeEvolutionCanvas" width="400" height="200"></canvas>
         </div>
 
+        <div class="interactive-card">
+    <h4>Quantum Spin Simulation</h4>
+    <canvas id="spinCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="flipSpin()">Flip Spin</button>
+        </div>
+
+        <div class="interactive-card">
+    <h4>Quantum Probability Clouds</h4>
+    <canvas id="probabilityCloudCanvas" width="400" height="200"></canvas>
+        </div>
+
+        <div class="interactive-card">
+    <h4>Quantum Uncertainty</h4>
+    <canvas id="uncertaintyCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="increaseMomentum()">Increase Momentum Precision</button>
+        </div>
+
+        <div class="interactive-card">
+    <h4>Quantum Wave Collapse</h4>
+    <canvas id="waveCollapseCanvas" width="400" height="200"></canvas>
+    <button class="gold-button" onclick="collapseWave()">Measure System</button>
+        </div>
+
+
+
+
     </div>
 </section>
 
@@ -1073,6 +1099,121 @@
     }
 
     drawWavePacket();
+})();
+
+
+        (() => {
+    const ctx = getCanvasContext("spinCanvas");
+    let spinState = "Up";
+
+    function drawSpin() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.fillStyle = spinState === "Up" ? "blue" : "red";
+        
+        ctx.beginPath();
+        ctx.arc(200, 100, 50, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "white";
+        ctx.font = "20px Arial";
+        ctx.fillText(`Spin: ${spinState}`, 150, 180);
+    }
+
+    window.flipSpin = () => {
+        spinState = Math.random() > 0.5 ? "Up" : "Down";
+        drawSpin();
+    };
+
+    drawSpin();
+})();
+
+        (() => {
+    const ctx = getCanvasContext("probabilityCloudCanvas");
+
+    function drawProbabilityCloud() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.fillStyle = "rgba(255, 215, 0, 0.5)";
+        
+        for (let i = 0; i < 100; i++) {
+            let r = Math.random() * 50;
+            let theta = Math.random() * Math.PI * 2;
+            let x = 200 + r * Math.cos(theta);
+            let y = 100 + r * Math.sin(theta);
+            ctx.beginPath();
+            ctx.arc(x, y, Math.random() * 5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        requestAnimationFrame(drawProbabilityCloud);
+    }
+
+    drawProbabilityCloud();
+})();
+
+
+        (() => {
+    const ctx = getCanvasContext("uncertaintyCanvas");
+    let momentumPrecision = 1;
+
+    function drawUncertainty() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.strokeStyle = "yellow";
+        ctx.lineWidth = 2;
+
+        for (let x = 0; x < 400; x += 10) {
+            let y = 100 + Math.sin(x * 0.1) * (50 / momentumPrecision);
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+    }
+
+    window.increaseMomentum = () => {
+        momentumPrecision *= 1.2;
+        drawUncertainty();
+    };
+
+    drawUncertainty();
+})();
+
+        (() => {
+    const ctx = getCanvasContext("waveCollapseCanvas");
+    let collapsed = false;
+
+    function drawWave() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.strokeStyle = "cyan";
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        for (let x = 0; x < 400; x++) {
+            let y = 100 + Math.sin(x * 0.1) * 50;
+            ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+    }
+
+    function collapseWave() {
+        if (!ctx) return;
+        collapsed = true;
+        ctx.clearRect(0, 0, 400, 200);
+        ctx.fillStyle = "red";
+
+        ctx.beginPath();
+        ctx.arc(200, 100, 50, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "white";
+        ctx.font = "20px Arial";
+        ctx.fillText("Wave Collapsed!", 140, 180);
+    }
+
+    drawWave();
+    window.collapseWave = collapseWave;
 })();
 
 
