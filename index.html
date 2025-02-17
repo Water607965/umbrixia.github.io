@@ -978,6 +978,60 @@
       <canvas id="distortionPortalCanvas" width="400" height="200"></canvas>
       <button class="gold-button" onclick="DistortionPortal.warp()">Warp Portal</button>
     </div>
+
+        <!-- Quantum Tunneling Visualizer -->
+    <div class="interactive-card">
+      <h4>Quantum Tunneling Visualizer</h4>
+      <canvas id="tunnelingVisualizerCanvas" width="400" height="200"></canvas>
+      <div style="margin-top: 0.5rem;">
+        <label style="font-size: 0.9rem; color: #ffd700;">
+          Barrier Height:
+          <input type="range" id="barrierHeight" min="10" max="100" value="50">
+        </label>
+        <label style="font-size: 0.9rem; color: #ffd700; margin-left: 1rem;">
+          Barrier Width:
+          <input type="range" id="barrierWidth" min="20" max="150" value="80">
+        </label>
+      </div>
+      <button class="gold-button" onclick="TunnelingVisualizer.simulate()">Simulate Tunneling</button>
+    </div>
+
+    <!-- Wave Function Collapse Simulator -->
+    <div class="interactive-card">
+      <h4>Wave Function Collapse</h4>
+      <canvas id="collapseSimulatorCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="CollapseSimulator.measure()">Measure & Collapse</button>
+    </div>
+
+    <!-- Superposition Decision Tree -->
+    <div class="interactive-card">
+      <h4>Superposition Decision Tree</h4>
+      <canvas id="superpositionTreeCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="SuperpositionTree.collapse()">Collapse Superposition</button>
+    </div>
+
+    <!-- Decoherence Detector -->
+    <div class="interactive-card">
+      <h4>Decoherence Detector</h4>
+      <canvas id="decoherenceCanvas" width="400" height="200"></canvas>
+      <div style="margin-top: 0.5rem; text-align: center;">
+        <label style="font-size: 0.9rem; color: #ffd700;">
+          Decoherence Level:
+          <input type="range" id="decoherenceLevel" min="0" max="1" step="0.01" value="0.0">
+        </label>
+      </div>
+    </div>
+
+    <!-- Quantum Time Machine -->
+    <div class="interactive-card">
+      <h4>Quantum Time Machine</h4>
+      <canvas id="timeMachineCanvas" width="400" height="200"></canvas>
+      <div style="margin-top: 0.5rem; text-align: center;">
+        <label style="font-size: 0.9rem; color: #ffd700;">
+          Time Speed:
+          <input type="range" id="timeSpeedControl" min="-3" max="3" step="0.1" value="1">
+        </label>
+      </div>
   </div>
   </div>
 </section>
@@ -3102,6 +3156,247 @@ const DistortionPortal = (() => {
     }
   };
 })();
+        /* ===================== Quantum Tunneling Visualizer ===================== */
+const TunnelingVisualizer = (() => {
+  const canvas = document.getElementById("tunnelingVisualizerCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const barrierHeightSlider = document.getElementById("barrierHeight");
+  const barrierWidthSlider = document.getElementById("barrierWidth");
+  let particleX = 50;
+  const particleY = canvas.height / 2;
+  let animationId;
+  let simulating = false;
+
+  // Draw the scene: barrier and particle (with glow color changing on success)
+  const drawScene = (tunnelSuccess) => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw barrier
+    const barrierWidth = parseInt(barrierWidthSlider.value);
+    const barrierHeight = parseInt(barrierHeightSlider.value);
+    const barrierX = canvas.width / 2 - barrierWidth / 2;
+    const barrierY = canvas.height / 2 - barrierHeight / 2;
+    ctx.fillStyle = "#555";
+    ctx.fillRect(barrierX, barrierY, barrierWidth, barrierHeight);
+    // Draw particle
+    ctx.beginPath();
+    ctx.arc(particleX, particleY, 8, 0, Math.PI * 2);
+    ctx.fillStyle = tunnelSuccess ? "#00ff00" : "#00ffff";
+    ctx.shadowColor = "#00ffff";
+    ctx.shadowBlur = 10;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  };
+
+  // Animate the particle approaching and interacting with the barrier
+  const simulate = () => {
+    if (simulating) return;
+    simulating = true;
+    particleX = 50;
+    let tunnelSuccess = false;
+    const barrierWidth = parseInt(barrierWidthSlider.value);
+    const barrierX = canvas.width / 2 - barrierWidth / 2;
+
+    const animate = () => {
+      // Move particle toward barrier
+      if (particleX < barrierX - 8) {
+        particleX += 2;
+      } else if (particleX < barrierX + barrierWidth + 8) {
+        // In barrier region: decide on tunneling success based on a rough heuristic
+        if (!tunnelSuccess) {
+          const prob = Math.exp(-((barrierWidth / 50) * (parseInt(barrierHeightSlider.value) / 50)));
+          tunnelSuccess = (Math.random() < prob);
+        }
+        particleX += tunnelSuccess ? 4 : -2;
+      } else {
+        particleX += 2;
+      }
+      drawScene(tunnelSuccess);
+      if (particleX < canvas.width - 10) {
+        animationId = requestAnimationFrame(animate);
+      } else {
+        simulating = false;
+      }
+    };
+    animate();
+  };
+
+  return {
+    simulate: simulate
+  };
+})();
+
+
+/* ===================== Wave Function Collapse Simulator ===================== */
+const CollapseSimulator = (() => {
+  const canvas = document.getElementById("collapseSimulatorCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let collapsing = false;
+  let collapseProgress = 0;
+  let animationId;
+
+  // Draw a smooth Gaussian wave function that will collapse when measured
+  const drawWaveFunction = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    for (let x = 0; x < canvas.width; x++) {
+      const norm = (x - canvas.width / 2) / 50;
+      // As collapseProgress goes from 0 to 1, the wave function narrows toward a spike
+      const amplitude = 40 * (1 - collapseProgress) + 10 * collapseProgress;
+      const y = canvas.height / 2 - 40 * Math.exp(-norm * norm) * (1 - collapseProgress) - amplitude * collapseProgress;
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = "#00ffff";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  };
+
+  // Animate the collapse of the wave function over time
+  const animateCollapse = () => {
+    collapseProgress += 0.02;
+    if (collapseProgress > 1) {
+      collapseProgress = 0;
+      collapsing = false;
+      cancelAnimationFrame(animationId);
+    } else {
+      drawWaveFunction();
+      animationId = requestAnimationFrame(animateCollapse);
+    }
+  };
+
+  return {
+    measure: () => {
+      if (!collapsing) {
+        collapsing = true;
+        collapseProgress = 0;
+        animateCollapse();
+      }
+    }
+  };
+})();
+
+
+/* ===================== Superposition Decision Tree ===================== */
+const SuperpositionTree = (() => {
+  const canvas = document.getElementById("superpositionTreeCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  // Define three possible outcome branches
+  const branches = [
+    { startX: canvas.width / 2, startY: canvas.height, endX: canvas.width / 4, endY: canvas.height / 2 },
+    { startX: canvas.width / 2, startY: canvas.height, endX: canvas.width / 2, endY: canvas.height / 2 },
+    { startX: canvas.width / 2, startY: canvas.height, endX: (3 * canvas.width) / 4, endY: canvas.height / 2 }
+  ];
+  let collapsed = false;
+  let chosenIndex = null;
+
+  // Draw the decision tree with branch probabilities
+  const drawTree = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw trunk
+    ctx.strokeStyle = "#ffd700";
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(canvas.width / 2, canvas.height);
+    ctx.lineTo(canvas.width / 2, canvas.height - 50);
+    ctx.stroke();
+    // Draw branches
+    branches.forEach((branch, i) => {
+      ctx.beginPath();
+      ctx.moveTo(canvas.width / 2, canvas.height - 50);
+      ctx.lineTo(branch.endX, branch.endY);
+      ctx.strokeStyle = (collapsed && chosenIndex === i) ? "#00ff00" : "#ffd700";
+      ctx.lineWidth = collapsed && chosenIndex === i ? 6 : 4;
+      ctx.stroke();
+      // Draw probability label at the midpoint
+      ctx.fillStyle = "#00ffff";
+      ctx.font = "12px Raleway";
+      ctx.fillText(`P=${(1 / branches.length).toFixed(2)}`, (canvas.width / 2 + branch.endX) / 2, (canvas.height - 50 + branch.endY) / 2);
+    });
+  };
+
+  drawTree();
+
+  return {
+    collapse: () => {
+      collapsed = true;
+      chosenIndex = Math.floor(Math.random() * branches.length);
+      drawTree();
+      // Reset after 2 seconds
+      setTimeout(() => {
+        collapsed = false;
+        chosenIndex = null;
+        drawTree();
+      }, 2000);
+    }
+  };
+})();
+
+
+/* ===================== Decoherence Detector ===================== */
+const DecoherenceDetector = (() => {
+  const canvas = document.getElementById("decoherenceCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const decoherenceSlider = document.getElementById("decoherenceLevel");
+  let animationId;
+  let time = 0;
+
+  // Draw an interference pattern that gradually degrades with increased decoherence
+  const drawInterference = () => {
+    const decoherence = parseFloat(decoherenceSlider.value);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let x = 0; x < canvas.width; x += 5) {
+      const baseIntensity = (Math.sin(x * 0.05 + time) + 1) / 2;
+      // Blend the interference pattern with random noise according to the decoherence level
+      const noise = Math.random() * decoherence;
+      const finalIntensity = Math.min(1, baseIntensity * (1 - decoherence) + noise);
+      ctx.fillStyle = `rgba(255,215,0,${finalIntensity.toFixed(2)})`;
+      ctx.fillRect(x, 0, 5, canvas.height);
+    }
+    time += 0.05;
+    animationId = requestAnimationFrame(drawInterference);
+  };
+
+  drawInterference();
+
+  return {};
+})();
+
+
+/* ===================== Quantum Time Machine ===================== */
+const TimeMachine = (() => {
+  const canvas = document.getElementById("timeMachineCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const timeSpeedControl = document.getElementById("timeSpeedControl");
+  let time = 0;
+  let animationId;
+
+  // Draw dynamic radial waves that evolve based on the time speed
+  const drawTimePattern = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const speed = parseFloat(timeSpeedControl.value);
+    time += speed * 0.05;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    for (let i = 0; i < 5; i++) {
+      const radius = Math.abs(Math.sin(time + i)) * 40 + 20;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(0,255,255,${(1 - i * 0.2).toFixed(2)})`;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+    animationId = requestAnimationFrame(drawTimePattern);
+  };
+
+  drawTimePattern();
+
+  return {};
+})();
+
 
 
 
