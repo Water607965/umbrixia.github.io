@@ -1034,6 +1034,42 @@
       </div>
   </div>
   </div>
+
+    <!-- Quantum Multiverse Explorer -->
+    <div class="interactive-card">
+      <h4>Quantum Multiverse Explorer</h4>
+      <canvas id="multiverseCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="Multiverse.split()">Split the Multiverse</button>
+    </div>
+
+    <!-- Quantum Entanglement Arena -->
+    <div class="interactive-card">
+      <h4>Quantum Entanglement Arena</h4>
+      <canvas id="entanglementArenaCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="EntanglementArena.battle()">Trigger Battle</button>
+    </div>
+
+    <!-- Decoherence Escape Challenge -->
+    <div class="interactive-card">
+      <h4>Decoherence Escape Challenge</h4>
+      <canvas id="decoherenceEscapeCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="DecoherenceEscape.activate()">Resist Decoherence</button>
+    </div>
+
+    <!-- Quantum Algorithm Visualizer -->
+    <div class="interactive-card">
+      <h4>Quantum Algorithm Visualizer</h4>
+      <canvas id="algorithmCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="QuantumAlgorithm.run()">Run Algorithm</button>
+    </div>
+
+    <!-- Quantum Black Hole Playground -->
+    <div class="interactive-card">
+      <h4>Quantum Black Hole Playground</h4>
+      <canvas id="blackHoleCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="BlackHole.warp()">Warp Space</button>
+    </div>
+  </div>
 </section>
 
 
@@ -3396,6 +3432,361 @@ const TimeMachine = (() => {
 
   return {};
 })();
+        /* ===================== Quantum Multiverse Explorer ===================== */
+const Multiverse = (() => {
+  const canvas = document.getElementById("multiverseCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let universes = [];
+  let animationId;
+  let splitTrigger = false;
+
+  // Each universe is a swirling vortex represented by a circle with dynamic distortions
+  class Universe {
+    constructor(x, y, baseRadius, hue) {
+      this.x = x;
+      this.y = y;
+      this.baseRadius = baseRadius;
+      this.hue = hue;
+      this.distortion = 0;
+    }
+    update(time) {
+      this.distortion = 10 * Math.abs(Math.sin(time * 0.05 + this.hue));
+    }
+    draw() {
+      const radius = this.baseRadius + this.distortion;
+      const grad = ctx.createRadialGradient(this.x, this.y, this.baseRadius, this.x, this.y, radius);
+      grad.addColorStop(0, `hsla(${this.hue},100%,50%,0.8)`);
+      grad.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  const initUniverses = () => {
+    universes = [];
+    // Start with one central universe
+    universes.push(new Universe(canvas.width / 2, canvas.height / 2, 30, 200));
+  };
+
+  const animate = (time) => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    universes.forEach(u => {
+      u.update(time);
+      u.draw();
+    });
+    if (splitTrigger && universes.length < 20) {
+      // Randomly split a universe into two new ones
+      const idx = Math.floor(Math.random() * universes.length);
+      const parent = universes[idx];
+      universes.push(new Universe(
+        parent.x + (Math.random() - 0.5) * 40,
+        parent.y + (Math.random() - 0.5) * 40,
+        parent.baseRadius * 0.8,
+        (parent.hue + 30) % 360
+      ));
+    }
+    animationId = requestAnimationFrame(animate);
+  };
+
+  // Public API: trigger a split event once per button click
+  return {
+    split: () => {
+      splitTrigger = true;
+      // Let the effect run for 1 second then reset trigger
+      setTimeout(() => { splitTrigger = false; }, 1000);
+      if (universes.length === 0) initUniverses();
+    },
+    start: () => {
+      initUniverses();
+      animate(0);
+    }
+  };
+})();
+Multiverse.start();
+
+
+/* ===================== Quantum Entanglement Arena ===================== */
+const EntanglementArena = (() => {
+  const canvas = document.getElementById("entanglementArenaCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+  let battleActive = false;
+  let animationId;
+
+  // Particle with entangled partner properties
+  class Particle {
+    constructor(x, y, vx, vy, color) {
+      this.x = x;
+      this.y = y;
+      this.vx = vx;
+      this.vy = vy;
+      this.color = color;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, 6, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+  }
+
+  // Initialize with entangled pairs (particles mirror each other’s motion)
+  const initBattle = () => {
+    particles = [];
+    for (let i = 0; i < 10; i++) {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const vx = (Math.random() - 0.5) * 3;
+      const vy = (Math.random() - 0.5) * 3;
+      particles.push(new Particle(x, y, vx, vy, "#00ffff"));
+      // Create its entangled partner mirrored across center
+      const mirrorX = canvas.width - x;
+      const mirrorY = canvas.height - y;
+      particles.push(new Particle(mirrorX, mirrorY, -vx, -vy, "#ff00ff"));
+    }
+  };
+
+  const animate = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    animationId = requestAnimationFrame(animate);
+  };
+
+  return {
+    battle: () => {
+      battleActive = !battleActive;
+      if (battleActive) {
+        initBattle();
+        animate();
+      } else {
+        cancelAnimationFrame(animationId);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+  };
+})();
+
+
+/* ===================== Decoherence Escape Challenge ===================== */
+const DecoherenceEscape = (() => {
+  const canvas = document.getElementById("decoherenceEscapeCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let coherence = 1.0;
+  let escapeActive = false;
+  let animationId;
+
+  // Draw an interference pattern that degrades with decoherence
+  const drawPattern = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let x = 0; x < canvas.width; x += 4) {
+      let intensity = (Math.sin(x * 0.05) + 1) / 2 * coherence;
+      ctx.fillStyle = `rgba(255,215,0,${intensity.toFixed(2)})`;
+      ctx.fillRect(x, 0, 4, canvas.height);
+    }
+  };
+
+  // When the user clicks the button, they "fight" decoherence by boosting coherence
+  const activateEscape = () => {
+    escapeActive = true;
+    const boost = setInterval(() => {
+      coherence = Math.min(1.0, coherence + 0.05);
+      if (coherence >= 1.0) {
+        clearInterval(boost);
+        escapeActive = false;
+      }
+    }, 100);
+  };
+
+  const animate = () => {
+    // Gradually let decoherence creep in unless resisted
+    if (!escapeActive) {
+      coherence = Math.max(0, coherence - 0.001);
+    }
+    drawPattern();
+    animationId = requestAnimationFrame(animate);
+  };
+
+  animate();
+
+  return {
+    activate: activateEscape
+  };
+})();
+
+
+/* ===================== Quantum Algorithm Visualizer ===================== */
+const QuantumAlgorithm = (() => {
+  const canvas = document.getElementById("algorithmCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let circuitNodes = [];
+  let animationId;
+  let running = false;
+
+  // Build a network of nodes representing qubits and gates
+  const initCircuit = () => {
+    circuitNodes = [];
+    const numQubits = 4;
+    const numGates = 6;
+    for (let q = 0; q < numQubits; q++) {
+      for (let g = 0; g < numGates; g++) {
+        circuitNodes.push({
+          x: 50 + g * 50,
+          y: 50 + q * 40,
+          active: Math.random() > 0.5
+        });
+      }
+    }
+  };
+
+  const drawCircuit = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    circuitNodes.forEach(node => {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, 8, 0, Math.PI * 2);
+      ctx.fillStyle = node.active ? "#00ff00" : "#ff0000";
+      ctx.fill();
+    });
+    // Draw connections (gates influence nearby nodes)
+    for (let i = 0; i < circuitNodes.length; i++) {
+      for (let j = i + 1; j < circuitNodes.length; j++) {
+        const dx = circuitNodes[i].x - circuitNodes[j].x;
+        const dy = circuitNodes[i].y - circuitNodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 60) {
+          ctx.strokeStyle = "rgba(255,215,0,0.5)";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(circuitNodes[i].x, circuitNodes[i].y);
+          ctx.lineTo(circuitNodes[j].x, circuitNodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+  };
+
+  const animate = () => {
+    // Randomly toggle nodes to simulate algorithm evolution
+    circuitNodes.forEach(node => {
+      if (Math.random() < 0.02) {
+        node.active = !node.active;
+      }
+    });
+    drawCircuit();
+    animationId = requestAnimationFrame(animate);
+  };
+
+  return {
+    run: () => {
+      if (!running) {
+        initCircuit();
+        running = true;
+        animate();
+      }
+    }
+  };
+})();
+
+
+/* ===================== Quantum Black Hole Playground ===================== */
+const BlackHole = (() => {
+  const canvas = document.getElementById("blackHoleCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+  let warpActive = false;
+  let animationId;
+
+  // Create swirling particles around the black hole
+  class SpaceParticle {
+    constructor() {
+      this.x = canvas.width / 2 + (Math.random() - 0.5) * 200;
+      this.y = canvas.height / 2 + (Math.random() - 0.5) * 200;
+      this.vx = (Math.random() - 0.5) * 1;
+      this.vy = (Math.random() - 0.5) * 1;
+      this.size = Math.random() * 3 + 1;
+    }
+    update() {
+      // Gravitation pull towards center
+      const dx = canvas.width / 2 - this.x;
+      const dy = canvas.height / 2 - this.y;
+      this.vx += dx * 0.0005;
+      this.vy += dy * 0.0005;
+      // If warp is active, add extra random distortion
+      if (warpActive) {
+        this.vx += (Math.random() - 0.5) * 0.5;
+        this.vy += (Math.random() - 0.5) * 0.5;
+      }
+      this.x += this.vx;
+      this.y += this.vy;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
+    }
+  }
+
+  const initParticles = () => {
+    particles = [];
+    for (let i = 0; i < 100; i++) {
+      particles.push(new SpaceParticle());
+    }
+  };
+
+  const drawBlackHole = () => {
+    // Draw black hole core
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2, canvas.height / 2, 30, 0, Math.PI * 2);
+    ctx.fillStyle = "#000";
+    ctx.fill();
+    // Draw swirling accretion disk
+    const grad = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 30, canvas.width/2, canvas.height/2, 80);
+    grad.addColorStop(0, "rgba(255,140,0,0.8)");
+    grad.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2, canvas.height / 2, 80, 0, Math.PI * 2);
+    ctx.fill();
+  };
+
+  const animate = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBlackHole();
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    animationId = requestAnimationFrame(animate);
+  };
+
+  initParticles();
+  animate();
+
+  return {
+    warp: () => {
+      warpActive = true;
+      // Activate warp for 1 second
+      setTimeout(() => { warpActive = false; }, 1000);
+    }
+  };
+})();
+
 
 
 
