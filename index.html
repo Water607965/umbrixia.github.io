@@ -944,8 +944,41 @@
       <canvas id="wormholeExplorerCanvas" width="400" height="200"></canvas>
       <button class="gold-button" onclick="WormholeExplorer.distort()">Distort Wormhole</button>
     </div>
+
+        <div class="interactive-card">
+      <h4>Quantum Neural Network</h4>
+      <canvas id="quantumNeuralCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="QuantumNeural.toggle()">Toggle Network</button>
+    </div>
+
+    <!-- Multidimensional Quantum Landscape -->
+    <div class="interactive-card">
+      <h4>Multidimensional Quantum Landscape</h4>
+      <canvas id="quantumLandscapeCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="QuantumLandscape.changeView()">Change View</button>
+    </div>
+
+    <!-- Quantum Gravity Ripple Simulator -->
+    <div class="interactive-card">
+      <h4>Quantum Gravity Ripples</h4>
+      <canvas id="gravityRippleCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="GravityRipple.disturb()">Disturb Ripples</button>
+    </div>
+
+    <!-- Quantum Entanglement Universe -->
+    <div class="interactive-card">
+      <h4>Quantum Entanglement Universe</h4>
+      <canvas id="entanglementUniverseCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="EntanglementUniverse.shuffle()">Shuffle Entanglement</button>
+    </div>
+
+    <!-- Spacetime Distortion Portal -->
+    <div class="interactive-card">
+      <h4>Spacetime Distortion Portal</h4>
+      <canvas id="distortionPortalCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="DistortionPortal.warp()">Warp Portal</button>
+    </div>
   </div>
-</section>
   </div>
 </section>
 
@@ -2753,6 +2786,323 @@ const WormholeExplorer = (() => {
     }
   };
 })();
+        /* ===================== Quantum Neural Network Simulator ===================== */
+const QuantumNeural = (() => {
+  const canvas = document.getElementById("quantumNeuralCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const numNodes = 15;
+  let nodes = [];
+  let active = false;
+  let animationId;
+
+  // Create nodes with random positions and a slight oscillation offset
+  const initNodes = () => {
+    nodes = [];
+    for (let i = 0; i < numNodes; i++) {
+      nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        baseX: 0,
+        baseY: 0,
+        phase: Math.random() * Math.PI * 2
+      });
+      nodes[i].baseX = nodes[i].x;
+      nodes[i].baseY = nodes[i].y;
+    }
+  };
+
+  // Draw nodes and connections with a glowing gradient effect
+  const draw = (time) => {
+    ctx.fillStyle = "rgba(0,0,0,0.15)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Update node positions with a gentle oscillation
+    nodes.forEach((node) => {
+      node.x = node.baseX + Math.sin(time + node.phase) * 10;
+      node.y = node.baseY + Math.cos(time + node.phase) * 10;
+    });
+
+    // Draw connections
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 100) {
+          const alpha = 1 - dist / 100;
+          ctx.strokeStyle = `rgba(255,215,0,${alpha.toFixed(2)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw nodes with glow
+    nodes.forEach((node) => {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, 5, 0, Math.PI * 2);
+      ctx.fillStyle = "#00ffff";
+      ctx.shadowColor = "#00ffff";
+      ctx.shadowBlur = 10;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+  };
+
+  const animate = (time) => {
+    if (!active) return;
+    draw(time * 0.002);
+    animationId = requestAnimationFrame(animate);
+  };
+
+  return {
+    toggle: () => {
+      active = !active;
+      if (active) {
+        initNodes();
+        animate(0);
+      } else {
+        cancelAnimationFrame(animationId);
+      }
+    }
+  };
+})();
+
+
+/* ===================== Multidimensional Quantum Landscape ===================== */
+const QuantumLandscape = (() => {
+  const canvas = document.getElementById("quantumLandscapeCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let viewIndex = 0; // Cycle through different views
+  const views = [
+    { color1: "#ff0000", color2: "#ffd700", waveFactor: 20 },
+    { color1: "#00ff00", color2: "#00ffff", waveFactor: 30 },
+    { color1: "#0000ff", color2: "#ff00ff", waveFactor: 15 }
+  ];
+  let time = 0;
+  let animationId;
+
+  const drawLandscape = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const view = views[viewIndex];
+    // Create a linear gradient background that shifts over time
+    const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    grad.addColorStop(0, view.color1);
+    grad.addColorStop(1, view.color2);
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw layered sine waves to simulate a multidimensional landscape
+    for (let layer = 0; layer < 3; layer++) {
+      ctx.beginPath();
+      const offset = layer * 20;
+      for (let x = 0; x <= canvas.width; x += 5) {
+        let y =
+          canvas.height / 2 +
+          Math.sin((x * 0.02) + time + layer) * view.waveFactor +
+          offset;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = `rgba(0, 0, 0, ${0.3 + layer * 0.2})`;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  };
+
+  const animate = () => {
+    time += 0.05;
+    drawLandscape();
+    animationId = requestAnimationFrame(animate);
+  };
+
+  // Start animation immediately
+  animate();
+
+  return {
+    changeView: () => {
+      viewIndex = (viewIndex + 1) % views.length;
+    }
+  };
+})();
+
+
+/* ===================== Quantum Gravity Ripple Simulator ===================== */
+const GravityRipple = (() => {
+  const canvas = document.getElementById("gravityRippleCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let ripples = [];
+  let animationId;
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+
+  // Create a new ripple with a timestamp and initial radius
+  const addRipple = () => {
+    ripples.push({ startTime: Date.now(), radius: 0 });
+  };
+
+  const drawRipples = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const currentTime = Date.now();
+    ripples = ripples.filter(ripple => currentTime - ripple.startTime < 3000);
+    ripples.forEach(ripple => {
+      const elapsed = currentTime - ripple.startTime;
+      ripple.radius = elapsed * 0.1;
+      const alpha = 1 - elapsed / 3000;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, ripple.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(255,215,0,${alpha.toFixed(2)})`;
+      ctx.lineWidth = 3;
+      ctx.stroke();
+    });
+  };
+
+  const animate = () => {
+    drawRipples();
+    animationId = requestAnimationFrame(animate);
+  };
+  animate();
+
+  return {
+    disturb: () => {
+      addRipple();
+    }
+  };
+})();
+
+
+/* ===================== Quantum Entanglement Universe ===================== */
+const EntanglementUniverse = (() => {
+  const canvas = document.getElementById("entanglementUniverseCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const numNodes = 25;
+  let nodes = [];
+  let animationId;
+  let time = 0;
+
+  // Initialize nodes with random positions and velocities
+  const init = () => {
+    nodes = [];
+    for (let i = 0; i < numNodes; i++) {
+      nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5
+      });
+    }
+  };
+
+  const draw = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Update nodes and draw connections
+    nodes.forEach(node => {
+      node.x += node.vx;
+      node.y += node.vy;
+      // Bounce off edges
+      if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+      if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffd700";
+      ctx.fill();
+    });
+    // Draw dynamic connections based on distance
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 80) {
+          const alpha = 1 - dist / 80;
+          ctx.strokeStyle = `rgba(0,255,255,${alpha.toFixed(2)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+  };
+
+  const animate = () => {
+    time += 0.01;
+    draw();
+    animationId = requestAnimationFrame(animate);
+  };
+
+  // Start simulation immediately
+  init();
+  animate();
+
+  return {
+    shuffle: () => {
+      // Randomize node positions
+      nodes.forEach(node => {
+        node.x = Math.random() * canvas.width;
+        node.y = Math.random() * canvas.height;
+      });
+    }
+  };
+})();
+
+
+/* ===================== Spacetime Distortion Portal ===================== */
+const DistortionPortal = (() => {
+  const canvas = document.getElementById("distortionPortalCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const baseRadius = 50;
+  let time = 0;
+  let warpEffect = 0;
+  let animationId;
+
+  const drawPortal = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Calculate a dynamic distortion factor
+    const distortion = baseRadius + warpEffect + 10 * Math.abs(Math.sin(time));
+    const gradient = ctx.createRadialGradient(centerX, centerY, baseRadius, centerX, centerY, distortion);
+    gradient.addColorStop(0, "rgba(128,0,128,0.8)");
+    gradient.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, distortion, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Draw inner core
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, baseRadius, 0, Math.PI * 2);
+    ctx.fillStyle = "#000";
+    ctx.fill();
+  };
+
+  const animate = () => {
+    time += 0.03;
+    // Gradually reduce any warp effect over time
+    warpEffect *= 0.98;
+    drawPortal();
+    animationId = requestAnimationFrame(animate);
+  };
+
+  animate();
+
+  return {
+    warp: () => {
+      // On button click, trigger a temporary warp effect
+      warpEffect = 30;
+    }
+  };
+})();
+
 
 
         
