@@ -1069,6 +1069,54 @@
       <button class="gold-button" onclick="BlackHole.warp()">Warp Space</button>
     </div>
 
+        <div class="interactives-grid">
+    <!-- Quantum Reality Synthesizer -->
+    <div class="interactive-card">
+      <h4>Quantum Reality Synthesizer</h4>
+      <canvas id="realitySynthCanvas" width="400" height="200"></canvas>
+      <div style="margin-top: 0.5rem;">
+        <label style="color: #ffd700; font-size: 0.9rem;">
+          Fractal Depth:
+          <input type="range" id="synthDepth" min="1" max="10" step="1" value="5">
+        </label>
+      </div>
+      <button class="gold-button" onclick="RealitySynthesizer.generate()">Generate Synthesis</button>
+    </div>
+
+    <!-- Quantum Entropy Reactor -->
+    <div class="interactive-card">
+      <h4>Quantum Entropy Reactor</h4>
+      <canvas id="entropyReactorCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="EntropyReactor.ignite()">Ignite Reactor</button>
+    </div>
+
+    <!-- Quantum Field Collider -->
+    <div class="interactive-card">
+      <h4>Quantum Field Collider</h4>
+      <canvas id="fieldColliderCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="FieldCollider.collide()">Collide Fields</button>
+    </div>
+
+    <!-- Quantum Superposition Maze -->
+    <div class="interactive-card">
+      <h4>Quantum Superposition Maze</h4>
+      <canvas id="superpositionMazeCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="SuperpositionMaze.start()">Start Maze</button>
+    </div>
+
+    <!-- Quantum Wormhole Architect -->
+    <div class="interactive-card">
+      <h4>Quantum Wormhole Architect</h4>
+      <canvas id="wormholeArchitectCanvas" width="400" height="200"></canvas>
+      <div style="margin-top: 0.5rem;">
+        <label style="color: #ffd700; font-size: 0.9rem;">
+          Warp Intensity:
+          <input type="range" id="warpIntensity" min="0" max="50" step="1" value="20">
+        </label>
+      </div>
+      <button class="gold-button" onclick="WormholeArchitect.build()">Build Wormhole</button>
+    </div>
+
         </script>
             <canvas id="timeDistortionCanvas" width="400" height="200"></canvas>
 <input type="range" id="timeSpeed" min="-3" max="3" step="0.1" value="1">
@@ -3782,6 +3830,314 @@ const BlackHole = (() => {
     }
   };
 })();
+        /* ===================== Quantum Reality Synthesizer ===================== */
+/*
+  Generates fractal-like patterns on canvas by recursively drawing branches.
+  The “synthDepth” slider controls the recursion depth (complexity).
+*/
+const RealitySynthesizer = (() => {
+  const canvas = document.getElementById("realitySynthCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const depthSlider = document.getElementById("synthDepth");
+
+  // Recursive fractal branch drawing function
+  function drawBranch(x, y, angle, length, depth) {
+    if (depth === 0 || length < 2) return;
+    const rad = angle * Math.PI / 180;
+    const xEnd = x + length * Math.cos(rad);
+    const yEnd = y + length * Math.sin(rad);
+    
+    // Set stroke style with glow
+    ctx.strokeStyle = `hsla(${(depth*36) % 360}, 100%, 50%, 0.8)`;
+    ctx.lineWidth = depth;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(xEnd, yEnd);
+    ctx.stroke();
+
+    // Recursive calls for two branches with random variation
+    const newLength = length * (0.7 + Math.random() * 0.1);
+    drawBranch(xEnd, yEnd, angle - (15 + Math.random() * 10), newLength, depth - 1);
+    drawBranch(xEnd, yEnd, angle + (15 + Math.random() * 10), newLength, depth - 1);
+  }
+
+  function generate() {
+    // Clear canvas and set black background
+    ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const depth = parseInt(depthSlider.value);
+    // Draw fractal starting from center bottom
+    drawBranch(canvas.width / 2, canvas.height, -90, 60, depth);
+  }
+
+  return { generate };
+})();
+
+
+/* ===================== Quantum Entropy Reactor ===================== */
+/*
+  Simulates a reactor of thousands of micro-particles whose collective entropy 
+  can be “ignited” to cause an explosive, chaotic effect.
+*/
+const EntropyReactor = (() => {
+  const canvas = document.getElementById("entropyReactorCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+  let ignition = false;
+  let animationId;
+
+  // Initialize particles with random positions and velocities
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < 300; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 1,
+        vy: (Math.random() - 0.5) * 1,
+        radius: Math.random() * 2 + 1,
+        color: `rgba(255,215,0,${(Math.random() * 0.5 + 0.5).toFixed(2)})`
+      });
+    }
+  }
+
+  function updateParticles() {
+    particles.forEach(p => {
+      // When ignition is active, particles accelerate chaotically
+      if (ignition) {
+        p.vx += (Math.random() - 0.5) * 0.5;
+        p.vy += (Math.random() - 0.5) * 0.5;
+      }
+      p.x += p.vx;
+      p.y += p.vy;
+      // Wrap-around boundaries
+      if (p.x < 0) p.x += canvas.width;
+      if (p.x > canvas.width) p.x -= canvas.width;
+      if (p.y < 0) p.y += canvas.height;
+      if (p.y > canvas.height) p.y -= canvas.height;
+    });
+  }
+
+  function drawParticles() {
+    // Use a slight trail effect
+    ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    });
+  }
+
+  function animate() {
+    updateParticles();
+    drawParticles();
+    animationId = requestAnimationFrame(animate);
+  }
+
+  // Start continuous animation
+  initParticles();
+  animate();
+
+  return {
+    ignite: () => {
+      ignition = true;
+      // Ignite for 2 seconds then let entropy settle
+      setTimeout(() => { ignition = false; }, 2000);
+    }
+  };
+})();
+
+
+/* ===================== Quantum Field Collider ===================== */
+/*
+  Simulates two opposing quantum fields that collide and create a dramatic 
+  interference pattern. The collision is triggered on demand.
+*/
+const FieldCollider = (() => {
+  const canvas = document.getElementById("fieldColliderCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let time = 0;
+  let collisionActive = false;
+  let animationId;
+
+  function drawField() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Create two sine-wave fields from left and right
+    for (let x = 0; x < canvas.width; x += 2) {
+      let y1 = canvas.height / 2 + 30 * Math.sin(0.02 * x + time);
+      let y2 = canvas.height / 2 - 30 * Math.sin(0.02 * (canvas.width - x) + time);
+      // Draw interference lines where they overlap
+      ctx.fillStyle = "rgba(0,255,255,0.7)";
+      ctx.fillRect(x, (y1 + y2) / 2, 2, 2);
+    }
+    time += 0.05;
+  }
+
+  function animate() {
+    drawField();
+    if (collisionActive) {
+      // Intensify interference for a brief moment
+      ctx.globalCompositeOperation = "lighter";
+    } else {
+      ctx.globalCompositeOperation = "source-over";
+    }
+    animationId = requestAnimationFrame(animate);
+  }
+
+  // Start continuous animation
+  animate();
+
+  return {
+    collide: () => {
+      collisionActive = true;
+      // Activate collision effect for 1.5 seconds
+      setTimeout(() => { collisionActive = false; }, 1500);
+    }
+  };
+})();
+
+
+/* ===================== Quantum Superposition Maze ===================== */
+/*
+  Presents a dynamic maze where multiple potential paths exist simultaneously.
+  On pressing “Start Maze,” a random path is “collapsed” and highlighted.
+*/
+const SuperpositionMaze = (() => {
+  const canvas = document.getElementById("superpositionMazeCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let maze;
+  let solutionPath = [];
+
+  // Generate a simple randomized maze grid
+  function generateMaze(rows, cols) {
+    // Create a 2D grid with random walls (0: open, 1: wall)
+    const grid = [];
+    for (let r = 0; r < rows; r++) {
+      grid[r] = [];
+      for (let c = 0; c < cols; c++) {
+        grid[r][c] = Math.random() < 0.3 ? 1 : 0;
+      }
+    }
+    // Ensure entrance and exit are open
+    grid[0][0] = 0;
+    grid[rows - 1][cols - 1] = 0;
+    return grid;
+  }
+
+  // Simple maze solver that picks one random valid path (superposition collapse)
+  function solveMaze(grid) {
+    const rows = grid.length;
+    const cols = grid[0].length;
+    const path = [];
+    let r = 0, c = 0;
+    path.push({ r, c });
+    while (!(r === rows - 1 && c === cols - 1)) {
+      const moves = [];
+      if (r < rows - 1 && grid[r + 1][c] === 0) moves.push({ r: r + 1, c });
+      if (c < cols - 1 && grid[r][c + 1] === 0) moves.push({ r, c: c + 1 });
+      if (moves.length === 0) break;
+      const move = moves[Math.floor(Math.random() * moves.length)];
+      r = move.r;
+      c = move.c;
+      path.push({ r, c });
+    }
+    return path;
+  }
+
+  function drawMaze(grid, path) {
+    const rows = grid.length;
+    const cols = grid[0].length;
+    const cellW = canvas.width / cols;
+    const cellH = canvas.height / rows;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw maze grid
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        ctx.fillStyle = grid[r][c] === 1 ? "#222" : "#000";
+        ctx.fillRect(c * cellW, r * cellH, cellW, cellH);
+      }
+    }
+    // Highlight the collapsed solution path
+    ctx.fillStyle = "rgba(0,255,0,0.5)";
+    path.forEach(({ r, c }) => {
+      ctx.fillRect(c * cellW, r * cellH, cellW, cellH);
+    });
+  }
+
+  return {
+    start: () => {
+      const rows = 10, cols = 15;
+      maze = generateMaze(rows, cols);
+      solutionPath = solveMaze(maze);
+      drawMaze(maze, solutionPath);
+    }
+  };
+})();
+
+
+/* ===================== Quantum Wormhole Architect ===================== */
+/*
+  Allows users to design a wormhole by adjusting warp intensity.
+  The wormhole is rendered as a swirling radial gradient that distorts dynamically.
+*/
+const WormholeArchitect = (() => {
+  const canvas = document.getElementById("wormholeArchitectCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const intensitySlider = document.getElementById("warpIntensity");
+  let time = 0;
+  let animationId;
+
+  function drawWormhole() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const warp = parseInt(intensitySlider.value);
+    // Dynamic distortion using time and warp intensity
+    const radius = 50 + warp * Math.abs(Math.sin(time * 0.1));
+    const gradient = ctx.createRadialGradient(centerX, centerY, 50, centerX, centerY, radius);
+    gradient.addColorStop(0, "rgba(128,0,128,0.8)");
+    gradient.addColorStop(0.7, "rgba(0,0,0,0.5)");
+    gradient.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Optional: add swirling particle effects
+    for (let i = 0; i < 30; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const r = radius + Math.random() * 20;
+      const x = centerX + r * Math.cos(angle + time * 0.2);
+      const y = centerY + r * Math.sin(angle + time * 0.2);
+      ctx.beginPath();
+      ctx.arc(x, y, 2, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffd700";
+      ctx.fill();
+    }
+    time += 0.05;
+    animationId = requestAnimationFrame(drawWormhole);
+  }
+
+  // Start continuous animation
+  drawWormhole();
+
+  return {
+    build: () => {
+      // On button press, momentarily increase warp intensity
+      const original = parseInt(intensitySlider.value);
+      intensitySlider.value = original * 1.5;
+      setTimeout(() => { intensitySlider.value = original; }, 1000);
+    }
+  };
+})();
+
 
 
 
