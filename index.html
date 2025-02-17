@@ -903,6 +903,49 @@
       <canvas id="bubbleCollapseCanvas" width="400" height="200"></canvas>
       <button class="gold-button" onclick="collapseBubble()">Collapse Bubble</button>
     </div>
+
+        <div class="interactive-card">
+      <h4>Quantum Particle Accelerator</h4>
+      <canvas id="acceleratorCanvas" width="400" height="200"></canvas>
+      <div style="margin-top: 0.5rem;">
+        <button class="gold-button" onclick="Accelerator.launchParticle()">Launch Particle</button>
+        <button class="gold-button" onclick="Accelerator.reset()">Reset Accelerator</button>
+      </div>
+    </div>
+
+    <!-- Entangled Particle Dance -->
+    <div class="interactive-card">
+      <h4>Entangled Particle Dance</h4>
+      <canvas id="entangledDanceCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="EntangledDance.toggle()">Toggle Dance</button>
+    </div>
+
+    <!-- Chaotic Quantum Collider -->
+    <div class="interactive-card">
+      <h4>Chaotic Quantum Collider</h4>
+      <canvas id="colliderCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="Collider.addParticle()">Add Particle</button>
+    </div>
+
+    <!-- Quantum Field Oscillation -->
+    <div class="interactive-card">
+      <h4>Quantum Field Oscillation</h4>
+      <canvas id="fieldOscillationCanvas" width="400" height="200"></canvas>
+      <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem;">
+        <input type="range" id="fieldAmplitude" min="10" max="100" value="50" title="Amplitude">
+        <input type="range" id="fieldFrequency" min="0.01" max="0.2" step="0.01" value="0.05" title="Frequency">
+      </div>
+      <button class="gold-button" onclick="FieldOscillation.update()">Update Field</button>
+    </div>
+
+    <!-- Wormhole Explorer 2.0 -->
+    <div class="interactive-card">
+      <h4>Wormhole Explorer 2.0</h4>
+      <canvas id="wormholeExplorerCanvas" width="400" height="200"></canvas>
+      <button class="gold-button" onclick="WormholeExplorer.distort()">Distort Wormhole</button>
+    </div>
+  </div>
+</section>
   </div>
 </section>
 
@@ -2420,6 +2463,297 @@ function getCanvasContext(canvasId) {
     drawBubble();
   };
 })();
+
+        /* ===================== Quantum Particle Accelerator ===================== */
+const Accelerator = (() => {
+  const canvas = document.getElementById("acceleratorCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  // Particle with initial state and trail effect parameters
+  let particle = { x: 20, y: canvas.height / 2, vx: 0 };
+  let accelerating = false;
+  let animationId = null;
+
+  // Draw a semi-transparent overlay to create a fading trail
+  const drawTrail = () => {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  };
+
+  // Render the accelerator track and particle
+  const draw = () => {
+    // Create a trail effect rather than a full clear
+    drawTrail();
+
+    // Draw the accelerator track
+    ctx.strokeStyle = "#ffd700";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height / 2);
+    ctx.lineTo(canvas.width, canvas.height / 2);
+    ctx.stroke();
+
+    // Draw the particle with a subtle glow
+    ctx.beginPath();
+    ctx.arc(particle.x, particle.y, 8, 0, Math.PI * 2);
+    ctx.fillStyle = "cyan";
+    ctx.shadowColor = "#00ffff";
+    ctx.shadowBlur = 10;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  };
+
+  // Animation loop for the accelerator
+  const animate = () => {
+    if (!accelerating) return;
+    // Update physics with constant acceleration
+    particle.vx += 0.2;
+    particle.x += particle.vx;
+
+    // Bounce off the right edge with energy loss
+    if (particle.x > canvas.width - 8) {
+      particle.x = canvas.width - 8;
+      particle.vx = -particle.vx * 0.5;
+    }
+
+    draw();
+    animationId = requestAnimationFrame(animate);
+  };
+
+  return {
+    launchParticle: () => {
+      if (!accelerating) {
+        accelerating = true;
+        animate();
+      }
+    },
+    reset: () => {
+      accelerating = false;
+      cancelAnimationFrame(animationId);
+      particle = { x: 20, y: canvas.height / 2, vx: 0 };
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      draw();
+    }
+  };
+})();
+
+
+/* ===================== Entangled Particle Dance ===================== */
+const EntangledDance = (() => {
+  const canvas = document.getElementById("entangledDanceCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let dancing = false;
+  let animationId = null;
+  let time = 0;
+
+  const drawDance = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    // Calculate offset using sinusoidal functions for an elegant dance
+    const offset = Math.sin(time) * 40;
+    const verticalOsc = Math.cos(time) * 20;
+
+    // Left particle
+    ctx.beginPath();
+    ctx.arc(centerX - offset, centerY + verticalOsc, 10, 0, Math.PI * 2);
+    ctx.fillStyle = "#00ff00";
+    ctx.fill();
+    // Right particle (mirror image)
+    ctx.beginPath();
+    ctx.arc(centerX + offset, centerY - verticalOsc, 10, 0, Math.PI * 2);
+    ctx.fillStyle = "#ff00ff";
+    ctx.fill();
+
+    // Optional: Display state information
+    ctx.fillStyle = "#ffd700";
+    ctx.font = "14px Raleway";
+    ctx.fillText("Entangled", centerX - 30, canvas.height - 10);
+
+    time += 0.05;
+    if (dancing) animationId = requestAnimationFrame(drawDance);
+  };
+
+  return {
+    toggle: () => {
+      dancing = !dancing;
+      if (dancing) drawDance();
+      else cancelAnimationFrame(animationId);
+    }
+  };
+})();
+
+
+/* ===================== Chaotic Quantum Collider ===================== */
+const Collider = (() => {
+  const canvas = document.getElementById("colliderCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+
+  // Particle object with basic physics and collision response
+  class Particle {
+    constructor(x, y) {
+      this.x = x || Math.random() * canvas.width;
+      this.y = y || Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 4;
+      this.vy = (Math.random() - 0.5) * 4;
+      this.radius = Math.random() * 4 + 2;
+      this.baseColor = Math.random() * 360;
+      this.color = `hsl(${this.baseColor}, 100%, 50%)`;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      // Bounce off edges
+      if (this.x < this.radius || this.x > canvas.width - this.radius) this.vx *= -1;
+      if (this.y < this.radius || this.y > canvas.height - this.radius) this.vy *= -1;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+  }
+
+  // Check collision between two particles and adjust colors on impact
+  const handleCollisions = () => {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const p1 = particles[i];
+        const p2 = particles[j];
+        const dx = p1.x - p2.x;
+        const dy = p1.y - p2.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < p1.radius + p2.radius) {
+          // Simple color swap effect on collision
+          p1.color = `hsl(${(p1.baseColor + 30) % 360}, 100%, 50%)`;
+          p2.color = `hsl(${(p2.baseColor + 30) % 360}, 100%, 50%)`;
+          // Optionally, swap velocities for a rudimentary bounce
+          [p1.vx, p2.vx] = [p2.vx, p1.vx];
+          [p1.vy, p2.vy] = [p2.vy, p1.vy];
+        }
+      }
+    }
+  };
+
+  const animate = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    handleCollisions();
+    requestAnimationFrame(animate);
+  };
+
+  // Initialize with a few particles
+  for (let i = 0; i < 10; i++) particles.push(new Particle());
+  animate();
+
+  return {
+    addParticle: () => {
+      particles.push(new Particle());
+    }
+  };
+})();
+
+
+/* ===================== Quantum Field Oscillation ===================== */
+const FieldOscillation = (() => {
+  const canvas = document.getElementById("fieldOscillationCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let amplitude = parseFloat(document.getElementById("fieldAmplitude").value);
+  let frequency = parseFloat(document.getElementById("fieldFrequency").value);
+  let time = 0;
+  let animationId;
+
+  const drawField = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Create a gradient for a dynamic color effect
+    const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    grad.addColorStop(0, "#ff0000");
+    grad.addColorStop(0.5, "#ffd700");
+    grad.addColorStop(1, "#00ff00");
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (let x = 0; x < canvas.width; x++) {
+      let y = canvas.height / 2 + amplitude * Math.sin(frequency * x + time);
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    time += 0.1;
+    animationId = requestAnimationFrame(drawField);
+  };
+
+  // Start the oscillation on load
+  drawField();
+
+  return {
+    update: () => {
+      amplitude = parseFloat(document.getElementById("fieldAmplitude").value);
+      frequency = parseFloat(document.getElementById("fieldFrequency").value);
+    }
+  };
+})();
+
+
+/* ===================== Wormhole Explorer 2.0 ===================== */
+const WormholeExplorer = (() => {
+  const canvas = document.getElementById("wormholeExplorerCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const baseRadius = 50;
+  let distortion = 0;
+  let animationId;
+
+  const drawWormhole = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Create a dynamic radial gradient for the wormhole glow
+    const gradient = ctx.createRadialGradient(centerX, centerY, baseRadius, centerX, centerY, baseRadius + distortion);
+    gradient.addColorStop(0, "rgba(128,0,128,0.8)");
+    gradient.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, baseRadius + distortion, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Draw the dark inner core for depth
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, baseRadius, 0, Math.PI * 2);
+    ctx.fillStyle = "#000";
+    ctx.fill();
+
+    // Create a subtle pulsation effect using a sinusoidal function
+    distortion = 10 * Math.abs(Math.sin(Date.now() * 0.002));
+    animationId = requestAnimationFrame(drawWormhole);
+  };
+
+  // Start the wormhole animation immediately
+  drawWormhole();
+
+  return {
+    distort: () => {
+      // On button click, create a temporary distortion spike
+      const original = distortion;
+      let t = 0;
+      const spike = () => {
+        t += 0.1;
+        distortion = original + 20 * Math.sin(t * Math.PI);
+        if (t < 1) requestAnimationFrame(spike);
+      };
+      spike();
+    }
+  };
+})();
+
 
         
 
