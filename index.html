@@ -3,9 +3,10 @@
 <head>
 
     <div id="loadingScreen" class="loading-screen">
-  <div class="spinner"></div>
+  <div class="quantum-loading-logo"></div>
   <p>Loading Umbrixia...</p>
 </div>
+
 
 
     
@@ -47,6 +48,30 @@
     <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <style>
+
+        /* Quantum Loading Logo */
+.quantum-loading-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  /* Start with a bright, multi-hued gradient */
+  background: radial-gradient(circle, red, orange, yellow, green, blue, indigo, violet);
+  /* Multiple simultaneous animations: rapid spin and dynamic color shifting */
+  animation: spinRapid 0.5s linear infinite, pulseColor 2s ease-in-out infinite;
+}
+
+/* Rapid Spin Animation */
+@keyframes spinRapid {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Dynamic Color Pulse: cycles the hue via a CSS filter */
+@keyframes pulseColor {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
         /* General Styling */
         body {
             font-family: 'Raleway', sans-serif;
