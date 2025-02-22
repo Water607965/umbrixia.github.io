@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Understanding Quantum Measurement">
   <title>Chapter 4 – Quantum Measurement</title>
-  <link rel="stylesheet" href="styles.css">
+  <!-- External stylesheet can be used, but for clarity we include key styles inline -->
   <style>
     /* GENERAL STYLING */
     body {
@@ -15,7 +15,7 @@
       background: linear-gradient(to bottom, #000, #1a1a1a);
       color: #ffd700;
     }
-
+    
     /* NAVBAR (Accessible) */
     .navbar {
       background: #000;
@@ -34,6 +34,7 @@
     .search-bar {
       flex-grow: 1;
       text-align: center;
+      position: relative;
     }
     .search-input {
       width: 80%;
@@ -45,17 +46,40 @@
       background: #222;
       color: #ffd700;
     }
-
+    .search-results {
+      background: #222;
+      border: 1px solid #ffd700;
+      border-top: none;
+      max-height: 200px;
+      overflow-y: auto;
+      position: absolute;
+      width: 80%;
+      max-width: 500px;
+      top: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: none;
+    }
+    .search-result-item {
+      padding: 0.5rem;
+      cursor: pointer;
+      color: #ffd700;
+    }
+    .search-result-item:hover {
+      background: #444;
+    }
+    
     /* CHAPTER CONTENT */
     .chapter-content {
       max-width: 800px;
       margin: 2rem auto;
       padding: 2rem;
-      background: rgba(34,34,34,0.95);
+      background: rgba(34, 34, 34, 0.95);
       border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(255,255,255,0.2);
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
     }
-    /* Professional, sleek chapter title (no glitch effects) */
+    /* Professional, sleek title (no glitch effects) */
     .sleek-title {
       font-size: 3.5rem;
       font-weight: 700;
@@ -75,14 +99,14 @@
       color: #ff0000;
       font-weight: bold;
     }
-
+    
     /* FADE-IN EFFECT FOR TEXT */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-
+    
     /* FOOTER */
     .footer {
       text-align: center;
@@ -94,90 +118,89 @@
   </style>
 </head>
 <body>
-
-  <!-- Accessible Navbar with Search Bar -->
+  <!-- Navbar with back button, search bar, and footer link -->
   <nav class="navbar">
     <div>
       <a href="index.html" class="back-button">⬅ Back to Main Page</a>
     </div>
     <div class="search-bar">
       <input type="search" id="chapterSearch" class="search-input" placeholder="Search chapters...">
+      <div id="searchResults" class="search-results"></div>
     </div>
     <div>
       <a href="#footer">Footer</a>
     </div>
   </nav>
-
+  
   <!-- Chapter Content -->
   <section class="chapter-content">
-    <!-- Replaced glitchy title with a sleek title -->
     <h1 class="sleek-title">Chapter 4: Quantum Measurement</h1>
-
+    
     <p class="fade-in">
       The primary conceptual appeal of <span class="highlight">quantum measurement</span> is its changing nature in defining the state of a system, specifically because the very act of observation plays a critical role in shaping reality.
       When a quantum system is measured, its potential states collectively collapse into one observable outcome, a process that highlights the stark contrast with the classical idea of an independently existing reality.
     </p>
-
+    
     <p class="fade-in">
       Furthermore, the measurement process in quantum physics is significant because it underscores the relationship between the <span class="highlight">observer and the observed</span>.
       In classical physics, measurement is considered a passive revelation of preexisting conditions.
       However, in the quantum realm, the observer’s interaction with the system is an <span class="highlight">active</span>, concurrent event.
     </p>
-
+    
     <p class="fade-in">
       This profound connection between observation and system behavior challenges traditional assumptions and reinforces the idea that <span class="highlight">knowledge itself is intertwined</span> with the phenomena it seeks to understand.
     </p>
-
+    
     <p class="fade-in">
       Moreover, the concept of <span class="highlight">wave function</span> collapse is central to quantum measurement.
       The wave function, which mathematically encapsulates all possible states of a system, is reduced to a single state upon measurement.
       This phenomenon is crucial because it suggests that the act of measurement is not just an observation but an event that fundamentally <span class="highlight">determines reality</span>.
     </p>
-
+    
     <p class="fade-in">
       In addition, uncertainty in the measurement process is highlighted by the <span class="highlight">Heisenberg uncertainty principle</span>.
       This principle demonstrates that certain pairs of physical properties, such as position and momentum, <span class="highlight">cannot</span> be measured simultaneously with infinite precision.
     </p>
-
+    
     <p class="fade-in">
       The limitations created by this principle are critical to our understanding—not as mere experimental constraints, but as <span class="highlight">fundamental truths of nature</span>.
       Consequently, measurement in quantum mechanics represents a balance between what can be known and what is inherently uncertain.
     </p>
-
+    
     <p class="fade-in">
       Furthermore, experimental evidence for the active role of measurement is abundant in the quantum realm.
       For instance, <span class="highlight">delayed-choice experiments</span> illustrate that decisions made <span class="highlight">during or even after</span> the measurement process directly influence the behavior of quantum particles.
     </p>
-
+    
     <p class="fade-in">
       These results reinforce that time and causality in quantum mechanics operate <span class="highlight">beyond classical expectations</span>.
       They suggest that observation itself can reshape the sequence of events, challenging our conventional notions of past and future.
     </p>
-
+    
     <p class="fade-in">
       Additionally, the mathematical formalism of quantum mechanics supports this idea.
       Quantum measurement is expressed through <span class="highlight">operators and eigenstates in Hilbert space</span>, providing a structured framework to describe how observable quantities emerge from the probability amplitudes of the wave function.
     </p>
-
+    
     <p class="fade-in">
       This formalism is crucial not only for illustrating the <span class="highlight">probabilistic nature</span> of quantum systems but also for its applications in <span class="highlight">quantum computing</span> and precision measurement technologies.
     </p>
-
+    
     <p class="fade-in">
       Quantum measurement, through both experimental and theoretical lenses, represents a departure from classical intuition.
       The act of observation, wave function collapse, and the fundamental limitations imposed by the uncertainty principle together depict a universe where <span class="highlight">knowledge itself is shaped by interaction</span>.
     </p>
-
+    
     <p class="fade-in">
       Thus, quantum measurement compels us to reconsider reality—not as a fixed, independent structure, but as an evolving, interwoven fabric where <span class="highlight">the observer and the observed</span> are intrinsically connected.
     </p>
   </section>
-
+  
   <!-- Footer -->
   <footer class="footer" id="footer">
     <p>&copy; 2025 Umbrixia. All rights reserved.</p>
   </footer>
-
+  
   <!-- JavaScript: Fade-in effect for paragraphs -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -191,20 +214,57 @@
       });
     });
   </script>
-
-  <!-- JavaScript: Basic Search Functionality for Chapter Content -->
+  
+  <!-- JavaScript: Interactive Search Functionality -->
   <script>
-    document.getElementById('chapterSearch').addEventListener('input', function() {
+    // Predefined chapters array – update titles and links as needed.
+    const chapters = [
+      { title: "Chapter 1: Uncertainty", link: "chapter1.html" },
+      { title: "Chapter 2: Superposition", link: "chapter2.html" },
+      { title: "Chapter 3: Entanglement", link: "chapter3.html" },
+      { title: "Chapter 4: Quantum Measurement", link: "chapter4.html" },
+      { title: "Chapter 5: Quantum Entanglement", link: "chapter5.html" },
+      { title: "Chapter 6: Quantum Decoherence", link: "chapter6.html" },
+      { title: "Chapter 7: Quantum Probability", link: "chapter7.html" },
+      { title: "Chapter 8: Quantum Measurement", link: "chapter8.html" },
+      { title: "Chapter 9: Quantum Field Theory", link: "chapter9.html" }
+    ];
+  
+    const searchInput = document.getElementById('chapterSearch');
+    const resultsContainer = document.getElementById('searchResults');
+  
+    searchInput.addEventListener('input', function() {
       const query = this.value.toLowerCase();
-      const content = document.querySelector('.chapter-content');
-      // Show content if query is found; otherwise hide.
-      if (content.textContent.toLowerCase().includes(query)) {
-        content.style.display = 'block';
-      } else {
-        content.style.display = 'none';
+      resultsContainer.innerHTML = '';
+      if (query.length === 0) {
+        resultsContainer.style.display = 'none';
+        return;
+      }
+      const filtered = chapters.filter(ch => ch.title.toLowerCase().includes(query));
+      if (filtered.length === 0) {
+        resultsContainer.style.display = 'none';
+        return;
+      }
+      filtered.forEach(ch => {
+        const item = document.createElement('div');
+        item.classList.add('search-result-item');
+        const regex = new RegExp(`(${query})`, 'gi');
+        item.innerHTML = ch.title.replace(regex, '<strong>$1</strong>');
+        item.addEventListener('click', () => {
+          window.location.href = ch.link;
+        });
+        resultsContainer.appendChild(item);
+      });
+      resultsContainer.style.display = 'block';
+    });
+  
+    // Hide search results when clicking outside the search bar.
+    document.addEventListener('click', (e) => {
+      const searchBar = document.querySelector('.search-bar');
+      if (!searchBar.contains(e.target)) {
+        resultsContainer.style.display = 'none';
       }
     });
   </script>
-
 </body>
 </html>
