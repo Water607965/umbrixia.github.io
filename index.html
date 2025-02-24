@@ -452,10 +452,6 @@
 
 </header>
 
-     <audio id="introAudio" autoplay muted>
-  <source src="intro.mp3" type="audio/mpeg">
-</audio>
-
 
 
 
@@ -4123,38 +4119,7 @@ const WormholeArchitect = (() => {
     </script>
 
 <script>
-    document.addEventListener('click', () => {
-  const audio = document.getElementById('introAudio');
-  audio.muted = false;
-});
-    document.addEventListener("DOMContentLoaded", () => {
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-  // Create an oscillator node (a simple tone)
-  const oscillator = audioCtx.createOscillator();
-  oscillator.type = 'sine';
-  oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // A4 note
-
-  // Create a gain node to control the volume
-  const gainNode = audioCtx.createGain();
-  gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
-
-  // Connect nodes
-  oscillator.connect(gainNode);
-  gainNode.connect(audioCtx.destination);
-
-  // Start the oscillator
-  oscillator.start();
-
-  // Note: Many browsers require a user gesture to resume the audio context
-  // So, you might need to call audioCtx.resume() after a user interaction.
-});
-
-    document.addEventListener('click', () => {
-  if (audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
-});
+    
 
 </script>
 
