@@ -416,52 +416,12 @@
     transform: scale(1.05);
 }
 
-        /* Quantum Education Section */
-.quantum-education {
-  padding: 4rem 2rem;
-  background: linear-gradient(135deg, #000, #1a1a1a);
-  color: #ffd700;
-}
-
-.quantum-education .container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-.quantum-education .content {
-  flex: 1 1 400px;
-  padding: 1rem;
-}
-
-.quantum-education .section-title {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  font-family: 'Raleway', sans-serif;
-}
-
-.quantum-education .section-description {
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-  font-family: 'Raleway', sans-serif;
-}
-
-.quantum-education .animation {
-  flex: 1 1 600px;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-        /* Quantum Portal Section */
+        /* Quantum Portal 2.0 Section */
 .quantum-portal {
   padding: 4rem 2rem;
   background: linear-gradient(135deg, #000, #1a1a1a);
   color: #ffd700;
+  overflow: hidden;
 }
 
 .portal-container {
@@ -475,36 +435,40 @@
 .portal-text {
   flex: 1 1 400px;
   padding: 1rem;
+  text-align: center;
 }
 
 .portal-title {
   font-family: 'Raleway', sans-serif;
-  font-size: 3rem;
+  font-size: 3.5rem;
   text-transform: uppercase;
   margin-bottom: 1rem;
+  text-shadow: 0 0 15px #ffd700;
 }
 
 .portal-description {
   font-family: 'Raleway', sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
 
 .portal-controls {
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 
 .portal-animation {
-  flex: 1 1 600px;
+  flex: 1 1 700px;
   padding: 1rem;
+  background: #000;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
 }
 
 .gold-button {
@@ -512,7 +476,7 @@
   color: #000;
   border: none;
   border-radius: 5px;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
@@ -521,8 +485,6 @@
   background: #ff0000;
   transform: scale(1.1);
 }
-
-
 
 
     </style>
@@ -552,7 +514,7 @@
 </header>
 
 
-    <h5 id="typingText" class="typing-container" data-text="Quantum Physics At It's Finest!"></h5>
+    
         <script>
     function typeEffect(element, text, speed, callback) {
         let i = 0;
@@ -596,24 +558,25 @@
         
 </header>
 
-   <!-- Quantum Education Portal -->
+   <!-- Quantum Portal 2.0: Immersive Interactive Experience -->
 <section id="quantum-portal" class="quantum-portal">
   <div class="portal-container">
     <div class="portal-text">
       <h2 class="portal-title">Umbrixia Quantum Portal</h2>
       <p class="portal-description">
-        Experience quantum physics like never before. Explore dynamic wave interference, pulsating quantum particles, and evolving energy fields—visualizations that bridge science and art. Switch between modes to dive into the fundamental nature of our universe.
+        Enter the next generation of quantum education—an immersive, multi-layered simulation that fuses fractal growth, dynamic interference, reactive particle fields, and real-time user interactivity. Explore different modes and witness the digital manifestation of quantum phenomena.
       </p>
       <div class="portal-controls">
         <button class="gold-button" id="toggleModeBtn">Switch Mode</button>
-        <button class="gold-button" id="resetPortalBtn">Reset</button>
+        <button class="gold-button" id="resetPortalBtn">Reset Portal</button>
       </div>
     </div>
     <div class="portal-animation">
-      <canvas id="quantumPortalCanvas" width="800" height="500"></canvas>
+      <canvas id="quantumPortalCanvas" width="900" height="600"></canvas>
     </div>
   </div>
 </section>
+
 
 
     <section id="podcast-section">
@@ -4384,6 +4347,143 @@ function startDemo() {
   animate();
 })();
 
+(function() {
+  const canvas = document.getElementById("quantumPortalCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  
+  // Modes: 0 = Fractal Growth, 1 = Wave Interference, 2 = Reactive Particle Field
+  let mode = 0;
+  let time = 0;
+  
+  // Particle System (for Mode 2)
+  const particles = [];
+  const totalParticles = 200;
+  for (let i = 0; i < totalParticles; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 2,
+      vy: (Math.random() - 0.5) * 2,
+      radius: Math.random() * 3 + 2,
+      hue: Math.random() * 360
+    });
+  }
+  
+  // Fractal Growth Mode: Recursive branch drawing function
+  function drawBranch(x, y, angle, length, depth) {
+    if (depth === 0 || length < 2) return;
+    const rad = angle * Math.PI / 180;
+    const xEnd = x + length * Math.cos(rad);
+    const yEnd = y + length * Math.sin(rad);
+    
+    ctx.strokeStyle = `hsla(${(depth * 45 + time * 200) % 360}, 100%, 60%, 0.8)`;
+    ctx.lineWidth = depth;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(xEnd, yEnd);
+    ctx.stroke();
+    
+    const newLength = length * (0.7 + Math.random() * 0.1);
+    drawBranch(xEnd, yEnd, angle - (20 + Math.random() * 10), newLength, depth - 1);
+    drawBranch(xEnd, yEnd, angle + (20 + Math.random() * 10), newLength, depth - 1);
+  }
+  
+  // Draw a rotating, multi-colored background gradient
+  function drawBackground() {
+    const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    grad.addColorStop(0, `hsl(${(time * 10) % 360}, 70%, 10%)`);
+    grad.addColorStop(1, `hsl(${(time * 10 + 180) % 360}, 70%, 20%)`);
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+  
+  // Wave Interference Mode: Draw dynamic sine waves across the canvas
+  function drawWaveInterference() {
+    ctx.save();
+    ctx.globalAlpha = 0.5;
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (let x = 0; x < canvas.width; x += 5) {
+      const y = canvas.height / 2 + 50 * Math.sin((x + time * 150) * 0.01);
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+  
+  // Particle Field Mode: Update and render interactive particles
+  function updateAndDrawParticles() {
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      // Bounce off edges
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `hsl(${(p.hue + time * 20) % 360}, 100%, 70%)`;
+      ctx.fill();
+    });
+  }
+  
+  // Main animation loop: Draw layered visuals based on active mode
+  function animate() {
+    time += 0.005;
+    drawBackground();
+    
+    if (mode === 0) {
+      // Fractal Growth: Translate to bottom-center and draw fractal tree
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height);
+      drawBranch(0, 0, -90, 90, 8);
+      ctx.restore();
+    } else if (mode === 1) {
+      // Wave Interference: Render dynamic sine wave pattern
+      drawWaveInterference();
+    } else if (mode === 2) {
+      // Particle Field: Update and draw interactive particles
+      updateAndDrawParticles();
+    }
+    
+    requestAnimationFrame(animate);
+  }
+  
+  // Mode toggle and reset event handlers
+  document.getElementById("toggleModeBtn").addEventListener("click", () => {
+    mode = (mode + 1) % 3;
+  });
+  
+  document.getElementById("resetPortalBtn").addEventListener("click", () => {
+    time = 0;
+    // Reset particles for mode 2
+    particles.forEach(p => {
+      p.x = Math.random() * canvas.width;
+      p.y = Math.random() * canvas.height;
+      p.vx = (Math.random() - 0.5) * 2;
+      p.vy = (Math.random() - 0.5) * 2;
+    });
+  });
+  
+  // Extra interactivity: In particle mode, attract particles toward mouse pointer.
+  canvas.addEventListener("mousemove", (e) => {
+    if (mode === 2) {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      particles.forEach(p => {
+        const dx = mouseX - p.x;
+        const dy = mouseY - p.y;
+        p.vx += dx * 0.0007;
+        p.vy += dy * 0.0007;
+      });
+    }
+  });
+  
+  animate();
+})();
 
 
 
