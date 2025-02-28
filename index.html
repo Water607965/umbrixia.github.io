@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <body>
 
-   
+    <div id="loadingScreen" class="loading-screen">
+    <div class="glitch-text" data-text="Loading Umbrixia...">Loading Umbrixia...</div>
+    <p class="loading-dots">Please Wait</p>
+       <p class="loading-dots">"Live your life as an exclamation rather than an explanation." - Isaac Newton.</p> 
+</div>
 
-   
     
 
     <!-- Favicon for Browsers -->
@@ -45,30 +47,6 @@
     <link rel="icon" href="logo.png" sizes="48x48" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <style>
-
-        /* Quantum Loading Logo */
-.quantum-loading-logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  /* Start with a bright, multi-hued gradient */
-  background: radial-gradient(circle, red, orange, yellow, green, blue, indigo, violet);
-  /* Multiple simultaneous animations: rapid spin and dynamic color shifting */
-  animation: spinRapid 0.1s linear infinite, pulseColor 0.1s ease-in-out infinite;
-}
-
-/* Rapid Spin Animation */
-@keyframes spinRapid {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Dynamic Color Pulse: cycles the hue via a CSS filter */
-@keyframes pulseColor {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
-}
-
         /* General Styling */
         body {
             font-family: 'Raleway', sans-serif;
@@ -287,6 +265,62 @@
     overflow: hidden;
 }
 
+/* Glitchy text effect */
+.glitch-text {
+    position: relative;
+    text-transform: uppercase;
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    animation: glitchEffect 1s infinite;
+}
+
+/* Creating RGB glitch effects */
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 red;
+    animation: glitchEffect 0.3s infinite;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: 2px 0 blue;
+    animation: glitchEffect 0.3s infinite reverse;
+}
+
+/* Keyframes for glitching effect */
+@keyframes glitchEffect {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, -2px); }
+    40% { transform: translate(2px, 2px); }
+    60% { transform: translate(-1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}
+
+/* Loading animation effect */
+.loading-dots::after {
+    content: "";
+    display: inline-block;
+    animation: dots 1.5s infinite steps(4);
+}
+
+@keyframes dots {
+    0% { content: "."; }
+    25% { content: ".."; }
+    50% { content: "..."; }
+    75% { content: "...."; }
+}
+
 /* Fade-out animation */
 .fade-out {
     animation: fadeOut 1s forwards;
@@ -402,8 +436,6 @@
         </div>
     </nav>
 
-  
-
     <!-- Hero Section -->
     <header class="hero">
     
@@ -446,72 +478,16 @@
 
             /* Expanded About Section */
 
-
 </script>
 
 </header>
 
-
+     
 
 
 
         
 </header>
-
-    <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Umbrixia - The Future is Red">
-  <title>Umbrixia - The Future is Red</title>
-  <style>
-    /* Full-screen red-themed matrix section */
-    body, html {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      overflow: hidden;
-      font-family: 'Raleway', sans-serif;
-    }
-    .matrix-section {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(135deg, #330000, #990000);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      text-align: center;
-      z-index: 1;
-    }
-    .matrix-intro {
-      position: absolute;
-      z-index: 2;
-      padding: 1rem 2rem;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-      margin-bottom: 2rem;
-    }
-    .matrix-intro h2 {
-      font-size: 3rem;
-      margin: 0 0 0.5rem 0;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-    .matrix-intro p {
-      font-size: 1.5rem;
-      margin: 0;
-    }
-    /* Fullscreen canvas */
-    #matrixCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      width: 100%;
-      height: 100%;
-    }
-  </style>
 
     <section id="podcast-section">
     <h3>🎙️ Explore Quantum Physics with Umbrixia</h3>
@@ -4161,7 +4137,6 @@ const WormholeArchitect = (() => {
     }
   };
 })();
-        
 
 
 
@@ -4172,11 +4147,8 @@ const WormholeArchitect = (() => {
 
     </script>
 
-<script>
     
 
-</script>
 
-    </body>
-
+</body>
 </html>
