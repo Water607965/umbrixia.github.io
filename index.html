@@ -416,6 +416,48 @@
     transform: scale(1.05);
 }
 
+        /* Quantum Education Section */
+.quantum-education {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #000, #1a1a1a);
+  color: #ffd700;
+}
+
+.quantum-education .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantum-education .content {
+  flex: 1 1 400px;
+  padding: 1rem;
+}
+
+.quantum-education .section-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  font-family: 'Raleway', sans-serif;
+}
+
+.quantum-education .section-description {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-family: 'Raleway', sans-serif;
+}
+
+.quantum-education .animation {
+  flex: 1 1 600px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 
 
     </style>
@@ -507,6 +549,23 @@
         </iframe>
     </div>
 </section>
+
+    <!-- Quantum Education Section -->
+<section id="quantum-education" class="quantum-education">
+  <div class="container">
+    <div class="content">
+      <h2 class="section-title">Umbrixia: The Future of Quantum Education</h2>
+      <p class="section-description">
+        Discover how Umbrixia transforms the way we learn quantum physics. Our innovative platform harnesses stunning, interactive animations to bring quantum concepts to life. Dive into our dynamic demo to explore wave functions, interference, and more in an immersive digital experience.
+      </p>
+      <button class="gold-button" onclick="startDemo()">Explore Demo</button>
+    </div>
+    <div class="animation">
+      <canvas id="quantumDemoCanvas" width="600" height="400"></canvas>
+    </div>
+  </div>
+</section>
+
 
 
 
@@ -4138,6 +4197,29 @@ const WormholeArchitect = (() => {
   };
 })();
 
+function startDemo() {
+  const canvas = document.getElementById('quantumDemoCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let angle = 0;
+  
+  function animateDemo() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw a series of swirling circles that simulate quantum waves
+    for (let i = 0; i < 50; i++) {
+      const x = canvas.width / 2 + Math.cos(angle + i * 0.2) * (100 + i * 2);
+      const y = canvas.height / 2 + Math.sin(angle + i * 0.2) * (100 + i * 2);
+      ctx.beginPath();
+      ctx.arc(x, y, 5, 0, Math.PI * 2);
+      ctx.fillStyle = `hsl(${(angle * 50 + i * 10) % 360}, 80%, 60%)`;
+      ctx.fill();
+    }
+    angle += 0.02;
+    requestAnimationFrame(animateDemo);
+  }
+  
+  animateDemo();
+}
 
 
 
