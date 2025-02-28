@@ -457,6 +457,71 @@
   justify-content: center;
 }
 
+        /* Quantum Portal Section */
+.quantum-portal {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #000, #1a1a1a);
+  color: #ffd700;
+}
+
+.portal-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.portal-text {
+  flex: 1 1 400px;
+  padding: 1rem;
+}
+
+.portal-title {
+  font-family: 'Raleway', sans-serif;
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.portal-description {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.portal-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.portal-animation {
+  flex: 1 1 600px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.gold-button {
+  background: #ffd700;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.gold-button:hover {
+  background: #ff0000;
+  transform: scale(1.1);
+}
+
 
 
 
@@ -531,21 +596,25 @@
         
 </header>
 
-    <!-- Quantum Education Section -->
-<section id="quantum-education" class="quantum-education">
-  <div class="container">
-    <div class="content">
-      <h2 class="section-title">Umbrixia: The Future of Quantum Education</h2>
-      <p class="section-description">
-        Discover how Umbrixia transforms the way we learn quantum physics. Our innovative platform harnesses stunning, interactive animations to bring quantum concepts to life. Dive into our dynamic demo to explore wave functions, interference, and more in an immersive digital experience.
+   <!-- Quantum Education Portal -->
+<section id="quantum-portal" class="quantum-portal">
+  <div class="portal-container">
+    <div class="portal-text">
+      <h2 class="portal-title">Umbrixia Quantum Portal</h2>
+      <p class="portal-description">
+        Experience quantum physics like never before. Explore dynamic wave interference, pulsating quantum particles, and evolving energy fields—visualizations that bridge science and art. Switch between modes to dive into the fundamental nature of our universe.
       </p>
-      <button class="gold-button" onclick="startDemo()">Explore Demo</button>
+      <div class="portal-controls">
+        <button class="gold-button" id="toggleModeBtn">Switch Mode</button>
+        <button class="gold-button" id="resetPortalBtn">Reset</button>
+      </div>
     </div>
-    <div class="animation">
-      <canvas id="quantumDemoCanvas" width="600" height="400"></canvas>
+    <div class="portal-animation">
+      <canvas id="quantumPortalCanvas" width="800" height="500"></canvas>
     </div>
   </div>
 </section>
+
 
     <section id="podcast-section">
     <h3>🎙️ Explore Quantum Physics with Umbrixia</h3>
@@ -4222,6 +4291,98 @@ function startDemo() {
   
   animateDemo();
 }
+
+        (function() {
+  const canvas = document.getElementById("quantumPortalCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  
+  // Define two modes: 0 = Wave Interference, 1 = Particle Field
+  let mode = 0;
+  let time = 0;
+  
+  // Create particle system
+  const particles = [];
+  const totalParticles = 150;
+  for (let i = 0; i < totalParticles; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 2,
+      vy: (Math.random() - 0.5) * 2,
+      radius: Math.random() * 3 + 2,
+      hue: Math.random() * 360
+    });
+  }
+  
+  // Draw dynamic background gradient
+  function drawBackground() {
+    const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    grad.addColorStop(0, `hsl(${(time*5) % 360}, 50%, 10%)`);
+    grad.addColorStop(1, `hsl(${(time*5 + 180) % 360}, 50%, 20%)`);
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+  
+  // Mode 0: Draw a wave interference pattern
+  function drawWaveInterference() {
+    ctx.save();
+    ctx.globalAlpha = 0.4;
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (let x = 0; x < canvas.width; x += 5) {
+      const y = canvas.height / 2 + 50 * Math.sin((x + time * 100) * 0.01);
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+  
+  // Mode 1: Update and draw particles
+  function updateAndDrawParticles() {
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      // Bounce off edges
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `hsl(${(p.hue + time*10) % 360}, 100%, 70%)`;
+      ctx.fill();
+    });
+  }
+  
+  // Main animation loop
+  function animate() {
+    time += 0.01;
+    drawBackground();
+    if (mode === 0) {
+      drawWaveInterference();
+    } else {
+      updateAndDrawParticles();
+    }
+    requestAnimationFrame(animate);
+  }
+  
+  // Button controls
+  document.getElementById("toggleModeBtn").addEventListener("click", () => {
+    mode = (mode + 1) % 2;
+  });
+  
+  document.getElementById("resetPortalBtn").addEventListener("click", () => {
+    time = 0;
+    // Reset particle positions
+    particles.forEach(p => {
+      p.x = Math.random() * canvas.width;
+      p.y = Math.random() * canvas.height;
+    });
+  });
+  
+  animate();
+})();
 
 
 
