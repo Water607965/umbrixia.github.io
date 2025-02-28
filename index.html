@@ -8,68 +8,116 @@
         <p>If you judge a fish by its ability to climb a tree, it will live its whole life believing that it is stupid - Albert Einstein."</p>
 </div>
 
-    
+    <body>
+        <!-- Place this code inside the <body> of your HTML where you want the animation section -->
+<section class="matrix-section">
+  <div class="matrix-intro">
+    <h2>Umbrixia: The Future is Red</h2>
+    <p>Step into the quantum matrix—a cascade of vibrant red code that shifts and evolves dynamically.</p>
+  </div>
+  <canvas id="matrixCanvas"></canvas>
+</section>
 
+<style>
+  /* Matrix Section: full-screen, red-themed background */
+  .matrix-section {
+    position: relative;
+    width: 100vw;
+    height: 100vh; /* Full viewport height */
+    background: linear-gradient(135deg, #330000, #990000);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+  }
 
-  <!-- Matrix Section with Introduction -->
-  <section class="matrix-section">
-    <div class="matrix-intro">
-      <h2>Umbrixia: The Future is Red</h2>
-      <p>Step into the quantum matrix—a cascade of vibrant red code that shifts and evolves dynamically.</p>
-    </div>
-    <canvas id="matrixCanvas"></canvas>
-  </section>
+  /* Introduction Overlay */
+  .matrix-intro {
+    position: absolute;
+    z-index: 2;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+  }
 
-  <script>
-    // Matrix Rain Animation in Red
-    (function() {
-      const canvas = document.getElementById('matrixCanvas');
-      const ctx = canvas.getContext('2d');
+  .matrix-intro h2 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
 
-      // Resize the canvas to fill the window dynamically
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        columns = Math.floor(canvas.width / fontSize);
-        drops = new Array(columns).fill(1);
-      }
-      window.addEventListener('resize', resizeCanvas);
-      
-      // Characters to use (you can choose symbols or letters if preferred)
-      const letters = "0123456789ABCDEF";
-      const fontSize = 16;
-      let columns = Math.floor(canvas.width / fontSize);
-      let drops = new Array(columns).fill(1);
+  .matrix-intro p {
+    font-size: 1.5rem;
+    margin: 0;
+  }
 
-      // Draw the red matrix rain effect
-      function drawMatrix() {
-        // Translucent background to create trail effect
-        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = "#FF0000"; // Bright red letters
-        ctx.font = fontSize + "px monospace";
-        for (let i = 0; i < drops.length; i++) {
-          // Random character from letters
-          const text = letters.charAt(Math.floor(Math.random() * letters.length));
-          // Draw the character at the current column and drop position
-          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-          
-          // Reset drop to top randomly when it goes off screen
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-          // Increment drop position
-          drops[i]++;
+  /* Canvas covers the background */
+  #matrixCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<script>
+  // Matrix Rain Animation in Red
+  (function() {
+    const canvas = document.getElementById('matrixCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    // Resize the canvas to fill the window dynamically
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      columns = Math.floor(canvas.width / fontSize);
+      drops = new Array(columns).fill(1);
+    }
+    window.addEventListener('resize', resizeCanvas);
+
+    // Characters to use for the rain (you can customize these)
+    const letters = "0123456789ABCDEF";
+    const fontSize = 16;
+    let columns = Math.floor(canvas.width / fontSize);
+    let drops = new Array(columns).fill(1);
+
+    // Draw the Matrix effect
+    function drawMatrix() {
+      // Translucent background to create trailing effect
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#FF0000"; // Bright red for characters
+      ctx.font = fontSize + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        // Choose a random character
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        // Draw the character at the column and drop position
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        // Reset drop to top if it passes the screen, with a slight randomness
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
         }
+        // Increment drop position
+        drops[i]++;
       }
-      
-      setInterval(drawMatrix, 50);
-      resizeCanvas();
-    })();
-  </script>
+    }
 
+    setInterval(drawMatrix, 50);
+    resizeCanvas();
+  })();
+</script>
 
+    </body>
 
     
 
