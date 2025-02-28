@@ -446,6 +446,117 @@
     document.addEventListener("DOMContentLoaded", startTypingEffect);
 
             /* Expanded About Section */
+            <!-- Place this inside any existing section where you want the effect -->
+<div id="quantum-section">
+  <div class="quantum-overlay">
+    <h2>Umbrixia: The Future is Red</h2>
+    <p>A quantum shift in technology. Experience the dynamic red matrix.</p>
+  </div>
+  <canvas id="quantumCanvas"></canvas>
+</div>
+
+<style>
+  /* 🔥 Self-contained quantum section */
+  #quantum-section {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Adjustable */
+    overflow: hidden;
+    background: #200000; /* Deep red for blending */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 🔥 Overlay text */
+  .quantum-overlay {
+    position: absolute;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px 40px;
+    border-radius: 8px;
+  }
+
+  .quantum-overlay h2 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .quantum-overlay p {
+    font-size: 1.3rem;
+  }
+
+  /* 🔥 Quantum Canvas */
+  #quantumCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const canvas = document.getElementById("quantumCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+    const particles = [];
+    const maxParticles = 100; // Adjust for performance
+    const colors = ["#ff0000", "#ff4444", "#ff2222", "#cc0000"];
+
+    // Particle Class
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 4 + 1;
+        this.speedX = Math.random() * 2 - 1;
+        this.speedY = Math.random() * 2 - 1;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    // Initialize particles
+    for (let i = 0; i < maxParticles; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((particle) => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  });
+</script>
+
 
 </script>
 
@@ -4175,118 +4286,6 @@ const WormholeArchitect = (() => {
 <script>
     
 
-</script>
-
-
-</body>
-
-     <body>
-        <!-- Place this code inside the <body> of your HTML where you want the animation section -->
-<section class="matrix-section">
-  <div class="matrix-intro">
-    <h2>Umbrixia: The Future is Red</h2>
-    <p>Step into the quantum matrix—a cascade of vibrant red code that shifts and evolves dynamically.</p>
-  </div>
-  <canvas id="matrixCanvas"></canvas>
-</section>
-
-<style>
-  /* Matrix Section: full-screen, red-themed background */
-  .matrix-section {
-    position: relative;
-    width: 100vw;
-    height: 100vh; /* Full viewport height */
-    background: linear-gradient(135deg, #330000, #990000);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    text-align: center;
-    overflow: hidden;
-  }
-
-  /* Introduction Overlay */
-  .matrix-intro {
-    position: absolute;
-    z-index: 2;
-    padding: 1rem 2rem;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    margin-bottom: 2rem;
-  }
-
-  .matrix-intro h2 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-
-  .matrix-intro p {
-    font-size: 1.5rem;
-    margin: 0;
-  }
-
-  /* Canvas covers the background */
-  #matrixCanvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-  }
-</style>
-
-<script>
-  // Matrix Rain Animation in Red
-  (function() {
-    const canvas = document.getElementById('matrixCanvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-
-    // Resize the canvas to fill the window dynamically
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      columns = Math.floor(canvas.width / fontSize);
-      drops = new Array(columns).fill(1);
-    }
-    window.addEventListener('resize', resizeCanvas);
-
-    // Characters to use for the rain (you can customize these)
-    const letters = "0123456789ABCDEF";
-    const fontSize = 16;
-    let columns = Math.floor(canvas.width / fontSize);
-    let drops = new Array(columns).fill(1);
-
-    // Draw the Matrix effect
-    function drawMatrix() {
-      // Translucent background to create trailing effect
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = "#FF0000"; // Bright red for characters
-      ctx.font = fontSize + "px monospace";
-      for (let i = 0; i < drops.length; i++) {
-        // Choose a random character
-        const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        // Draw the character at the column and drop position
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        // Reset drop to top if it passes the screen, with a slight randomness
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        // Increment drop position
-        drops[i]++;
-      }
-    }
-
-    setInterval(drawMatrix, 50);
-    resizeCanvas();
-  })();
 </script>
 
     </body>
